@@ -20,7 +20,7 @@
 .hero {
   position: relative;
   top: -60%;
-  height: 55%;
+  height: 50%;
 }
 
 .title {
@@ -53,7 +53,8 @@
 .arrow {
   position: absolute;
   color: darkblue;
-  font-size: 1.5rem;
+  font-size: 2.4rem;
+  margin-left: -.6rem;
   bottom: 0;
 }
 
