@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165266655-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-165266655-1');
+</script>
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<meta name="referrer" content="no-referrer">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="date=no">
+<meta name="format-detection" content="address=no">
+<meta name="format-detection" content="email=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+
+<meta name="description" content="在 Android 手机上合成图片也不麻烦，使用 OpenCV 图像无缝融合功能，通过少量的操作就可以将两副图像无缝的融合到一起，在要求不是很精确的场合，有着可以接受的合成效果。">
+<meta name="keywords" content='OpenCV'>
+<meta name="author" content="XinLake">
+
+
+<meta property="og:title" content="Android OpenCV 图像融合 | XinLake" />
+
+<meta property="og:image" content="https://xinlake.life/blog/2018/12-android-opencv-seamless-cloning/cover.jpg" />
+
+<meta property="og:description" content="在 Android 手机上合成图片也不麻烦，使用 OpenCV 图像无缝融合功能，通过少量的操作就可以将两副图像无缝的融合到一起，在要求不是很精确的场合，有着可以接受的合成效果。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xinlake.life/blog/2018/12-android-opencv-seamless-cloning/" />
+<meta property="og:locale" content="zh-CN" />
+<meta name="generator" content="Hugo 0.75.1" />
+
+<title>Android OpenCV 图像融合 | XinLake</title>
+<link rel="canonical" href="https://xinlake.life/blog/2018/12-android-opencv-seamless-cloning/" />
+<link rel="alternate" href="https://xinlake.life/blog/index.xml" type="application/rss+xml" title="XinLake">
+
+
+<link rel="shortcut icon" href="/images/logo-v2.1.png" type="image/x-icon" />
+<link rel="icon" href="/images/logo-v2.1.png" type="image/x-icon" />
+
+
+<link rel="stylesheet" href="/library/bootstrap-4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/library/fontawesome-free-5.15.1-web/css/all.min.css" />
+<link rel="stylesheet" href="/library/highlight-10.0.1/styles/foundation.css" />
+
+<link rel="stylesheet" href="/assets/style.css" media="screen">
+     
+</head>
+
+<body><header id="header" class="headroom">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="site-title" href="https://xinlake.life/">
+                XinLake
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navogation"
+                aria-controls="navogation" aria-expanded="false" aria-label="toggle-navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navogation">
+                <ul class="nav justify-content-end ml-auto">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/blog">Posts</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/archive">Archive</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <form action="https://xinlake.life//search">
+                    <input class="form-control search-input" type="text" placeholder="Search" id="search-query" name="s" />
+                </form>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+<div class="container flex-grow-1 mb-5" style="margin-top: 10rem;">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            
+<a href="https://xinlake.life/blog/2018/12-android-opencv-seamless-cloning/">
+    <h2 class="text-dark font-weight-bold mb-3">Android OpenCV 图像融合</h2>
+</a>
+
+
+<div class="text-secondary mb-4">
+    <ul class="list-inline text-secondary mb-0">
+        <li class="list-inline-item">
+            <i class="far fa-file-alt"></i>
+            <span>2018-12-26</span>
+        </li>
+        <li class="list-inline-item">
+            
+            <a class="text-secondary" href="/archive/"><i class="fas fa-folder"></i></a>
+            <a class="badge badge-light" href="/categories/Computer-Vision/">Computer-Vision</a>
+        </li>
+    </ul>
+</div>
+
+            <article class="content mt-2 mb-4">
+                <p>在 Android 手机上合成图片也不麻烦，使用 OpenCV 图像无缝融合功能，通过少量的操作就可以将两副图像无缝的融合到一起，在要求不是很精确的场合，有着可以接受的合成效果。</p>
+<div class="text-center pt-2 pb-3">
+    <img class="img-fluid" src='cover.jpg' title=''></img>
+    
+    <div class="text-black-50">合成图片</div>
+    
+</div>
+<p>上图是在 Android 手机上运行 OpenCV seamlessClone 合成的一张图片，seamlessClone 方法直接调用 Native 的实现。参考 C++ API 文档，我将该方法的声明和参数一起写在下方。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">seamlessClone</span><span style="color:#f92672">(</span>Mat src<span style="color:#f92672">,</span> Mat dst<span style="color:#f92672">,</span> Mat mask<span style="color:#f92672">,</span> Point point<span style="color:#f92672">,</span> Mat blend<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> flags<span style="color:#f92672">)</span>
+<span style="color:#75715e">// Mat src:   Input 8-bit 3-channel image.
+</span><span style="color:#75715e">// Mat dst:   Input 8-bit 3-channel image.
+</span><span style="color:#75715e">// Mat mask:  Input 8-bit 1 or 3-channel image.
+</span><span style="color:#75715e">// Point point:   Point in dst image where object is placed.
+</span><span style="color:#75715e">// Mat blend: Output image with the same size and type as dst.
+</span><span style="color:#75715e">// int flags: Cloning method
+</span></code></pre></div><p>其中，参与合成的两幅图为 <code>src</code> 和 <code>dst</code>，<code>src</code> 一般比较小它将融合进 <code>dst</code> 成为其一部分。<code>mask</code> 可以用来选取 <code>src</code> 进行融合的区域，可以是 <code>src</code> 的一部分也可以是全部。<code>point</code> 控制 <code>src</code> 的中心点位于 <code>dst</code> 中的位置，即在 <code>dst</code> 哪个位置进行融合。<code>blend</code> 是运算后的输出，它需要和 <code>dst</code> 一样大。<code>flags</code> 告诉 OpenCV 如何融合图像，目前 Android OpenCV 支持两种融合方式 <code>Photo.NORMAL_CLONE</code> 和 <code>Photo.MIXED_CLONE</code>。</p>
+<p>合成封面图的原始图片在下方，分别为 <code>src</code>（普通图片）和 <code>dst</code>（影片《飞鹰艾迪》截图）。创建一个 <code>mask</code> 选择 <code>src</code> 中人物区域融合进 <code>dst</code>，设置 <code>point</code>摆放到右侧的位置即是封面图的效果。封面的融合方式 <code>flag</code> 为 <code>Photo.NORMAL_CLONE</code>，另外一种是 <code>Photo.MIXED_CLONE</code> 稍后将做演示。</p>
+<div class="text-center pt-2 pb-3">
+    <img class="img-fluid" src='src.jpg' title=''></img>
+    
+    <div class="text-black-50">图 src，普通图片</div>
+    
+</div>
+<div class="text-center pt-2 pb-3">
+    <img class="img-fluid" src='dst.jpg' title=''></img>
+    
+    <div class="text-black-50">图 dst，取自影片：Eddie the Eagle / 飞鹰艾迪，左侧是狼叔</div>
+    
+</div>
+<p>在一个 Activity 读取上面两幅图进行融合，并且在布局中显示。布局文件如下，从上到下 4 个 ImageView 分别显示 <code>src</code>，<code>mask</code>，<code>dst</code>，<code>blend</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+<span style="color:#f92672">&lt;LinearLayout</span> <span style="color:#a6e22e">xmlns:android=</span><span style="color:#e6db74">&#34;http://schemas.android.com/apk/res/android&#34;</span>
+    <span style="color:#a6e22e">xmlns:tools=</span><span style="color:#e6db74">&#34;http://schemas.android.com/tools&#34;</span>
+    <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+    <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+    <span style="color:#a6e22e">android:orientation=</span><span style="color:#e6db74">&#34;vertical&#34;</span><span style="color:#f92672">&gt;</span>
+
+    <span style="color:#f92672">&lt;ImageView</span>
+        <span style="color:#a6e22e">tools:ignore=</span><span style="color:#e6db74">&#34;ContentDescription&#34;</span>
+        <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/main_imageview_src&#34;</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;0dp&#34;</span>
+        <span style="color:#a6e22e">android:layout_weight=</span><span style="color:#e6db74">&#34;1&#34;</span>
+        <span style="color:#a6e22e">android:layout_margin=</span><span style="color:#e6db74">&#34;2dp&#34;</span>
+        <span style="color:#a6e22e">android:scaleType=</span><span style="color:#e6db74">&#34;fitCenter&#34;</span><span style="color:#f92672">/&gt;</span>
+
+    <span style="color:#f92672">&lt;ImageView</span>
+        <span style="color:#a6e22e">tools:ignore=</span><span style="color:#e6db74">&#34;ContentDescription&#34;</span>
+        <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/main_imageview_mask&#34;</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;0dp&#34;</span>
+        <span style="color:#a6e22e">android:layout_weight=</span><span style="color:#e6db74">&#34;1&#34;</span>
+        <span style="color:#a6e22e">android:layout_margin=</span><span style="color:#e6db74">&#34;2dp&#34;</span>
+        <span style="color:#a6e22e">android:scaleType=</span><span style="color:#e6db74">&#34;fitCenter&#34;</span>
+        <span style="color:#a6e22e">android:visibility=</span><span style="color:#e6db74">&#34;gone&#34;</span><span style="color:#f92672">/&gt;</span>
+
+    <span style="color:#f92672">&lt;ImageView</span>
+        <span style="color:#a6e22e">tools:ignore=</span><span style="color:#e6db74">&#34;ContentDescription&#34;</span>
+        <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/main_imageview_dst&#34;</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;0dp&#34;</span>
+        <span style="color:#a6e22e">android:layout_weight=</span><span style="color:#e6db74">&#34;1&#34;</span>
+        <span style="color:#a6e22e">android:layout_margin=</span><span style="color:#e6db74">&#34;2dp&#34;</span>
+        <span style="color:#a6e22e">android:scaleType=</span><span style="color:#e6db74">&#34;fitCenter&#34;</span> <span style="color:#f92672">/&gt;</span>
+
+    <span style="color:#f92672">&lt;ImageView</span>
+        <span style="color:#a6e22e">tools:ignore=</span><span style="color:#e6db74">&#34;ContentDescription&#34;</span>
+        <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/main_imageview_blend&#34;</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;0dp&#34;</span>
+        <span style="color:#a6e22e">android:layout_weight=</span><span style="color:#e6db74">&#34;1&#34;</span>
+        <span style="color:#a6e22e">android:layout_margin=</span><span style="color:#e6db74">&#34;2dp&#34;</span>
+        <span style="color:#a6e22e">android:scaleType=</span><span style="color:#e6db74">&#34;fitCenter&#34;</span> <span style="color:#f92672">/&gt;</span>
+<span style="color:#f92672">&lt;/LinearLayout&gt;</span>
+
+</code></pre></div><p>Java 代码，首先是读取原图并设置显示。然后创建 <code>mask</code> 选择人物区域，数据是事先准备好的，当然也可以放到 Android App 里完成，不过这不是本文的重点。结果中的黑白影像就是 <code>mask</code>，区域数据比较粗糙，你会发现人物几个部位会有点模糊。最后创建 <code>blend</code> 调用 <code>Photo.seamlessClone</code> 得到融合输出，结果显示于下面的图中。<em>文中图片均经过一定比例缩小，和代码的数据不能匹配。</em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Mat matSrc <span style="color:#f92672">=</span> Imgcodecs<span style="color:#f92672">.</span><span style="color:#a6e22e">imread</span><span style="color:#f92672">(</span>pathImageSrc<span style="color:#f92672">);</span>
+Mat matDst <span style="color:#f92672">=</span> Imgcodecs<span style="color:#f92672">.</span><span style="color:#a6e22e">imread</span><span style="color:#f92672">(</span>pathImageDst<span style="color:#f92672">);</span>
+displayMat<span style="color:#f92672">(</span>matSrc<span style="color:#f92672">,</span> vImageSrc<span style="color:#f92672">);</span>
+displayMat<span style="color:#f92672">(</span>matDst<span style="color:#f92672">,</span> vImageDst<span style="color:#f92672">);</span>
+
+Point<span style="color:#f92672">[]</span> points <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>284<span style="color:#f92672">,</span> 534<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>318<span style="color:#f92672">,</span> 412<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>331<span style="color:#f92672">,</span> 388<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>357<span style="color:#f92672">,</span> 363<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>393<span style="color:#f92672">,</span> 345<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>414<span style="color:#f92672">,</span> 312<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>371<span style="color:#f92672">,</span> 247<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>338<span style="color:#f92672">,</span> 187<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>337<span style="color:#f92672">,</span> 144<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>319<span style="color:#f92672">,</span> 109<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>276<span style="color:#f92672">,</span> 128<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>240<span style="color:#f92672">,</span> 120<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>240<span style="color:#f92672">,</span> 51<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>266<span style="color:#f92672">,</span> 14<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>289<span style="color:#f92672">,</span> 0<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>598<span style="color:#f92672">,</span> 0<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>613<span style="color:#f92672">,</span> 68<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>630<span style="color:#f92672">,</span> 82<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>635<span style="color:#f92672">,</span> 110<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>608<span style="color:#f92672">,</span> 179<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>598<span style="color:#f92672">,</span> 185<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>600<span style="color:#f92672">,</span> 245<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>613<span style="color:#f92672">,</span> 252<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>657<span style="color:#f92672">,</span> 298<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>788<span style="color:#f92672">,</span> 344<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>836<span style="color:#f92672">,</span> 355<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>873<span style="color:#f92672">,</span> 364<span style="color:#f92672">),</span>
+    <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>873<span style="color:#f92672">,</span> 534<span style="color:#f92672">),</span>
+<span style="color:#f92672">};</span>
+Mat matMask <span style="color:#f92672">=</span> Mat<span style="color:#f92672">.</span><span style="color:#a6e22e">zeros</span><span style="color:#f92672">(</span>matSrc<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">(),</span> matSrc<span style="color:#f92672">.</span><span style="color:#a6e22e">type</span><span style="color:#f92672">());</span>
+Imgproc<span style="color:#f92672">.</span><span style="color:#a6e22e">fillConvexPoly</span><span style="color:#f92672">(</span>matMask<span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> MatOfPoint<span style="color:#f92672">(</span>points<span style="color:#f92672">),</span> <span style="color:#66d9ef">new</span> Scalar<span style="color:#f92672">(</span>255<span style="color:#f92672">,</span> 255<span style="color:#f92672">,</span> 255<span style="color:#f92672">));</span>
+displayMat<span style="color:#f92672">(</span>matMask<span style="color:#f92672">,</span> vImageMask<span style="color:#f92672">);</span>
+
+Mat matBlend <span style="color:#f92672">=</span> Mat<span style="color:#f92672">.</span><span style="color:#a6e22e">zeros</span><span style="color:#f92672">(</span>matDst<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">(),</span> matDst<span style="color:#f92672">.</span><span style="color:#a6e22e">type</span><span style="color:#f92672">());</span>
+Photo<span style="color:#f92672">.</span><span style="color:#a6e22e">seamlessClone</span><span style="color:#f92672">(</span>matSrc<span style="color:#f92672">,</span> matDst<span style="color:#f92672">,</span> matMask<span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>950<span style="color:#f92672">,</span> 267<span style="color:#f92672">)),</span> matBlend<span style="color:#f92672">,</span> Photo<span style="color:#f92672">.</span><span style="color:#a6e22e">NORMAL_CLONE</span><span style="color:#f92672">);</span>
+displayMat<span style="color:#f92672">(</span>matBlend<span style="color:#f92672">,</span> vImageBlend<span style="color:#f92672">);</span>
+</code></pre></div><div class="text-center pt-2 pb-3">
+    <img class="img-fluid" src='activity-1-normal.jpg' title=''></img>
+    
+    <div class="text-black-50">Android Activity</div>
+    
+</div>
+<p><a href="https://docs.opencv.org/4.0.1/df/da0/group__photo__clone.html">OpenCV Seamless Clone</a> 可以找到融合方式的说明，下面另外一个融合样例中分别用了两种不同的融合方式。OpenCV seamlessClone 合成会自动处理颜色，使其看上去无缝过渡。可以看出融合后色彩不是很协调，不过可以调整区域颜色来达到更好的效果。</p>
+<div class="text-center pt-2 pb-3">
+    <img class="img-fluid" src='activity-2-normal.jpg' title=''></img>
+    
+    <div class="text-black-50">flag: Photo.NORMAL_CLONE</div>
+    
+</div>
+<div class="text-center pt-2 pb-3">
+    <img class="img-fluid" src='activity-2-mixed.jpg' title=''></img>
+    
+    <div class="text-black-50">flag: Photo.MIXED_CLONE</div>
+    
+</div>
+<blockquote>
+<p>本文使用开发环境为 Android Studio 3.2.1，OpenCV 4.0.1<br>
+本文代码仅供参考。</p>
+</blockquote>
+            </article>
+
+            
+<ul class="list-inline text-secondary mb-1">
+    
+    <li class="list-inline-item">
+        <a class="text-secondary" href="/archive/"><i class="fas fa-tags"></i></a>
+    </li>
+    
+    <li class="list-inline-item">
+        <a class="badge badge-secondary" href="/tags/OpenCV/">OpenCV</a>
+    </li>
+    
+    
+</ul>
+
+
+<hr class="my-1" />
+
+<div class="d-flex justify-content-between mb-4">
+    
+    <div class="align-self-center text-secondary">
+        <i class="far fa-edit"></i>
+        <span>2018-12-26</span>
+    </div>
+
+    
+    <div class="dropdown">
+        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-share-alt-square fa-2x"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="share_button">
+            <div class="d-flex justify-content-around">
+                <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f12-android-opencv-seamless-cloning%2f" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook-square fa-2x px-1"></i>
+                </a>
+                <a href="https://twitter.com/intent/tweet?text=Android%20OpenCV%20%e5%9b%be%e5%83%8f%e8%9e%8d%e5%90%88&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f12-android-opencv-seamless-cloning%2f" target="_blank" title="Twitter">
+                    <i class="fab fa-twitter fa-2x px-1"></i>
+                </a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f12-android-opencv-seamless-cloning%2f" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin fa-2x px-1"></i>
+                </a>
+            </div>
+            
+            <hr class="my-1" />
+
+            
+            <div class="text-center mb-0">
+                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f12-android-opencv-seamless-cloning%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"/>
+            </div>
+        </div>
+    </div>
+</div>
+            <div id="disqus_thread"></div>
+<script>
+    
+
+    (function () { 
+        if (window.location.hostname == "localhost")
+            return;
+
+        var d = document, s = d.createElement('script');
+        s.src = 'https://xinlake-life.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript</noscript>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        
+        <div class="col-auto mx-auto">
+            
+            <div>
+                <a href="https://xinlake.life/blog/2019/01-the-story-in-2018/">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>2018 故事，遇见快餐厅的小姐姐</span>
+                </a>
+            </div>
+            
+            
+            <div>
+                <a href="https://xinlake.life/blog/2018/10-spoof-a-website-by-forging-a-request-4/">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>通过伪造请求来欺骗网站（四）</span>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark pt-3 pb-2">
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            
+            <div class="d-flex align-items-center">
+                <span class="text-secondary">
+                    Copyright ©
+                    <script>var CurrentYear = new Date().getFullYear(); document.write(CurrentYear)</script>&nbsp
+                </span>
+                <a href="mailto:xinlake@outlook.com">
+                    <span class="text-secondary">XinLake</span>
+                </a>
+            </div>
+
+            
+            <div class="align-self-center">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <a href="mailto:xinlake@outlook.com">
+                            <h3 class="footer-feed px-2"><i class="fas fa-envelope"></i></h3>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://xinlake.life/blog/index.xml" title="Blog RSS">
+                            <h3 class="footer-feed px-2"><i class="fas fa-rss"></i></h3>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    var indexURL = "https:\/\/xinlake.life\/index.json"
+</script>
+
+
+<script src="/library/jquery-3.5.1.min.js"></script>
+<script src="/library/bootstrap-4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="/library/headroom-0.11.0/headroom.min.js"></script>
+<script src="/library/search/fuse.min.js"></script>
+<script src="/library/search/mark.js"></script>
+<script src="/library/search/search.js"></script>
+<script src="/library/highlight-10.0.1/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script src="/assets/script.js"></script>
+     
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+.home {
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  color: #f9fafc;
+  overflow: hidden;
+}
+
+.background {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+}
+
+.hero {
+  position: relative;
+  top: -60%;
+  height: 55%;
+}
+
+.title {
+  font-size: 2.2rem;
+  color: #4B0082;
+}
+
+.about-blog {
+  font-size: 2.0rem;
+  color: whitesmoke;
+  text-shadow: 0px 0px 2px #101017;
+}
+
+.social-link {
+  list-style: none;
+  padding: 0.2rem;
+}
+
+.social-link a {
+  font-size: 1.5rem;
+  color: lightblue;
+  padding: 0.5rem;
+}
+
+.social-link a:hover {
+  color: rgb(255, 145, 0);
+  transition: all 0.3s ease-in;
+}
+
+.arrow {
+  position: absolute;
+  color: darkblue;
+  font-size: 1.5rem;
+  bottom: 0;
+}
+
+.bounce {
+  -webkit-animation: bounce 2s infinite;
+          animation: bounce 2s infinite;
+}
+
+@-webkit-keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}

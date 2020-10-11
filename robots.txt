@@ -1,0 +1,4 @@
+# "allow" is not a part of standard, search engine may don't understand "allow"
+User-agent: *
+
+Sitemap: https://xinlake.life/sitemap.xml

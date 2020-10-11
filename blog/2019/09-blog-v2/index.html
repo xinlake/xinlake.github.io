@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165266655-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-165266655-1');
+</script>
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<meta name="referrer" content="no-referrer">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="date=no">
+<meta name="format-detection" content="address=no">
+<meta name="format-detection" content="email=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+
+<meta name="description" content="刚开始建博客时我说“选用了对 Windows 系统更加友好的 Hexo”，今天我换上了 Hugo，因为 Hugo 更加友好。他可以简单的在各种平台下运行，而且对使用者也没有特别要求。不需要关心 Node.js 版本也不需要学习 npm 的使用。">
+<meta name="keywords" content='Hugo, Blog'>
+<meta name="author" content="XinLake">
+
+
+<meta property="og:title" content="Blog v2 | XinLake" />
+
+<meta property="og:description" content="刚开始建博客时我说“选用了对 Windows 系统更加友好的 Hexo”，今天我换上了 Hugo，因为 Hugo 更加友好。他可以简单的在各种平台下运行，而且对使用者也没有特别要求。不需要关心 Node.js 版本也不需要学习 npm 的使用。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xinlake.life/blog/2019/09-blog-v2/" />
+<meta property="og:locale" content="zh-CN" />
+<meta name="generator" content="Hugo 0.75.1" />
+
+<title>Blog v2 | XinLake</title>
+<link rel="canonical" href="https://xinlake.life/blog/2019/09-blog-v2/" />
+<link rel="alternate" href="https://xinlake.life/blog/index.xml" type="application/rss+xml" title="XinLake">
+
+
+<link rel="shortcut icon" href="/images/logo-v2.1.png" type="image/x-icon" />
+<link rel="icon" href="/images/logo-v2.1.png" type="image/x-icon" />
+
+
+<link rel="stylesheet" href="/library/bootstrap-4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/library/fontawesome-free-5.15.1-web/css/all.min.css" />
+<link rel="stylesheet" href="/library/highlight-10.0.1/styles/foundation.css" />
+
+<link rel="stylesheet" href="/assets/style.css" media="screen">
+     
+</head>
+
+<body><header id="header" class="headroom">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="site-title" href="https://xinlake.life/">
+                XinLake
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navogation"
+                aria-controls="navogation" aria-expanded="false" aria-label="toggle-navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navogation">
+                <ul class="nav justify-content-end ml-auto">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/blog">Posts</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/archive">Archive</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <form action="https://xinlake.life//search">
+                    <input class="form-control search-input" type="text" placeholder="Search" id="search-query" name="s" />
+                </form>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+<div class="container flex-grow-1 mb-5" style="margin-top: 10rem;">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            
+<a href="https://xinlake.life/blog/2019/09-blog-v2/">
+    <h2 class="text-dark font-weight-bold mb-3">Blog v2</h2>
+</a>
+
+
+<div class="text-secondary mb-4">
+    <ul class="list-inline text-secondary mb-0">
+        <li class="list-inline-item">
+            <i class="far fa-file-alt"></i>
+            <span>2019-09-18</span>
+        </li>
+        <li class="list-inline-item">
+            
+            <a class="text-secondary" href="/archive/"><i class="fas fa-folder"></i></a>
+            <a class="badge badge-light" href="/categories/Network/">Network</a>
+        </li>
+    </ul>
+</div>
+
+            <article class="content mt-2 mb-4">
+                <p>刚开始建博客时我说“选用了对 Windows 系统更加友好的 Hexo”，今天我换上了 <a href="https://gohugo.io/">Hugo</a>，因为 Hugo 更加友好。他可以简单的在各种平台下运行，而且对使用者也没有特别要求。不需要关心 Node.js 版本也不需要学习 npm 的使用。</p>
+<p>有人说 Hexo 慢，我觉得还可以接受。反应速度上，执行第一条 Hexo 命令时很慢有时甚至等上 10+ 秒，不过等环境加载好了之后执行命令都还好。运行效率上，基于中间平台运行的 Hexo 比原生的 Hugo 要差很多，但是平时使用不会频繁的执行命令，对效率不会太敏感。相对于很快的框架来说反应慢效率差，但是不影响使用。</p>
+<p>对于我来说，头疼的问题是 Node.js 的更新、Hexo 的更新、还有一大堆插件的更新和依赖关系，不清楚通过何种方式来让 Node.js、Hexo 及相关插件保持在最佳状态。不是说 npm 难懂，仅仅为了使用一个工具而去学习支撑这个工具的平台感觉投入有点大。当然，这是我的主观看法。Hexo 对于 Node.js 开发者那应该是很方便的。</p>
+<p>于是我把 Blog 框架换成了 Hugo，没有头疼的问题还高效。如果你常来我的 Blog 可能会发现一些变化，比如菜单、布局、样式、搜索、博文归档，甚至是 404 页面。。。正如你所见，我已经将 Blog 站点重构。</p>
+            </article>
+
+            
+<ul class="list-inline text-secondary mb-1">
+    
+    <li class="list-inline-item">
+        <a class="text-secondary" href="/archive/"><i class="fas fa-tags"></i></a>
+    </li>
+    
+    <li class="list-inline-item">
+        <a class="badge badge-secondary" href="/tags/Hugo/">Hugo</a>
+    </li>
+    
+    <li class="list-inline-item">
+        <a class="badge badge-secondary" href="/tags/Blog/">Blog</a>
+    </li>
+    
+    
+</ul>
+
+
+<hr class="my-1" />
+
+<div class="d-flex justify-content-between mb-4">
+    
+    <div class="align-self-center text-secondary">
+        <i class="far fa-edit"></i>
+        <span>2019-09-18</span>
+    </div>
+
+    
+    <div class="dropdown">
+        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-share-alt-square fa-2x"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="share_button">
+            <div class="d-flex justify-content-around">
+                <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f09-blog-v2%2f" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook-square fa-2x px-1"></i>
+                </a>
+                <a href="https://twitter.com/intent/tweet?text=Blog%20v2&url=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f09-blog-v2%2f" target="_blank" title="Twitter">
+                    <i class="fab fa-twitter fa-2x px-1"></i>
+                </a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f09-blog-v2%2f" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin fa-2x px-1"></i>
+                </a>
+            </div>
+            
+            <hr class="my-1" />
+
+            
+            <div class="text-center mb-0">
+                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f09-blog-v2%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"/>
+            </div>
+        </div>
+    </div>
+</div>
+            <div id="disqus_thread"></div>
+<script>
+    
+
+    (function () { 
+        if (window.location.hostname == "localhost")
+            return;
+
+        var d = document, s = d.createElement('script');
+        s.src = 'https://xinlake-life.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript</noscript>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        
+        <div class="col-auto mx-auto">
+            
+            <div>
+                <a href="https://xinlake.life/blog/2019/09-hugo-powershell-deploy-script/">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Hugo PowerShell 部署脚本</span>
+                </a>
+            </div>
+            
+            
+            <div>
+                <a href="https://xinlake.life/blog/2019/09-west-lake-impression/">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>西湖映像</span>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark pt-3 pb-2">
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            
+            <div class="d-flex align-items-center">
+                <span class="text-secondary">
+                    Copyright ©
+                    <script>var CurrentYear = new Date().getFullYear(); document.write(CurrentYear)</script>&nbsp
+                </span>
+                <a href="mailto:xinlake@outlook.com">
+                    <span class="text-secondary">XinLake</span>
+                </a>
+            </div>
+
+            
+            <div class="align-self-center">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <a href="mailto:xinlake@outlook.com">
+                            <h3 class="footer-feed px-2"><i class="fas fa-envelope"></i></h3>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://xinlake.life/blog/index.xml" title="Blog RSS">
+                            <h3 class="footer-feed px-2"><i class="fas fa-rss"></i></h3>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    var indexURL = "https:\/\/xinlake.life\/index.json"
+</script>
+
+
+<script src="/library/jquery-3.5.1.min.js"></script>
+<script src="/library/bootstrap-4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="/library/headroom-0.11.0/headroom.min.js"></script>
+<script src="/library/search/fuse.min.js"></script>
+<script src="/library/search/mark.js"></script>
+<script src="/library/search/search.js"></script>
+<script src="/library/highlight-10.0.1/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script src="/assets/script.js"></script>
+     
+</body>
+
+</html>

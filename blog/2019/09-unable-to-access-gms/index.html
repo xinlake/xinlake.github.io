@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165266655-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-165266655-1');
+</script>
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<meta name="referrer" content="no-referrer">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="date=no">
+<meta name="format-detection" content="address=no">
+<meta name="format-detection" content="email=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+
+<meta name="description" content="GMS（Google Mobile Services）为 Android 应用提供了基于云服务的 API，包括广告、游戏、地图、视觉图像、身份验证、电子钱包、App 分析等等很多功能，GMS API 被国际化的 App 广泛使用。GMS 不是 AOSP（Android Open Source Project）的一部分，只存在于通过授权的设备里，如果设备没有 GMS 那么 App 运行时可能会像下面这样。">
+<meta name="keywords" content='GMS'>
+<meta name="author" content="XinLake">
+
+
+<meta property="og:title" content="无法访问 GMS | XinLake" />
+
+<meta property="og:description" content="GMS（Google Mobile Services）为 Android 应用提供了基于云服务的 API，包括广告、游戏、地图、视觉图像、身份验证、电子钱包、App 分析等等很多功能，GMS API 被国际化的 App 广泛使用。GMS 不是 AOSP（Android Open Source Project）的一部分，只存在于通过授权的设备里，如果设备没有 GMS 那么 App 运行时可能会像下面这样。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xinlake.life/blog/2019/09-unable-to-access-gms/" />
+<meta property="og:locale" content="zh-CN" />
+<meta name="generator" content="Hugo 0.75.1" />
+
+<title>无法访问 GMS | XinLake</title>
+<link rel="canonical" href="https://xinlake.life/blog/2019/09-unable-to-access-gms/" />
+<link rel="alternate" href="https://xinlake.life/blog/index.xml" type="application/rss+xml" title="XinLake">
+
+
+<link rel="shortcut icon" href="/images/logo-v2.1.png" type="image/x-icon" />
+<link rel="icon" href="/images/logo-v2.1.png" type="image/x-icon" />
+
+
+<link rel="stylesheet" href="/library/bootstrap-4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/library/fontawesome-free-5.15.1-web/css/all.min.css" />
+<link rel="stylesheet" href="/library/highlight-10.0.1/styles/foundation.css" />
+
+<link rel="stylesheet" href="/assets/style.css" media="screen">
+     
+</head>
+
+<body><header id="header" class="headroom">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="site-title" href="https://xinlake.life/">
+                XinLake
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navogation"
+                aria-controls="navogation" aria-expanded="false" aria-label="toggle-navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navogation">
+                <ul class="nav justify-content-end ml-auto">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/blog">Posts</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/archive">Archive</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <form action="https://xinlake.life//search">
+                    <input class="form-control search-input" type="text" placeholder="Search" id="search-query" name="s" />
+                </form>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+<div class="container flex-grow-1 mb-5" style="margin-top: 10rem;">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            
+<a href="https://xinlake.life/blog/2019/09-unable-to-access-gms/">
+    <h2 class="text-dark font-weight-bold mb-3">无法访问 GMS</h2>
+</a>
+
+
+<div class="text-secondary mb-4">
+    <ul class="list-inline text-secondary mb-0">
+        <li class="list-inline-item">
+            <i class="far fa-file-alt"></i>
+            <span>2019-09-01</span>
+        </li>
+        <li class="list-inline-item">
+            
+            <a class="text-secondary" href="/archive/"><i class="fas fa-folder"></i></a>
+            <a class="badge badge-light" href="/categories/Android/">Android</a>
+        </li>
+    </ul>
+</div>
+
+            <article class="content mt-2 mb-4">
+                <p>GMS（Google Mobile Services）为 Android 应用提供了基于云服务的 API，包括广告、游戏、地图、视觉图像、身份验证、电子钱包、App 分析等等很多功能，GMS API 被国际化的 App 广泛使用。GMS 不是 AOSP（Android Open Source Project）的一部分，只存在于通过授权的设备里，如果设备没有 GMS 那么 App 运行时可能会像下面这样。</p>
+<div class="text-center pt-2 pb-3">
+    <img class="img-fluid" src='cover.png' title=''></img>
+    
+    <div class="text-black-50">在没有 GMS 的设备上运行使用了 GMS API 的 App</div>
+    
+</div>
+<p>上图左边是一开源 App，它调用了 GMS 的 Vision 功能来扫描二维码（稍后会详细分析）。右边则是一个知名网站（Quora）的 Android 客户端，它在打开时即弹出这样的对话框，估计是调用了 GMS 的身份验证功能。当然，应该有更多的国际化 App 在没有 GMS 的设备上运行会弹出类似的提示，我就不去尝试了。</p>
+<p>接下来看那个开源 App（<a href="https://github.com/shadowsocks/shadowsocks-android/">shadowsocks-android</a>）是如何调用 GMS API 的，我是点击菜单的“Scan QR Code”弹出提示的，追踪代码进入<code>ScannerActivity.kt</code>，在开头处可以看到不少 GMS API 的 import，开源组件 xyz.belvi.mobilevisionbarcodescanner.BarcodeRetriever 也依赖于 GMS 功能。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin">...
+<span style="color:#66d9ef">import</span> com.google.android.gms.common.GoogleApiAvailability
+<span style="color:#66d9ef">import</span> com.google.android.gms.samples.vision.barcodereader.BarcodeCapture
+<span style="color:#66d9ef">import</span> com.google.android.gms.samples.vision.barcodereader.BarcodeGraphic
+<span style="color:#66d9ef">import</span> com.google.android.gms.vision.Frame
+<span style="color:#66d9ef">import</span> com.google.android.gms.vision.barcode.Barcode
+<span style="color:#66d9ef">import</span> com.google.android.gms.vision.barcode.BarcodeDetector
+<span style="color:#66d9ef">import</span> xyz.belvi.mobilevisionbarcodescanner.BarcodeRetriever
+</code></pre></div><p>跳到 OnCreate 处（第 70 行）。这里会调用 GMS 功能创建 QRCode 扫描器，后面打开相机扫码。如果 API 是不可用则会显示一些信息（开头图片）然后进入 fallback（第 62 行），跳转到应用商店的一页面。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">fallback</span>() {
+    <span style="color:#66d9ef">try</span> {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(
+                <span style="color:#e6db74">&#34;market://details?id=com.github.sumimakito.awesomeqrsample&#34;</span>)))
+    } <span style="color:#66d9ef">catch</span> (_: ActivityNotFoundException) { }
+    finish()
+}
+
+...
+
+<span style="color:#66d9ef">override</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">onCreate</span>(savedInstanceState: Bundle?) {
+    <span style="color:#66d9ef">super</span>.onCreate(savedInstanceState)
+    detector = BarcodeDetector.Builder(<span style="color:#66d9ef">this</span>)
+            .setBarcodeFormats(Barcode.QR_CODE)
+            .build()
+    <span style="color:#66d9ef">if</span> (!detector.isOperational) {
+        <span style="color:#66d9ef">val</span> availability = GoogleApiAvailability.getInstance()
+        <span style="color:#66d9ef">val</span> dialog = availability.getErrorDialog(<span style="color:#66d9ef">this</span>, availability.isGooglePlayServicesAvailable(<span style="color:#66d9ef">this</span>),
+                REQUEST_GOOGLE_API)
+        <span style="color:#66d9ef">if</span> (dialog == <span style="color:#66d9ef">null</span>) {
+            Toast.makeText(<span style="color:#66d9ef">this</span>, R.string.common_google_play_services_notification_ticker, Toast.LENGTH_SHORT)
+                    .show()
+            fallback()
+        } <span style="color:#66d9ef">else</span> {
+            dialog.setOnDismissListener { fallback() }
+            dialog.show()
+        }
+        <span style="color:#66d9ef">return</span>
+    }
+...
+</code></pre></div><p>逻辑很清晰，就是一 GMS 功能的使用，失败则会提示信息。国内手机很多没有 GMS，包括我手上这台手机也没有，这样就没法支持国际化的 App 正常运行。上面说的跳转到商店页面，国内手机系统都一般都要修改应用商店，不管是网页里打开 Google Play App 还是 App 内跳转都会跳到国内商店页面（系统半年没更新，不知道现在的情况），从而被完全的本土化了。</p>
+<p>对于开源软件有另外一个办法就是把依赖于 GMS 的功能替换为本地模块，就是 App 直接集成相应能力不依赖于云端服务。像这个扫码功能，一般都是 zxing 实现的，集成 zxing 模块修改相应代码即可。而对于广泛的商业流行 App 来说没有 GMS 就比较麻烦，毕竟这些已经是全球应用生态系统的一部分。</p>
+<div class="text-center pt-2 pb-3">
+    <img class="img-fluid" src='zxing-scanner.jpg' title=''></img>
+    
+    <div class="text-black-50">App 集成扫码能力</div>
+    
+</div>
+            </article>
+
+            
+<ul class="list-inline text-secondary mb-1">
+    
+    <li class="list-inline-item">
+        <a class="text-secondary" href="/archive/"><i class="fas fa-tags"></i></a>
+    </li>
+    
+    <li class="list-inline-item">
+        <a class="badge badge-secondary" href="/tags/GMS/">GMS</a>
+    </li>
+    
+    
+</ul>
+
+
+<hr class="my-1" />
+
+<div class="d-flex justify-content-between mb-4">
+    
+    <div class="align-self-center text-secondary">
+        <i class="far fa-edit"></i>
+        <span>2019-09-02</span>
+    </div>
+
+    
+    <div class="dropdown">
+        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-share-alt-square fa-2x"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="share_button">
+            <div class="d-flex justify-content-around">
+                <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f09-unable-to-access-gms%2f" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook-square fa-2x px-1"></i>
+                </a>
+                <a href="https://twitter.com/intent/tweet?text=%e6%97%a0%e6%b3%95%e8%ae%bf%e9%97%ae%20GMS&url=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f09-unable-to-access-gms%2f" target="_blank" title="Twitter">
+                    <i class="fab fa-twitter fa-2x px-1"></i>
+                </a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f09-unable-to-access-gms%2f" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin fa-2x px-1"></i>
+                </a>
+            </div>
+            
+            <hr class="my-1" />
+
+            
+            <div class="text-center mb-0">
+                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f09-unable-to-access-gms%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"/>
+            </div>
+        </div>
+    </div>
+</div>
+            <div id="disqus_thread"></div>
+<script>
+    
+
+    (function () { 
+        if (window.location.hostname == "localhost")
+            return;
+
+        var d = document, s = d.createElement('script');
+        s.src = 'https://xinlake-life.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript</noscript>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        
+        <div class="col-auto mx-auto">
+            
+            <div>
+                <a href="https://xinlake.life/blog/2019/09-west-lake-impression/">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>西湖映像</span>
+                </a>
+            </div>
+            
+            
+            <div>
+                <a href="https://xinlake.life/blog/2019/08-created-a-small-program-en/">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>Created a small program</span>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark pt-3 pb-2">
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            
+            <div class="d-flex align-items-center">
+                <span class="text-secondary">
+                    Copyright ©
+                    <script>var CurrentYear = new Date().getFullYear(); document.write(CurrentYear)</script>&nbsp
+                </span>
+                <a href="mailto:xinlake@outlook.com">
+                    <span class="text-secondary">XinLake</span>
+                </a>
+            </div>
+
+            
+            <div class="align-self-center">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <a href="mailto:xinlake@outlook.com">
+                            <h3 class="footer-feed px-2"><i class="fas fa-envelope"></i></h3>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://xinlake.life/blog/index.xml" title="Blog RSS">
+                            <h3 class="footer-feed px-2"><i class="fas fa-rss"></i></h3>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    var indexURL = "https:\/\/xinlake.life\/index.json"
+</script>
+
+
+<script src="/library/jquery-3.5.1.min.js"></script>
+<script src="/library/bootstrap-4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="/library/headroom-0.11.0/headroom.min.js"></script>
+<script src="/library/search/fuse.min.js"></script>
+<script src="/library/search/mark.js"></script>
+<script src="/library/search/search.js"></script>
+<script src="/library/highlight-10.0.1/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script src="/assets/script.js"></script>
+     
+</body>
+
+</html>

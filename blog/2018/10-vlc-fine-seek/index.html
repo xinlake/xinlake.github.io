@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165266655-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-165266655-1');
+</script>
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<meta name="referrer" content="no-referrer">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="date=no">
+<meta name="format-detection" content="address=no">
+<meta name="format-detection" content="email=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+
+<meta name="description" content="当播放器播放一个视频时你可以在其界面上看到时间跳动，如果调整播放位置（Seek），播放器则会提示调整到的时间。这些时间一般都是用“秒”来计，如果一个视频只有 15 秒、10 秒、或是更短，那么如何 Seek 到 0.2 秒、0.5 秒、或是 1.5 秒的位置观看呢？下面就介绍一种 LibVLC 精细 Seek 的方法，本文内容比较简单。">
+<meta name="keywords" content='VLC'>
+<meta name="author" content="XinLake">
+
+
+<meta property="og:title" content="VLC 精细 Seek | XinLake" />
+
+<meta property="og:image" content="https://xinlake.life/blog/2018/10-vlc-fine-seek/cover.jpg" />
+
+<meta property="og:description" content="当播放器播放一个视频时你可以在其界面上看到时间跳动，如果调整播放位置（Seek），播放器则会提示调整到的时间。这些时间一般都是用“秒”来计，如果一个视频只有 15 秒、10 秒、或是更短，那么如何 Seek 到 0.2 秒、0.5 秒、或是 1.5 秒的位置观看呢？下面就介绍一种 LibVLC 精细 Seek 的方法，本文内容比较简单。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xinlake.life/blog/2018/10-vlc-fine-seek/" />
+<meta property="og:locale" content="zh-CN" />
+<meta name="generator" content="Hugo 0.75.1" />
+
+<title>VLC 精细 Seek | XinLake</title>
+<link rel="canonical" href="https://xinlake.life/blog/2018/10-vlc-fine-seek/" />
+<link rel="alternate" href="https://xinlake.life/blog/index.xml" type="application/rss+xml" title="XinLake">
+
+
+<link rel="shortcut icon" href="/images/logo-v2.1.png" type="image/x-icon" />
+<link rel="icon" href="/images/logo-v2.1.png" type="image/x-icon" />
+
+
+<link rel="stylesheet" href="/library/bootstrap-4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/library/fontawesome-free-5.15.1-web/css/all.min.css" />
+<link rel="stylesheet" href="/library/highlight-10.0.1/styles/foundation.css" />
+
+<link rel="stylesheet" href="/assets/style.css" media="screen">
+     
+</head>
+
+<body><header id="header" class="headroom">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="site-title" href="https://xinlake.life/">
+                XinLake
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navogation"
+                aria-controls="navogation" aria-expanded="false" aria-label="toggle-navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navogation">
+                <ul class="nav justify-content-end ml-auto">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/blog">Posts</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/archive">Archive</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <form action="https://xinlake.life//search">
+                    <input class="form-control search-input" type="text" placeholder="Search" id="search-query" name="s" />
+                </form>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+<div class="container flex-grow-1 mb-5" style="margin-top: 10rem;">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            
+<a href="https://xinlake.life/blog/2018/10-vlc-fine-seek/">
+    <h2 class="text-dark font-weight-bold mb-3">VLC 精细 Seek</h2>
+</a>
+
+
+<div class="text-secondary mb-4">
+    <ul class="list-inline text-secondary mb-0">
+        <li class="list-inline-item">
+            <i class="far fa-file-alt"></i>
+            <span>2018-10-07</span>
+        </li>
+        <li class="list-inline-item">
+            
+            <a class="text-secondary" href="/archive/"><i class="fas fa-folder"></i></a>
+            <a class="badge badge-light" href="/categories/Multimedia/">Multimedia</a>
+        </li>
+    </ul>
+</div>
+
+            <article class="content mt-2 mb-4">
+                <p>当播放器播放一个视频时你可以在其界面上看到时间跳动，如果调整播放位置（Seek），播放器则会提示调整到的时间。这些时间一般都是用“秒”来计，如果一个视频只有 15 秒、10 秒、或是更短，那么如何 Seek 到 0.2 秒、0.5 秒、或是 1.5 秒的位置观看呢？下面就介绍一种 LibVLC 精细 Seek 的方法，<em>本文内容比较简单</em>。</p>
+<div class="text-center pt-2 pb-3">
+    <img class="img-fluid" src='cover.jpg' title=''></img>
+    
+    <div class="text-black-50">VLC Seek</div>
+    
+</div>
+<p>顺便提一下，Android App 使用 LibVLC 还需要集成 VLC 的 MediaLibrary，因为源码有依赖。本文提到的 MediaPlayer 均指 LibVLC 的媒体播放器 <code>org.videolan.libvlc.MediaPlayer</code>，不是 Android 系统的媒体播放器 <code>android.media.MediaPlayer</code>。</p>
+<p>LibVLC 播放引擎在播放时会主动的报告位置变化、时间变化等信息。MediaPlayer 通过 <code>setEventListener(MediaPlayer.EventListener listener)</code> 方法来设置播放器事件侦听，侦听器（MediaPlayer.EventListener）会接收到播放器事件。LibVLC 已经将播放器事件侦听放到了主线程（UI 线程），首先我们来确认一下，以下代码来自 LibVLC 3.0.13。</p>
+<p>MediaPlayer.java 第 1154 行。设置侦听器实则调用父类（VLCObject）的方法，继续往下跟。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">synchronized</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setEventListener</span><span style="color:#f92672">(</span>EventListener listener<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">setEventListener</span><span style="color:#f92672">(</span>listener<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>VLCObject.java 第 100 行。父类实现是直接调 <code>setEventListener(listener, null)</code>，而具体的实现就紧接着下方，这里可以看到会创建一个 Handler 并且绑定到 App 的主线程，源码的注释也写了是运行在主线程。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
+</span><span style="color:#75715e"> * Set an event listener.
+</span><span style="color:#75715e"> * Events are sent via the android main thread.
+</span><span style="color:#75715e"> *
+</span><span style="color:#75715e"> * @param listener see {@link VLCEvent.Listener}
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">synchronized</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setEventListener</span><span style="color:#f92672">(</span>VLCEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">Listener</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> listener<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    setEventListener<span style="color:#f92672">(</span>listener<span style="color:#f92672">,</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * Set an event listener and an executor Handler
+</span><span style="color:#75715e"> * @param listener see {@link VLCEvent.Listener}
+</span><span style="color:#75715e"> * @param handler Handler in which events are sent. If null, a handler will be created running on the main thread
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">synchronized</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setEventListener</span><span style="color:#f92672">(</span>VLCEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">Listener</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> listener<span style="color:#f92672">,</span> Handler handler<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>mHandler <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span>
+        mHandler<span style="color:#f92672">.</span><span style="color:#a6e22e">removeCallbacksAndMessages</span><span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>
+    mEventListener <span style="color:#f92672">=</span> listener<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>mEventListener <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span>
+        mHandler <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>mHandler <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span>
+        mHandler <span style="color:#f92672">=</span> handler <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">?</span> handler <span style="color:#f92672">:</span> <span style="color:#66d9ef">new</span> Handler<span style="color:#f92672">(</span>Looper<span style="color:#f92672">.</span><span style="color:#a6e22e">getMainLooper</span><span style="color:#f92672">());</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p><em>有兴趣的朋友也继续往下跟，LibVLC 基本是 C 语言开发的，Andrid 版只是加了一层 JNI 以及少量的 Java Wrap。播放引擎事件通知是 C 调用 Java 类中的方法，相关的代码可以参考：libvlcjni.c（第 199 行）、libvlcjni-vlcobject.c（第 190 行）。</em></p>
+<p>确定了事件侦听在主线程，就可以在侦听器里直接操作 UI 元素，不用做重复的转换主线程的动作，以至于降低 App 的运行效率。接下来分析这个精细 Seek 的需求。</p>
+<p>首先看功能，MediaPlayer 调整播放位置的方法是 <code>setPosition(float pos)</code>，传入的参数是个比例（0.0f 表示开始处，1.0f 表示结尾处），不用转换为“秒”或“毫秒”，只要参数是精细的调整的位置就是精细的，即功能本身是支持的。然后看控制，我们开发播放器一般使用 SeekBar 控件来指示和调整播放进度，这里 SeekBar 按比例转换即可。最后是显示，时间显示需要添加支持 .01 秒，时间变化有两种情况，一个是播放引擎主动发出来的时间变化事件，另一个是用户操作 SeekBar 调整播放进度时的时间提示。</p>
+<p>下方是播放器事件侦听的一部分，<code>MediaPlayer.Event.TimeChanged</code> 事件报告当前播放进度的时间值，单位是 ms（毫秒）。<code>setTime()</code> 则是更新时间显示，这里直接操作 UI 元素。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> MediaPlayer<span style="color:#f92672">.</span><span style="color:#a6e22e">EventListener</span> mListenMediaPlayer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MediaPlayer<span style="color:#f92672">.</span><span style="color:#a6e22e">EventListener</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onEvent</span><span style="color:#f92672">(</span>MediaPlayer<span style="color:#f92672">.</span><span style="color:#a6e22e">Event</span> event<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">type</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">case</span> MediaPlayer<span style="color:#f92672">.</span><span style="color:#a6e22e">Event</span><span style="color:#f92672">.</span><span style="color:#a6e22e">TimeChanged</span><span style="color:#f92672">:</span>
+                setTime<span style="color:#f92672">(</span>TextUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">formatTime</span><span style="color:#f92672">(</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">getTimeChanged</span><span style="color:#f92672">()));</span>
+                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+
+            <span style="color:#75715e">//省略部分代码
+</span><span style="color:#75715e"></span>        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">};</span>
+</code></pre></div><p>下方是 SeekBar 侦听部分代码，当滑动 SeekBar 时会有个时间提示，告知用户 Seek 到的时间点。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> SeekBar<span style="color:#f92672">.</span><span style="color:#a6e22e">OnSeekBarChangeListener</span> mListenSeekBar <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SeekBar<span style="color:#f92672">.</span><span style="color:#a6e22e">OnSeekBarChangeListener</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onProgressChanged</span><span style="color:#f92672">(</span>SeekBar seekBar<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> progress<span style="color:#f92672">,</span> <span style="color:#66d9ef">boolean</span> fromUser<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>fromUser <span style="color:#f92672">||</span> mVideoLengthMS <span style="color:#f92672">&lt;</span> 100<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+
+        <span style="color:#66d9ef">float</span> position <span style="color:#f92672">=</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">float</span><span style="color:#f92672">)</span> progress <span style="color:#f92672">/</span> seekBar<span style="color:#f92672">.</span><span style="color:#a6e22e">getMax</span><span style="color:#f92672">();</span>
+        String time <span style="color:#f92672">=</span> TextUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">formatTime</span><span style="color:#f92672">((</span><span style="color:#66d9ef">long</span><span style="color:#f92672">)</span> <span style="color:#f92672">(</span>mVideoLengthMS <span style="color:#f92672">*</span> position<span style="color:#f92672">));</span>
+        setState<span style="color:#f92672">(</span>time<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75715e">//省略部分代码
+</span><span style="color:#75715e"></span><span style="color:#f92672">};</span>
+</code></pre></div><p>把时间格式化放到公用静态方法里 <code>String formatTime(long milliseconds)</code>，当小于 2 秒时则按 <code>.2f</code> 格式返回，否则按普通格式返回。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> StringBuilder sFormatBuilder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">();</span>
+<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> Formatter sFormatter <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Formatter<span style="color:#f92672">(</span>sFormatBuilder<span style="color:#f92672">,</span> Locale<span style="color:#f92672">.</span><span style="color:#a6e22e">getDefault</span><span style="color:#f92672">());</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">formatTime</span><span style="color:#f92672">(</span><span style="color:#66d9ef">long</span> milliseconds<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    sFormatBuilder<span style="color:#f92672">.</span><span style="color:#a6e22e">setLength</span><span style="color:#f92672">(</span>0<span style="color:#f92672">);</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>milliseconds <span style="color:#f92672">&lt;</span> 1000 <span style="color:#f92672">*</span> 2<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> sFormatter<span style="color:#f92672">.</span><span style="color:#a6e22e">format</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;%.2f&#34;</span><span style="color:#f92672">,</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">float</span><span style="color:#f92672">)</span> milliseconds <span style="color:#f92672">/</span> 1000<span style="color:#f92672">).</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75715e">// &gt;= 2 seconds
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">long</span> seconds <span style="color:#f92672">=</span> milliseconds <span style="color:#f92672">/</span> 1000<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>seconds <span style="color:#f92672">&lt;</span> 3600<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">int</span> m <span style="color:#f92672">=</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">)</span> <span style="color:#f92672">(</span>seconds <span style="color:#f92672">/</span> 60<span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">int</span> s <span style="color:#f92672">=</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">)</span> <span style="color:#f92672">(</span>seconds <span style="color:#f92672">%</span> 60<span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">return</span> sFormatter<span style="color:#f92672">.</span><span style="color:#a6e22e">format</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;%02d:%02d&#34;</span><span style="color:#f92672">,</span> m<span style="color:#f92672">,</span> s<span style="color:#f92672">).</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">int</span> h <span style="color:#f92672">=</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">)</span> <span style="color:#f92672">(</span>seconds <span style="color:#f92672">/</span> 3600<span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">int</span> m <span style="color:#f92672">=</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">)</span> <span style="color:#f92672">(</span>seconds <span style="color:#f92672">%</span> 3600 <span style="color:#f92672">/</span> 60<span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">int</span> s <span style="color:#f92672">=</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">)</span> <span style="color:#f92672">(</span>seconds <span style="color:#f92672">%</span> 60<span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">return</span> sFormatter<span style="color:#f92672">.</span><span style="color:#a6e22e">format</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;%d:%02d:%02d&#34;</span><span style="color:#f92672">,</span> h<span style="color:#f92672">,</span> m<span style="color:#f92672">,</span> s<span style="color:#f92672">).</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>效果图在开头，一个长度为 9 秒视频。播放器暂停于 1.15 秒位置。屏幕中间显示的是用户调整时的时间提示，设置到了 0.65 秒处（松开 SeekBar 才会 setPosotion）。</p>
+            </article>
+
+            
+<ul class="list-inline text-secondary mb-1">
+    
+    <li class="list-inline-item">
+        <a class="text-secondary" href="/archive/"><i class="fas fa-tags"></i></a>
+    </li>
+    
+    <li class="list-inline-item">
+        <a class="badge badge-secondary" href="/tags/VLC/">VLC</a>
+    </li>
+    
+    
+</ul>
+
+
+<hr class="my-1" />
+
+<div class="d-flex justify-content-between mb-4">
+    
+    <div class="align-self-center text-secondary">
+        <i class="far fa-edit"></i>
+        <span>2018-10-07</span>
+    </div>
+
+    
+    <div class="dropdown">
+        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-share-alt-square fa-2x"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="share_button">
+            <div class="d-flex justify-content-around">
+                <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-vlc-fine-seek%2f" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook-square fa-2x px-1"></i>
+                </a>
+                <a href="https://twitter.com/intent/tweet?text=VLC%20%e7%b2%be%e7%bb%86%20Seek&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-vlc-fine-seek%2f" target="_blank" title="Twitter">
+                    <i class="fab fa-twitter fa-2x px-1"></i>
+                </a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-vlc-fine-seek%2f" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin fa-2x px-1"></i>
+                </a>
+            </div>
+            
+            <hr class="my-1" />
+
+            
+            <div class="text-center mb-0">
+                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-vlc-fine-seek%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"/>
+            </div>
+        </div>
+    </div>
+</div>
+            <div id="disqus_thread"></div>
+<script>
+    
+
+    (function () { 
+        if (window.location.hostname == "localhost")
+            return;
+
+        var d = document, s = d.createElement('script');
+        s.src = 'https://xinlake-life.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript</noscript>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        
+        <div class="col-auto mx-auto">
+            
+            <div>
+                <a href="https://xinlake.life/blog/2018/10-spoof-a-website-by-forging-a-request/">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>通过伪造请求来欺骗网站（一）</span>
+                </a>
+            </div>
+            
+            
+            <div>
+                <a href="https://xinlake.life/blog/2018/09-film-impressions/">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>电影印象《虎胆追凶》</span>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark pt-3 pb-2">
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            
+            <div class="d-flex align-items-center">
+                <span class="text-secondary">
+                    Copyright ©
+                    <script>var CurrentYear = new Date().getFullYear(); document.write(CurrentYear)</script>&nbsp
+                </span>
+                <a href="mailto:xinlake@outlook.com">
+                    <span class="text-secondary">XinLake</span>
+                </a>
+            </div>
+
+            
+            <div class="align-self-center">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <a href="mailto:xinlake@outlook.com">
+                            <h3 class="footer-feed px-2"><i class="fas fa-envelope"></i></h3>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://xinlake.life/blog/index.xml" title="Blog RSS">
+                            <h3 class="footer-feed px-2"><i class="fas fa-rss"></i></h3>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    var indexURL = "https:\/\/xinlake.life\/index.json"
+</script>
+
+
+<script src="/library/jquery-3.5.1.min.js"></script>
+<script src="/library/bootstrap-4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="/library/headroom-0.11.0/headroom.min.js"></script>
+<script src="/library/search/fuse.min.js"></script>
+<script src="/library/search/mark.js"></script>
+<script src="/library/search/search.js"></script>
+<script src="/library/highlight-10.0.1/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script src="/assets/script.js"></script>
+     
+</body>
+
+</html>

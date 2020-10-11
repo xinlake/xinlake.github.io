@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165266655-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-165266655-1');
+</script>
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<meta name="referrer" content="no-referrer">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="date=no">
+<meta name="format-detection" content="address=no">
+<meta name="format-detection" content="email=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+
+<meta name="description" content="跑分第一的手机未必能跑得动神经网络，因为 CPU 的浮点计算能力很有限，在执行图像处理、机器视觉等一些计算密集型任务时，效率会非常低。处理那样的任务是 GPU 的专长，图形硬件不仅能 3D 绘图渲染，还能通过 OpenCL 等接口使用它的计算能力。这里将展示 PC 平台上图形硬件对神经网络的计算加速，在 OpenCV DNN 图像检测程序中对比 CPU 和 GPU 计算的效能差别。">
+<meta name="keywords" content='OpenCV'>
+<meta name="author" content="XinLake">
+
+
+<meta property="og:title" content="OpenCV DNN with GPU Computing | XinLake" />
+
+<meta property="og:image" content="https://xinlake.life/blog/2018/03-opencv-dnn-opencl/cover.jpg" />
+
+<meta property="og:description" content="跑分第一的手机未必能跑得动神经网络，因为 CPU 的浮点计算能力很有限，在执行图像处理、机器视觉等一些计算密集型任务时，效率会非常低。处理那样的任务是 GPU 的专长，图形硬件不仅能 3D 绘图渲染，还能通过 OpenCL 等接口使用它的计算能力。这里将展示 PC 平台上图形硬件对神经网络的计算加速，在 OpenCV DNN 图像检测程序中对比 CPU 和 GPU 计算的效能差别。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xinlake.life/blog/2018/03-opencv-dnn-opencl/" />
+<meta property="og:locale" content="zh-CN" />
+<meta name="generator" content="Hugo 0.75.1" />
+
+<title>OpenCV DNN with GPU Computing | XinLake</title>
+<link rel="canonical" href="https://xinlake.life/blog/2018/03-opencv-dnn-opencl/" />
+<link rel="alternate" href="https://xinlake.life/blog/index.xml" type="application/rss+xml" title="XinLake">
+
+
+<link rel="shortcut icon" href="/images/logo-v2.1.png" type="image/x-icon" />
+<link rel="icon" href="/images/logo-v2.1.png" type="image/x-icon" />
+
+
+<link rel="stylesheet" href="/library/bootstrap-4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/library/fontawesome-free-5.15.1-web/css/all.min.css" />
+<link rel="stylesheet" href="/library/highlight-10.0.1/styles/foundation.css" />
+
+<link rel="stylesheet" href="/assets/style.css" media="screen">
+     
+</head>
+
+<body><header id="header" class="headroom">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="site-title" href="https://xinlake.life/">
+                XinLake
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navogation"
+                aria-controls="navogation" aria-expanded="false" aria-label="toggle-navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navogation">
+                <ul class="nav justify-content-end ml-auto">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/blog">Posts</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/archive">Archive</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <form action="https://xinlake.life//search">
+                    <input class="form-control search-input" type="text" placeholder="Search" id="search-query" name="s" />
+                </form>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+<div class="container flex-grow-1 mb-5" style="margin-top: 10rem;">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            
+<a href="https://xinlake.life/blog/2018/03-opencv-dnn-opencl/">
+    <h2 class="text-dark font-weight-bold mb-3">OpenCV DNN with GPU Computing</h2>
+</a>
+
+
+<div class="text-secondary mb-4">
+    <ul class="list-inline text-secondary mb-0">
+        <li class="list-inline-item">
+            <i class="far fa-file-alt"></i>
+            <span>2018-03-17</span>
+        </li>
+        <li class="list-inline-item">
+            
+            <a class="text-secondary" href="/archive/"><i class="fas fa-folder"></i></a>
+            <a class="badge badge-light" href="/categories/Computer-Vision/">Computer-Vision</a>
+        </li>
+    </ul>
+</div>
+
+            <article class="content mt-2 mb-4">
+                <p>跑分第一的手机未必能跑得动神经网络，因为 CPU 的浮点计算能力很有限，在执行图像处理、机器视觉等一些计算密集型任务时，效率会非常低。处理那样的任务是 GPU 的专长，图形硬件不仅能 3D 绘图渲染，还能通过 OpenCL 等接口使用它的计算能力。这里将展示 PC 平台上图形硬件对神经网络的计算加速，在 OpenCV DNN 图像检测程序中对比 CPU 和 GPU 计算的效能差别。</p>
+<div class="text-center pt-2 pb-3">
+    <img class="img-fluid" src='cover.jpg' title=''></img>
+    
+    <div class="text-black-50">cpu computing</div>
+    
+</div>
+<p>在 Windows 10 上创建 VC++ 应用程序，程序打开摄像头运行 OpenCV DNN 对摄像头画面做图像检测。使用的是 Darknet 预训练的 YOLO 模型，模型约 194M 支持 80 种物体的识别，上图即是图像检测的截图，用的是 CPU 计算。</p>
+<p>下图是使用 CPU 计算时的情况，帧率大约 0.2-0.5 之间，CPU 占用 50%-80% 之间，没有占用 GPU，Memory 约占 850M。</p>
+<div class="text-center pt-2 pb-3">
+    <img class="img-fluid" src='cpu.jpg' title=''></img>
+    
+    <div class="text-black-50">CPU 计算，资源占用</div>
+    
+</div>
+<p>然后是通过 OpenCL 把计算交给 GPU 去完成，OpenCV DNN 调用 <code>setPreferableTarget(DNN_TARGET_OPENCL)</code>，代码说明如下。编译执行，计算任务已经转到 GPU 上，程序对 CPU 的占用只有几个点。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">/**
+</span><span style="color:#75715e">* @brief Enum of target devices for computations.
+</span><span style="color:#75715e">*/</span>
+<span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Target</span>
+{
+    DNN_TARGET_CPU,
+    DNN_TARGET_OPENCL
+};
+
+<span style="color:#75715e">/**
+</span><span style="color:#75715e">* @brief Ask network to make computations on specific target device.
+</span><span style="color:#75715e">* @param[in] targetId target identifier.
+</span><span style="color:#75715e">* @see Target
+</span><span style="color:#75715e">*/</span>
+CV_WRAP <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setPreferableTarget</span>(<span style="color:#66d9ef">int</span> targetId);
+</code></pre></div><p>下图是使用 GPU 计算时的情况，帧率大约 1.6-2.5 之间，CPU 占用一般少于 5%，GPU 占用 70%-95%，Memory 约占 1438M。</p>
+<div class="text-center pt-2 pb-3">
+    <img class="img-fluid" src='gpu.jpg' title=''></img>
+    
+    <div class="text-black-50">GPU 计算，资源占用</div>
+    
+</div>
+<p>图形硬件是 i7-4600U（笔记本低电压版）自带的 HD Graphics 4400，驱动支持 OpenCL 1.2。系统是 Windows 10 x64，开发环境是 Visual Studio 2015 Community，VC++ Application 和 OpenCV Library 都是 x64。下面还有个简单的效能对比列表，作者的图形驱动没有更新，程序处理也有可优化之处。</p>
+<div class="text-center pt-2 pb-3">
+    <img class="img-fluid" src='hardware.jpg' title=''></img>
+    
+    <div class="text-black-50">硬件信息</div>
+    
+</div>
+<table>
+<thead>
+<tr>
+<th>YOLO计算</th>
+<th>帧率</th>
+<th>CPU占用</th>
+<th>GPU占用</th>
+<th>内存占用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>0.2-0.5</td>
+<td>50%-80%</td>
+<td>0</td>
+<td>850M</td>
+</tr>
+<tr>
+<td>GPU</td>
+<td>1.6-2.5</td>
+<td>&lt;5%</td>
+<td>70%-95%</td>
+<td>1438M</td>
+</tr>
+</tbody>
+</table>
+<p>数据仅供参考！以下是一些参考资料</p>
+<blockquote>
+<p>YOLO <a href="https://arxiv.org/abs/1612.08242">https://arxiv.org/abs/1612.08242</a><br>
+Darknet <a href="https://pjreddie.com/darknet/yolo/">https://pjreddie.com/darknet/yolo/</a><br>
+IEEE 754 <a href="https://en.wikipedia.org/wiki/IEEE_754">https://en.wikipedia.org/wiki/IEEE_754</a><br>
+OpenCL <a href="https://www.khronos.org/opencl/">https://www.khronos.org/opencl/</a></p>
+</blockquote>
+            </article>
+
+            
+<ul class="list-inline text-secondary mb-1">
+    
+    <li class="list-inline-item">
+        <a class="text-secondary" href="/archive/"><i class="fas fa-tags"></i></a>
+    </li>
+    
+    <li class="list-inline-item">
+        <a class="badge badge-secondary" href="/tags/OpenCV/">OpenCV</a>
+    </li>
+    
+    
+</ul>
+
+
+<hr class="my-1" />
+
+<div class="d-flex justify-content-between mb-4">
+    
+    <div class="align-self-center text-secondary">
+        <i class="far fa-edit"></i>
+        <span>2018-03-20</span>
+    </div>
+
+    
+    <div class="dropdown">
+        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-share-alt-square fa-2x"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="share_button">
+            <div class="d-flex justify-content-around">
+                <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f03-opencv-dnn-opencl%2f" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook-square fa-2x px-1"></i>
+                </a>
+                <a href="https://twitter.com/intent/tweet?text=OpenCV%20DNN%20with%20GPU%20Computing&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f03-opencv-dnn-opencl%2f" target="_blank" title="Twitter">
+                    <i class="fab fa-twitter fa-2x px-1"></i>
+                </a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f03-opencv-dnn-opencl%2f" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin fa-2x px-1"></i>
+                </a>
+            </div>
+            
+            <hr class="my-1" />
+
+            
+            <div class="text-center mb-0">
+                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f03-opencv-dnn-opencl%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"/>
+            </div>
+        </div>
+    </div>
+</div>
+            <div id="disqus_thread"></div>
+<script>
+    
+
+    (function () { 
+        if (window.location.hostname == "localhost")
+            return;
+
+        var d = document, s = d.createElement('script');
+        s.src = 'https://xinlake-life.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript</noscript>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        
+        <div class="col-auto mx-auto">
+            
+            <div>
+                <a href="https://xinlake.life/blog/2018/03-face-detection/">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>人脸检测与面部识别</span>
+                </a>
+            </div>
+            
+            
+            <div>
+                <a href="https://xinlake.life/blog/2018/03-android-opencv-dnn-googlenet/">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>Running GoogLeNet on Android device</span>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark pt-3 pb-2">
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            
+            <div class="d-flex align-items-center">
+                <span class="text-secondary">
+                    Copyright ©
+                    <script>var CurrentYear = new Date().getFullYear(); document.write(CurrentYear)</script>&nbsp
+                </span>
+                <a href="mailto:xinlake@outlook.com">
+                    <span class="text-secondary">XinLake</span>
+                </a>
+            </div>
+
+            
+            <div class="align-self-center">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <a href="mailto:xinlake@outlook.com">
+                            <h3 class="footer-feed px-2"><i class="fas fa-envelope"></i></h3>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://xinlake.life/blog/index.xml" title="Blog RSS">
+                            <h3 class="footer-feed px-2"><i class="fas fa-rss"></i></h3>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    var indexURL = "https:\/\/xinlake.life\/index.json"
+</script>
+
+
+<script src="/library/jquery-3.5.1.min.js"></script>
+<script src="/library/bootstrap-4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="/library/headroom-0.11.0/headroom.min.js"></script>
+<script src="/library/search/fuse.min.js"></script>
+<script src="/library/search/mark.js"></script>
+<script src="/library/search/search.js"></script>
+<script src="/library/highlight-10.0.1/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script src="/assets/script.js"></script>
+     
+</body>
+
+</html>

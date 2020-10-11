@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165266655-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-165266655-1');
+</script>
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<meta name="referrer" content="no-referrer">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="date=no">
+<meta name="format-detection" content="address=no">
+<meta name="format-detection" content="email=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+
+<meta name="description" content="Shadowsocks（简称为 SS）作为连接国际网络的方式之一，被技术人士使用得比较多。和 VPN 类似，SS 也是基于“中转站”的模式，并且支持非全程加密。相对于 VPN 来说 SS 有较强的技术性，一般使用 VPN 的人可能并未听说过 SS 或者不清楚 SS 是什么，这里我就从偏技术的角度来说一说 Shadowsocks。">
+<meta name="keywords" content='SOCKS5, Shadowsocks, VPN'>
+<meta name="author" content="XinLake">
+
+
+<meta property="og:title" content="谈谈 Shadowsocks | XinLake" />
+
+<meta property="og:description" content="Shadowsocks（简称为 SS）作为连接国际网络的方式之一，被技术人士使用得比较多。和 VPN 类似，SS 也是基于“中转站”的模式，并且支持非全程加密。相对于 VPN 来说 SS 有较强的技术性，一般使用 VPN 的人可能并未听说过 SS 或者不清楚 SS 是什么，这里我就从偏技术的角度来说一说 Shadowsocks。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xinlake.life/blog/2019/08-talk-about-shadowsocks/" />
+<meta property="og:locale" content="zh-CN" />
+<meta name="generator" content="Hugo 0.75.1" />
+
+<title>谈谈 Shadowsocks | XinLake</title>
+<link rel="canonical" href="https://xinlake.life/blog/2019/08-talk-about-shadowsocks/" />
+<link rel="alternate" href="https://xinlake.life/blog/index.xml" type="application/rss+xml" title="XinLake">
+
+
+<link rel="shortcut icon" href="/images/logo-v2.1.png" type="image/x-icon" />
+<link rel="icon" href="/images/logo-v2.1.png" type="image/x-icon" />
+
+
+<link rel="stylesheet" href="/library/bootstrap-4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/library/fontawesome-free-5.15.1-web/css/all.min.css" />
+<link rel="stylesheet" href="/library/highlight-10.0.1/styles/foundation.css" />
+
+<link rel="stylesheet" href="/assets/style.css" media="screen">
+     
+</head>
+
+<body><header id="header" class="headroom">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="site-title" href="https://xinlake.life/">
+                XinLake
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navogation"
+                aria-controls="navogation" aria-expanded="false" aria-label="toggle-navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navogation">
+                <ul class="nav justify-content-end ml-auto">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/blog">Posts</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/archive">Archive</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <form action="https://xinlake.life//search">
+                    <input class="form-control search-input" type="text" placeholder="Search" id="search-query" name="s" />
+                </form>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+<div class="container flex-grow-1 mb-5" style="margin-top: 10rem;">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            
+<a href="https://xinlake.life/blog/2019/08-talk-about-shadowsocks/">
+    <h2 class="text-dark font-weight-bold mb-3">谈谈 Shadowsocks</h2>
+</a>
+
+
+<div class="text-secondary mb-4">
+    <ul class="list-inline text-secondary mb-0">
+        <li class="list-inline-item">
+            <i class="far fa-file-alt"></i>
+            <span>2019-08-17</span>
+        </li>
+        <li class="list-inline-item">
+            
+            <a class="text-secondary" href="/archive/"><i class="fas fa-folder"></i></a>
+            <a class="badge badge-light" href="/categories/Network/">Network</a>
+        </li>
+    </ul>
+</div>
+
+            <article class="content mt-2 mb-4">
+                <p>Shadowsocks（简称为 SS）作为连接国际网络的方式之一，被技术人士使用得比较多。和 VPN 类似，SS 也是基于“中转站”的模式，并且支持非全程加密。相对于 VPN 来说 SS 有较强的技术性，一般使用 VPN 的人可能并未听说过 SS 或者不清楚 SS 是什么，这里我就从偏技术的角度来说一说 Shadowsocks。</p>
+<p>Shadowsocks 是一种 SOCKS5 代理，设备的网络数据是通过代理服务器再到达 Web 站点。和前面讲的 VPN 原理一样，如果远端 SS 服务器不受干预设备就能畅通无阻的访问国际网络。加密方式也和 VPN 差不多，Shadowsocks 是非全程加密，从设备到 SS 服务器这一段是加密的，从 SS 服务器到 Web 站点这一段则不处理。</p>
+<div class="text-center pt-2 pb-3">
+    <img class="img-fluid" src='overview.png' title=''></img>
+    
+    <div class="text-black-50">Shadowsocks Overview，摘自 Shadowsocks wihte paper</div>
+    
+</div>
+<h3 id="shadowsocks-与-socks5-关系">Shadowsocks 与 SOCKS5 关系</h3>
+<p>SOCKS 是代理的一种*_（其他的还有 HTTP 代理、SMTP 代理、FTP 代理等等，应用场景不一样）_*，没有专门的应用针对性，通常用于高级的/自定义的网络数据传输。SOCKS 代理协议分 SOCKS4 和 SOCKS5 两版本，SOCKS4 支持 TCP 而 SOCKS5 支持 TCP、UDP 以及基于账号和密码的身份认证，SOCKS5 遵循 RFC1928 协议规范。</p>
+<p>Shadowsocks 则基于 SOCKS5 做了一层自定义协议，它定义了数据传输规则、加密/解密方法、协议插件。Shadowsocks 分了 SS-Client 和 SS-Server 两部分来实现自定义规则的数据传输和加密解密，SS-Client 运行于设备端，SS-Server 则运行于服务器端，这两个部分共同完成协议的对接和数据加密/解密。如果客户端需要启用某插件，服务器端则要支持该插件相应的功能，否则插件不起作用。SS-Local 在设备上会表现为一个 SOCKS5 本地代理服务。</p>
+<p>使用代理对网络连接路径的改变，以及导致的速度、延时的变化这些都和前面讲的 VPN 的原理差不多，SOCKS5、Shadowsocks 协议本身不会给网络通信带来太大的开销。代理和 VPN 不同的是有些协议（如 ICMP）不走代理，也没法走代理。而 VPN 对网络通讯的接管就比较全面。此外，数据加解密会引入一些计算，会稍微的提升耗电量。</p>
+<h3 id="shadowsocks-协议的实现">Shadowsocks 协议的实现</h3>
+<p>协议只运行于 SS-Local 与 SS-Server 之间，站在应用层的视角看不到协议执行、加解密过程，应用层只需要管理远端服务器连接即可。Shadowsocks 有不同语言的开源实现可用于不同的使用环境，像 Rust 写的 shadowsocks-rust，Go 写的 go-shadowsocks2，C 写的 shadowsocks-libev 等等。其中，shadowsocks-libev 是一种原生实现（依赖 libev 库），在 Windows、Linux、Android 上都可以运行。</p>
+<p>这些实现都会提供服务器端（SS-Server）和设备端（SS-Local）的程序，将 SS-Server 部署到服务器设置好相关的参数，设备端用同样的参数运行 SS-Local 即可实现最基本的连接。设备端的软件就可以通过由 SS-Local 提供的 SOCKS5 本地代理访问国际网络。</p>
+<p>目前开放公用的 SS 服务均不需要登陆，任何一个设备都可以免费连接，而且可以随时切换服务器。即使服务器保留 log 也没法确定设备信息的代表性，不能确定设备的使用人。机器层面的数据和人类实体身份没有任何关联，匿名特性挺好（匿名不代表不支持监管）。</p>
+<h3 id="客户端应用程序的实现">客户端/应用程序的实现</h3>
+<p>不是所有的软件都能很好的支持 SOCKS5 代理，很多软件不会主动检测 SOCKS5 代理并使用它。通常 SS 客户端需要架设一个本地 Web Proxy 来支持更为普遍的网络访问，此外还需要和操作系统的代理功能对接，让 Web Proxy、SS-Local 能够直接处理操作系统代理端口的网络流量。这样，像浏览器一类的软件就可以不用任何设置走 SS 提供的线路。</p>
+<p>不过，这对于自带 Web 网络通信能力（不使用操作系统 Web API）也不主动检测系统代理设置的软件（如 git、curl）不起作用，这类软件默认还是走原有的线路。如果需要走代理线路，则直接设置 SOCKS5 代理会比较高效。</p>
+<p>操作系统代理、Web Proxy、SS-Local 都有流量过滤的功能，所以在一些客户端能看到几层过滤设置。最先过滤是操作系统的代理，这里可以设置绕过不需要走代理的流量，这里的过滤也是最高效的因为不需要将数据转到下一级。然后是 Web Proxy 的过滤，有的 Web Proxy 的过滤设计得非常完善和灵活甚至可以支持表达式，在客户端集成了这样的 Web Proxy 后所展示的强大过滤设置即可体现。最后是 SS-Local 的过滤，SS-Local 支持一个过滤列表，太依赖于这一级的过滤往往是低效的因为增加了不必要的本地数据传输。</p>
+<p>客户端 App 的实现在 Android 移动设备上有所不同，在 Android 可以注册一个 VPN 服务来接管网络通讯，可以不用设置系统代理。这会让 SS 客户端 App 看起来很像 VPN，不过这只是使用了 Android 的 VPN 服务接管网络数据，App 实际连接的是 SS 服务器。</p>
+<div class="text-center pt-2 pb-3">
+    <img class="img-fluid" src='vpn-ss.jpg' title=''></img>
+    
+    <div class="text-black-50">这个图标未必都是 VPN 服务</div>
+    
+</div>
+<h3 id="服务运营">服务运营</h3>
+<p>抛开客户端软件专业的设置不讲，光是连接服务器也会让大部分的 VPN 使用者望而却步，这也是前面讲的“被技术人士使用得比较多”的原因。SS 服务提供方目前很零散，甚至一个开发者既可以在云端搭建 SS 服务，几乎没有公司化的运营方，没点技术背景的人很难用得顺手。这也凸显出 SS 服务方“难以监管”的一面，也许这是比较重要的问题。</p>
+<p>参考资料：</p>
+<blockquote>
+<p>Shadowsocks white paper <a href="https://shadowsocks.org/assets/whitepaper.pdf">https://shadowsocks.org/assets/whitepaper.pdf</a><br>
+SOCKS Protocol Version 5 <a href="https://tools.ietf.org/pdf/rfc1928.pdf">https://tools.ietf.org/pdf/rfc1928.pdf</a></p>
+</blockquote>
+            </article>
+
+            
+<ul class="list-inline text-secondary mb-1">
+    
+    <li class="list-inline-item">
+        <a class="text-secondary" href="/archive/"><i class="fas fa-tags"></i></a>
+    </li>
+    
+    <li class="list-inline-item">
+        <a class="badge badge-secondary" href="/tags/SOCKS5/">SOCKS5</a>
+    </li>
+    
+    <li class="list-inline-item">
+        <a class="badge badge-secondary" href="/tags/Shadowsocks/">Shadowsocks</a>
+    </li>
+    
+    <li class="list-inline-item">
+        <a class="badge badge-secondary" href="/tags/VPN/">VPN</a>
+    </li>
+    
+    
+</ul>
+
+
+<hr class="my-1" />
+
+<div class="d-flex justify-content-between mb-4">
+    
+    <div class="align-self-center text-secondary">
+        <i class="far fa-edit"></i>
+        <span>2019-08-18</span>
+    </div>
+
+    
+    <div class="dropdown">
+        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-share-alt-square fa-2x"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="share_button">
+            <div class="d-flex justify-content-around">
+                <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f08-talk-about-shadowsocks%2f" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook-square fa-2x px-1"></i>
+                </a>
+                <a href="https://twitter.com/intent/tweet?text=%e8%b0%88%e8%b0%88%20Shadowsocks&url=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f08-talk-about-shadowsocks%2f" target="_blank" title="Twitter">
+                    <i class="fab fa-twitter fa-2x px-1"></i>
+                </a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f08-talk-about-shadowsocks%2f" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin fa-2x px-1"></i>
+                </a>
+            </div>
+            
+            <hr class="my-1" />
+
+            
+            <div class="text-center mb-0">
+                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f08-talk-about-shadowsocks%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"/>
+            </div>
+        </div>
+    </div>
+</div>
+            <div id="disqus_thread"></div>
+<script>
+    
+
+    (function () { 
+        if (window.location.hostname == "localhost")
+            return;
+
+        var d = document, s = d.createElement('script');
+        s.src = 'https://xinlake-life.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript</noscript>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        
+        <div class="col-auto mx-auto">
+            
+            <div>
+                <a href="https://xinlake.life/blog/2019/08-add-build-infos-for-version/">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>给版本添加构建信息</span>
+                </a>
+            </div>
+            
+            
+            <div>
+                <a href="https://xinlake.life/blog/2019/07-talk-about-vpn/">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>谈谈 VPN</span>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark pt-3 pb-2">
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            
+            <div class="d-flex align-items-center">
+                <span class="text-secondary">
+                    Copyright ©
+                    <script>var CurrentYear = new Date().getFullYear(); document.write(CurrentYear)</script>&nbsp
+                </span>
+                <a href="mailto:xinlake@outlook.com">
+                    <span class="text-secondary">XinLake</span>
+                </a>
+            </div>
+
+            
+            <div class="align-self-center">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <a href="mailto:xinlake@outlook.com">
+                            <h3 class="footer-feed px-2"><i class="fas fa-envelope"></i></h3>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://xinlake.life/blog/index.xml" title="Blog RSS">
+                            <h3 class="footer-feed px-2"><i class="fas fa-rss"></i></h3>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    var indexURL = "https:\/\/xinlake.life\/index.json"
+</script>
+
+
+<script src="/library/jquery-3.5.1.min.js"></script>
+<script src="/library/bootstrap-4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="/library/headroom-0.11.0/headroom.min.js"></script>
+<script src="/library/search/fuse.min.js"></script>
+<script src="/library/search/mark.js"></script>
+<script src="/library/search/search.js"></script>
+<script src="/library/highlight-10.0.1/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script src="/assets/script.js"></script>
+     
+</body>
+
+</html>

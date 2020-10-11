@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165266655-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-165266655-1');
+</script>
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<meta name="referrer" content="no-referrer">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="date=no">
+<meta name="format-detection" content="address=no">
+<meta name="format-detection" content="email=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+
+<meta name="description" content="你可能已经了解到一些电影特效大片的制作过程，拍摄时演员身旁是纯色屏障和一些道具，穿着奇怪的衣服对着空气拳打脚踢、施展魔法。而到了影片里，演员却出现在惊险的树林，或是跟凶恶的怪兽打斗，画面变得格外精彩。能演电影是幸运的事，借助于现代机器视觉、计算机图形技术，或许你拿起手机也可以拍摄出你的超级大片。">
+<meta name="keywords" content='OpenCV'>
+<meta name="author" content="XinLake">
+
+
+<meta property="og:title" content="人物姿态识别与画面合成 | XinLake" />
+
+<meta property="og:image" content="https://xinlake.life/blog/2018/08-human-pose/cover-a.jpg" />
+
+<meta property="og:description" content="你可能已经了解到一些电影特效大片的制作过程，拍摄时演员身旁是纯色屏障和一些道具，穿着奇怪的衣服对着空气拳打脚踢、施展魔法。而到了影片里，演员却出现在惊险的树林，或是跟凶恶的怪兽打斗，画面变得格外精彩。能演电影是幸运的事，借助于现代机器视觉、计算机图形技术，或许你拿起手机也可以拍摄出你的超级大片。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xinlake.life/blog/2018/08-human-pose/" />
+<meta property="og:locale" content="zh-CN" />
+<meta name="generator" content="Hugo 0.75.1" />
+
+<title>人物姿态识别与画面合成 | XinLake</title>
+<link rel="canonical" href="https://xinlake.life/blog/2018/08-human-pose/" />
+<link rel="alternate" href="https://xinlake.life/blog/index.xml" type="application/rss+xml" title="XinLake">
+
+
+<link rel="shortcut icon" href="/images/logo-v2.1.png" type="image/x-icon" />
+<link rel="icon" href="/images/logo-v2.1.png" type="image/x-icon" />
+
+
+<link rel="stylesheet" href="/library/bootstrap-4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/library/fontawesome-free-5.15.1-web/css/all.min.css" />
+<link rel="stylesheet" href="/library/highlight-10.0.1/styles/foundation.css" />
+
+<link rel="stylesheet" href="/assets/style.css" media="screen">
+     
+</head>
+
+<body><header id="header" class="headroom">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="site-title" href="https://xinlake.life/">
+                XinLake
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navogation"
+                aria-controls="navogation" aria-expanded="false" aria-label="toggle-navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navogation">
+                <ul class="nav justify-content-end ml-auto">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/blog">Posts</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/archive">Archive</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <form action="https://xinlake.life//search">
+                    <input class="form-control search-input" type="text" placeholder="Search" id="search-query" name="s" />
+                </form>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+<div class="container flex-grow-1 mb-5" style="margin-top: 10rem;">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            
+<a href="https://xinlake.life/blog/2018/08-human-pose/">
+    <h2 class="text-dark font-weight-bold mb-3">人物姿态识别与画面合成</h2>
+</a>
+
+
+<div class="text-secondary mb-4">
+    <ul class="list-inline text-secondary mb-0">
+        <li class="list-inline-item">
+            <i class="far fa-file-alt"></i>
+            <span>2018-08-17</span>
+        </li>
+        <li class="list-inline-item">
+            
+            <a class="text-secondary" href="/archive/"><i class="fas fa-folder"></i></a>
+            <a class="badge badge-light" href="/categories/Computer-Vision/">Computer-Vision</a>
+        </li>
+    </ul>
+</div>
+
+            <article class="content mt-2 mb-4">
+                <p>你可能已经了解到一些电影特效大片的制作过程，拍摄时演员身旁是纯色屏障和一些道具，穿着奇怪的衣服对着空气拳打脚踢、施展魔法。而到了影片里，演员却出现在惊险的树林，或是跟凶恶的怪兽打斗，画面变得格外精彩。能演电影是幸运的事，借助于现代机器视觉、计算机图形技术，或许你拿起手机也可以拍摄出你的超级大片。</p>
+<p><div class="text-center pt-2 pb-3">
+    <img class="img-fluid" src='cover-a.jpg' title=''></img>
+    
+    <div class="text-black-50">魔兽 Warcraft（2016）</div>
+    
+</div>
+<div class="text-center pt-2 pb-3">
+    <img class="img-fluid" src='cover-b.jpg' title=''></img>
+    
+    <div class="text-black-50">魔兽 Warcraft（2016）电影制作花絮</div>
+    
+</div></p>
+<p>上图摄像机拍摄到的是蓝屏、道具、草地、穿着奇怪衣服的演员，衣服能够提供肢体的相对位置信息，如何把这样的图像和数据变成电影中画面？</p>
+<p>设想一个三维场景，将拍摄到的图像放到场景中。通过色彩过滤蓝色部分可以替换为任意图像或是场景模型，比如影片中的树林。同样的，大树的位置可以放一颗大树模型。草地添加一些修饰就差不多，如果用模型代替就比较麻烦，因为兽人跑过会带风，风会引起小草晃动还可能带起地上几片落叶，而小草、落叶的运动都得符合物理规律，这样就需要引入物理引擎来模拟模型的运动，会增加大量的制作工作。</p>
+<p>然后是那个兽人，拍摄到的图像里有演员，还有演员肢体的位置信息。同样的，穿着纯色奇怪衣服的演员可以轻松拿掉，而需要在三维场景里换上兽人角色模型。演员的体型没有兽人那么庞大，关键点通过一定的算法将演员映射为兽人，通过肢体关键点绑定可以让兽人的动作和演员的动作保持一致。真人的动作自然而且符合物理规律，不需要添加额外的物理计算，影片中你可以感受到兽人和人类很像。</p>
+<p>将所有的图像帧做类似的处理并且保存就成了一个特效视频，当然，这里说的只是一个大概原理，实际电影特效处理远比这些要复杂而且远不止这些。回到开头提到的“手机拍大片”，类似的原理，得到人物姿态数据然后合成视频。不过姿态数据不通过专业设备获取，而是通过神经网络对图像分析得出。</p>
+<!-- pose-girl-1.mp4 -->
+<div class="pt-2 pb-3">
+    <video src='https://img.vim-cn.com/d8/16d8e899d713a2e225259e1293c9f509f29dd0.mp4' controls="controls"></video>
+    
+</div>
+<p>上面的演示是读取视频帧（画面也可以取自摄像头），对画面做人物姿态的图像识别。左边是原始视频，右边是姿态识别并标注后的视频，为了对比我把 2 个视频合成了一个演示视频。从图像中检测关键点没法做到专业设备那么精准，也没法做到奇怪的衣服上那么丰富自由的关键点。然而图像分析可以很方便获取到姿态信息，对着摄像头自拍就行。上面的演示你会发现一些错误帧，因为画面质量比较差，人物动作稍快的地方视频图像是模糊的（比如手的挥动，不是所有帧都能看得清手），导致神经网络没法检测到所有关键点。这里用到的神经网络模型能够在一定的遮挡下估计出姿态，但是低质量图像却已经超出了他的设计范围。当然，错误帧可以去掉。</p>
+<p>得到粗糙的姿态数据后就可以做进一步的合成，可以像电影一样构造一个虚拟场景，构造一个虚拟人物模型跟着真人跳舞。下面的演示中（左边是原始视频，右边则是合成视频），简单的贴了一张巴黎的场景图片，导入姿态数据设置一个位置渲染模型（这里的模型仅仅是贴了一个头像还有简单的连线），同步合成的视频（右边）即是“模型”按照人物的动作跳舞。</p>
+<!-- pose-girl-2.mp4 -->
+<div class="pt-2 pb-3">
+    <video src='https://img.vim-cn.com/dd/dee7e9d74797332840e8fa15c51f932edb0780.mp4' controls="controls"></video>
+    
+</div>
+<p>稍微复杂一点，如果把模型放到另外一个视频里，看起来即就有点电影的效果。下面的演示也类似（左边是原始视频，右边则是合成视频），简单截取了一段游戏过程（Diablo 3 武僧跳舞）视频，导入做真人动作的模型，然后合成新视频。左右 2 个视频都在动，但是右边的“小女孩”做的动作和原始视频真人的动作是一致的。</p>
+<!-- pose-girl-3.mp4 -->
+<div class="pt-2 pb-3">
+    <video src='https://img.vim-cn.com/6c/84bca56017d04beddd2297730744fdbd7dac4a.mp4' controls="controls"></video>
+    
+</div>
+<p>如果愿意做大工程，则可以使用图形引擎构造一个虚拟世界，导入三维模型角色，绑定人物的动作，让虚拟角色在虚拟世界里做真人的动作。也可以做精细的图像分割，将人物从视频中取出来，放到其他视频或是虚拟场景里。用手机拍摄你的大片。</p>
+<p>参考：</p>
+<blockquote>
+<p>OpenPose <a href="https://github.com/CMU-Perceptual-Computing-Lab/openpose">https://github.com/CMU-Perceptual-Computing-Lab/openpose</a><br>
+OpenCV <a href="https://github.com/opencv/opencv">https://github.com/opencv/opencv</a></p>
+</blockquote>
+            </article>
+
+            
+<ul class="list-inline text-secondary mb-1">
+    
+    <li class="list-inline-item">
+        <a class="text-secondary" href="/archive/"><i class="fas fa-tags"></i></a>
+    </li>
+    
+    <li class="list-inline-item">
+        <a class="badge badge-secondary" href="/tags/OpenCV/">OpenCV</a>
+    </li>
+    
+    
+</ul>
+
+
+<hr class="my-1" />
+
+<div class="d-flex justify-content-between mb-4">
+    
+    <div class="align-self-center text-secondary">
+        <i class="far fa-edit"></i>
+        <span>2018-08-19</span>
+    </div>
+
+    
+    <div class="dropdown">
+        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-share-alt-square fa-2x"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="share_button">
+            <div class="d-flex justify-content-around">
+                <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f08-human-pose%2f" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook-square fa-2x px-1"></i>
+                </a>
+                <a href="https://twitter.com/intent/tweet?text=%e4%ba%ba%e7%89%a9%e5%a7%bf%e6%80%81%e8%af%86%e5%88%ab%e4%b8%8e%e7%94%bb%e9%9d%a2%e5%90%88%e6%88%90&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f08-human-pose%2f" target="_blank" title="Twitter">
+                    <i class="fab fa-twitter fa-2x px-1"></i>
+                </a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f08-human-pose%2f" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin fa-2x px-1"></i>
+                </a>
+            </div>
+            
+            <hr class="my-1" />
+
+            
+            <div class="text-center mb-0">
+                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f08-human-pose%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"/>
+            </div>
+        </div>
+    </div>
+</div>
+            <div id="disqus_thread"></div>
+<script>
+    
+
+    (function () { 
+        if (window.location.hostname == "localhost")
+            return;
+
+        var d = document, s = d.createElement('script');
+        s.src = 'https://xinlake-life.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript</noscript>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        
+        <div class="col-auto mx-auto">
+            
+            <div>
+                <a href="https://xinlake.life/blog/2018/09-film-impressions/">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>电影印象《虎胆追凶》</span>
+                </a>
+            </div>
+            
+            
+            <div>
+                <a href="https://xinlake.life/blog/2018/05-yolo-android/">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>在 Android 上运行图像识别</span>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark pt-3 pb-2">
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            
+            <div class="d-flex align-items-center">
+                <span class="text-secondary">
+                    Copyright ©
+                    <script>var CurrentYear = new Date().getFullYear(); document.write(CurrentYear)</script>&nbsp
+                </span>
+                <a href="mailto:xinlake@outlook.com">
+                    <span class="text-secondary">XinLake</span>
+                </a>
+            </div>
+
+            
+            <div class="align-self-center">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <a href="mailto:xinlake@outlook.com">
+                            <h3 class="footer-feed px-2"><i class="fas fa-envelope"></i></h3>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://xinlake.life/blog/index.xml" title="Blog RSS">
+                            <h3 class="footer-feed px-2"><i class="fas fa-rss"></i></h3>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    var indexURL = "https:\/\/xinlake.life\/index.json"
+</script>
+
+
+<script src="/library/jquery-3.5.1.min.js"></script>
+<script src="/library/bootstrap-4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="/library/headroom-0.11.0/headroom.min.js"></script>
+<script src="/library/search/fuse.min.js"></script>
+<script src="/library/search/mark.js"></script>
+<script src="/library/search/search.js"></script>
+<script src="/library/highlight-10.0.1/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script src="/assets/script.js"></script>
+     
+</body>
+
+</html>

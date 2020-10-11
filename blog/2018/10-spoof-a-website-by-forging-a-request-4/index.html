@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165266655-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-165266655-1');
+</script>
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<meta name="referrer" content="no-referrer">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="date=no">
+<meta name="format-detection" content="address=no">
+<meta name="format-detection" content="email=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+
+<meta name="description" content="账号登录只是 Cookie 的用途之一，事实上这种将匿名访问转为“实名”访问的技术无处不在。当你浏览网页时，服务器可以分配各种账号无关的 Cookie 来收集及追踪网页浏览。不过这个“实名”是客户端，就是说服务器可以知道是什么客户端浏览了什么内容。是机器层面的，不是人的身份。当有多个账号登录网站时，服务器就会分配多个 Cookie，如果这些 Cookie 信息均泄露，那么获得者就可以同时冒用多个账号的身份和网站交互，制造一些有趣的事情。">
+<meta name="keywords" content='cURL, Cookie, HTTP'>
+<meta name="author" content="XinLake">
+
+
+<meta property="og:title" content="通过伪造请求来欺骗网站（四） | XinLake" />
+
+<meta property="og:image" content="https://xinlake.life/blog/2018/10-spoof-a-website-by-forging-a-request-4/cover.jpg" />
+
+<meta property="og:description" content="账号登录只是 Cookie 的用途之一，事实上这种将匿名访问转为“实名”访问的技术无处不在。当你浏览网页时，服务器可以分配各种账号无关的 Cookie 来收集及追踪网页浏览。不过这个“实名”是客户端，就是说服务器可以知道是什么客户端浏览了什么内容。是机器层面的，不是人的身份。当有多个账号登录网站时，服务器就会分配多个 Cookie，如果这些 Cookie 信息均泄露，那么获得者就可以同时冒用多个账号的身份和网站交互，制造一些有趣的事情。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xinlake.life/blog/2018/10-spoof-a-website-by-forging-a-request-4/" />
+<meta property="og:locale" content="zh-CN" />
+<meta name="generator" content="Hugo 0.75.1" />
+
+<title>通过伪造请求来欺骗网站（四） | XinLake</title>
+<link rel="canonical" href="https://xinlake.life/blog/2018/10-spoof-a-website-by-forging-a-request-4/" />
+<link rel="alternate" href="https://xinlake.life/blog/index.xml" type="application/rss+xml" title="XinLake">
+
+
+<link rel="shortcut icon" href="/images/logo-v2.1.png" type="image/x-icon" />
+<link rel="icon" href="/images/logo-v2.1.png" type="image/x-icon" />
+
+
+<link rel="stylesheet" href="/library/bootstrap-4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/library/fontawesome-free-5.15.1-web/css/all.min.css" />
+<link rel="stylesheet" href="/library/highlight-10.0.1/styles/foundation.css" />
+
+<link rel="stylesheet" href="/assets/style.css" media="screen">
+     
+</head>
+
+<body><header id="header" class="headroom">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="site-title" href="https://xinlake.life/">
+                XinLake
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navogation"
+                aria-controls="navogation" aria-expanded="false" aria-label="toggle-navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navogation">
+                <ul class="nav justify-content-end ml-auto">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/blog">Posts</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/archive">Archive</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <form action="https://xinlake.life//search">
+                    <input class="form-control search-input" type="text" placeholder="Search" id="search-query" name="s" />
+                </form>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+<div class="container flex-grow-1 mb-5" style="margin-top: 10rem;">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            
+<a href="https://xinlake.life/blog/2018/10-spoof-a-website-by-forging-a-request-4/">
+    <h2 class="text-dark font-weight-bold mb-3">通过伪造请求来欺骗网站（四）</h2>
+</a>
+
+
+<div class="text-secondary mb-4">
+    <ul class="list-inline text-secondary mb-0">
+        <li class="list-inline-item">
+            <i class="far fa-file-alt"></i>
+            <span>2018-10-23</span>
+        </li>
+        <li class="list-inline-item">
+            
+            <a class="text-secondary" href="/archive/"><i class="fas fa-folder"></i></a>
+            <a class="badge badge-light" href="/categories/Network/">Network</a>
+        </li>
+    </ul>
+</div>
+
+            <article class="content mt-2 mb-4">
+                <p>账号登录只是 Cookie 的用途之一，事实上这种将匿名访问转为“实名”访问的技术无处不在。当你浏览网页时，服务器可以分配各种账号无关的 Cookie 来收集及追踪网页浏览。不过这个“实名”是客户端，就是说服务器可以知道是什么客户端浏览了什么内容。是机器层面的，不是人的身份。当有多个账号登录网站时，服务器就会分配多个 Cookie，如果这些 Cookie 信息均泄露，那么获得者就可以同时冒用多个账号的身份和网站交互，制造一些有趣的事情。</p>
+<div class="text-center pt-2 pb-3">
+    <img class="img-fluid" src='cover.jpg' title=''></img>
+    
+    <div class="text-black-50">机器多账号评论</div>
+    
+</div>
+<p>前面的几篇博文已经分享过监听网络通讯以及数据包分析方面的内容，Cookie 等信息的获取和数据交互逻辑这里就不再重复了，直接使用 Cookie 信息冒用多账号伪造请求和网站进行数据交互。又是新浪，下一次我尽量不用新浪来实际演示。</p>
+<p>下面的 PowerShell 脚本代码使用 4 个账号的 Cookie 伪造请求对一篇新闻发送评论。同样的，代码中已经删除了一些信息（用“&hellip;”来代替），意在展示原理。和前面的脚本代码有点不同，这里不用 <code>Process</code> 创建进程来运行外部程序，也没有重定向进程的输入输出，而是使用命令行来处理。区别是之前的可以异步，而下面的则是阻塞（流程化处理）。对于异步、多任务、复杂逻辑，编写程序实现好点。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-PowerShell" data-lang="PowerShell"><span style="color:#75715e"># Automated comment script for news.sina.com.cn</span>
+<span style="color:#75715e"># Updated: 2018.10.20</span>
+
+$header_referer = 
+<span style="color:#e6db74">&#39;&#34;Referer: http://...news.sina.com.cn/comment/skin/default.html?channel=kj&amp;newsid=...&#34;&#39;</span>
+
+<span style="color:#75715e"># 账号的 Cookie 信息，每个元素是一个账号的 Cookie</span>
+<span style="color:#66d9ef">[string[]]</span>$header_cookies = 
+<span style="color:#e6db74">&#39;&#34;Cookie: ... ...&#34;&#39;</span>, `
+<span style="color:#e6db74">&#39;&#34;Cookie: ... ...&#34;&#39;</span>, `
+<span style="color:#e6db74">&#39;&#34;Cookie: ... ...&#34;&#39;</span>, `
+<span style="color:#e6db74">&#39;&#34;Cookie: ... ...&#34;&#39;</span>
+
+$post_data_blank = 
+<span style="color:#e6db74">&#39;&#34;channel=kj&amp;newsid= ... &amp;content= ... ... &amp;callback= ...&#34;&#39;</span>
+
+$uri_comment = 
+<span style="color:#e6db74">&#34;http://...news.sina.com.cn/cmnt/submit&#34;</span>
+
+<span style="color:#75715e"># Settings</span>
+$comment_interval = 15
+$comment_content = Get-Content -Path `
+<span style="color:#e6db74">&#34;...utf8.txt&#34;</span> -Encoding <span style="color:#e6db74">&#34;UTF8&#34;</span>
+
+$curl_exe = 
+<span style="color:#e6db74">&#34;...\Curl\curl-7.61.1-win64\bin\curl.exe&#34;</span>
+
+<span style="color:#66d9ef">foreach</span> ($comment_line <span style="color:#66d9ef">in</span> $comment_content) {
+    $comment_bytes = <span style="color:#66d9ef">[System.Text.Encoding]</span>::UTF8.GetBytes($comment_line)
+    $comment_data = <span style="color:#66d9ef">[BitConverter]</span>::ToString($comment_bytes).Replace(<span style="color:#e6db74">&#34;-&#34;</span>,<span style="color:#e6db74">&#34;%&#34;</span>)
+    $post_data = $post_data_blank.Replace(<span style="color:#e6db74">&#34;&amp;content=&#34;</span>, <span style="color:#e6db74">&#34;&amp;content=%&#34;</span> + $comment_data)
+    
+    <span style="color:#75715e">#随机选择账号</span>
+    $comment_user = Get-Random -Minimum 0 -Maximum ($header_cookies.Count-1)
+    $header_cookie = $header_cookies[$comment_user]
+
+    <span style="color:#75715e"># Block</span>
+    cmd /c $curl_exe --silent ... --data $post_data $uri_comment
+
+    Write-Host `n
+    Start-Sleep -Seconds $comment_interval
+}
+
+Write-Host (<span style="color:#e6db74">&#34;Completed. &#34;</span> + (Get-Date))
+</code></pre></div><p><code>foreach</code> 循环每次读取一行评论文本，转换为可发送数据，随机选择一个账号（见临时附加的中文注释）发送评论。从而达到一种“多人接力讲话”的效果。当然，评论的内容、时间等参数也可以有更多的想象。</p>
+<p>这段脚本功能稳定，也可以持续运行很久，但是专业的开发者一眼就能发现问题。那就是频繁的进程创建和销毁（<code>cmd /c</code>），可能会增加内存碎片，导致系统的运行效率下降。</p>
+<div class="text-center pt-2 pb-3">
+    <img class="img-fluid" src='comments.jpg' title=''></img>
+    
+    <div class="text-black-50">机器多账号评论</div>
+    
+</div>
+<p>回到开头提到的“实名”访问，可以说 Cookie 也只是“实名”访问的方案之一，除了 Cookie 之外还有其他的手段来追踪用户（客户端）收集信息。用收集到的用户（客户端）数据，为进一步的生意做准备。例如，当你浏览过或者聊过一些内容后，类似的内容在某一天就会主动的出现。</p>
+<p>且不说这些内容主动出现时，它是让人惊喜的，还是让人反感的。所有“自以为是”的推荐都要基于一个大前提：人与机器是一种绑定关系，机器层面的数据可以用来推理人。然而，这个前提是否完全正确，那是个问号。</p>
+<blockquote>
+<p>参考数据：<a href="https://tech.sina.com.cn/i/2018-10-22/doc-ihmuuiyv5762186.shtml">新浪新闻评论</a>（网站、新闻、评论均为“素材”，不代表本人观点）<br>
+参考资料：Cookie <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies">https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies</a><br>
+本文代码仅供参考</p>
+</blockquote>
+            </article>
+
+            
+<ul class="list-inline text-secondary mb-1">
+    
+    <li class="list-inline-item">
+        <a class="text-secondary" href="/archive/"><i class="fas fa-tags"></i></a>
+    </li>
+    
+    <li class="list-inline-item">
+        <a class="badge badge-secondary" href="/tags/cURL/">cURL</a>
+    </li>
+    
+    <li class="list-inline-item">
+        <a class="badge badge-secondary" href="/tags/Cookie/">Cookie</a>
+    </li>
+    
+    <li class="list-inline-item">
+        <a class="badge badge-secondary" href="/tags/HTTP/">HTTP</a>
+    </li>
+    
+    
+</ul>
+
+
+<hr class="my-1" />
+
+<div class="d-flex justify-content-between mb-4">
+    
+    <div class="align-self-center text-secondary">
+        <i class="far fa-edit"></i>
+        <span>2018-10-23</span>
+    </div>
+
+    
+    <div class="dropdown">
+        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-share-alt-square fa-2x"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="share_button">
+            <div class="d-flex justify-content-around">
+                <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request-4%2f" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook-square fa-2x px-1"></i>
+                </a>
+                <a href="https://twitter.com/intent/tweet?text=%e9%80%9a%e8%bf%87%e4%bc%aa%e9%80%a0%e8%af%b7%e6%b1%82%e6%9d%a5%e6%ac%ba%e9%aa%97%e7%bd%91%e7%ab%99%ef%bc%88%e5%9b%9b%ef%bc%89&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request-4%2f" target="_blank" title="Twitter">
+                    <i class="fab fa-twitter fa-2x px-1"></i>
+                </a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request-4%2f" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin fa-2x px-1"></i>
+                </a>
+            </div>
+            
+            <hr class="my-1" />
+
+            
+            <div class="text-center mb-0">
+                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request-4%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"/>
+            </div>
+        </div>
+    </div>
+</div>
+            <div id="disqus_thread"></div>
+<script>
+    
+
+    (function () { 
+        if (window.location.hostname == "localhost")
+            return;
+
+        var d = document, s = d.createElement('script');
+        s.src = 'https://xinlake-life.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript</noscript>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        
+        <div class="col-auto mx-auto">
+            
+            <div>
+                <a href="https://xinlake.life/blog/2018/12-android-opencv-seamless-cloning/">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Android OpenCV 图像融合</span>
+                </a>
+            </div>
+            
+            
+            <div>
+                <a href="https://xinlake.life/blog/2018/10-spoof-a-website-by-forging-a-request-3/">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>通过伪造请求来欺骗网站（三）</span>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark pt-3 pb-2">
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            
+            <div class="d-flex align-items-center">
+                <span class="text-secondary">
+                    Copyright ©
+                    <script>var CurrentYear = new Date().getFullYear(); document.write(CurrentYear)</script>&nbsp
+                </span>
+                <a href="mailto:xinlake@outlook.com">
+                    <span class="text-secondary">XinLake</span>
+                </a>
+            </div>
+
+            
+            <div class="align-self-center">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <a href="mailto:xinlake@outlook.com">
+                            <h3 class="footer-feed px-2"><i class="fas fa-envelope"></i></h3>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://xinlake.life/blog/index.xml" title="Blog RSS">
+                            <h3 class="footer-feed px-2"><i class="fas fa-rss"></i></h3>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    var indexURL = "https:\/\/xinlake.life\/index.json"
+</script>
+
+
+<script src="/library/jquery-3.5.1.min.js"></script>
+<script src="/library/bootstrap-4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="/library/headroom-0.11.0/headroom.min.js"></script>
+<script src="/library/search/fuse.min.js"></script>
+<script src="/library/search/mark.js"></script>
+<script src="/library/search/search.js"></script>
+<script src="/library/highlight-10.0.1/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script src="/assets/script.js"></script>
+     
+</body>
+
+</html>

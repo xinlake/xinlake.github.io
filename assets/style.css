@@ -1,0 +1,115 @@
+body {
+    font-family:
+        -apple-system, BlinkMacSystemFont, 
+        "Microsoft YaHei", "Segoe UI",
+        "Roboto", 
+        "Helvetica Neue", Arial, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+blockquote {
+    padding-top: 1em;
+    padding-bottom: .1em;
+    padding-left: .6em;
+    padding-right: .6em;
+    border-left: .4em solid rgb(61, 126, 154);
+    background-color: rgb(236, 236, 236);
+    color: #9090a0;
+}
+
+video {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    margin: 0 auto;
+    object-fit: cover;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/* headroom ----------------------------*/
+.headroom {
+    z-index: 90;
+    position: -webkit-fixed;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: all .3s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.headroom--top {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.headroom--not-top {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.headroom--pinned {
+    transform: translateY(0%);
+}
+.headroom--unpinned {
+    transform: translateY(-100%);
+}
+
+/* title -------------------------------
+*/
+.site-title {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #f0f0ff;
+    text-shadow: 0px 0px 2px #101017;
+    transition: .3s;
+}
+.site-title:hover {
+    color: rgb(255, 145, 0);
+}
+
+/* serch input --------------------------*/
+.search-input {
+    border: 0;
+    background-color: rgba(0, 0, 0, .4);
+}
+
+/* banner -------------------------------*/
+.banner-image-page {
+    display: block;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+@media screen and (max-width: 1080px) {
+    .banner-image-page {
+        height: 220px;
+    }  
+}
+
+/* footer ------------------------------*/
+.footer-feed {
+    color: rgb(126, 126, 126);
+    text-shadow: 0px 0px 3px #101018;
+    transition: .2s;
+}
+.footer-feed:hover {
+    color: rgb(255, 145, 0);
+}
+
+/* article content */
+.content p {
+    margin-bottom: 1.5em;
+}
+.content table {
+    margin: 20px auto;
+}
+.content table, th, td {
+    border: 1px solid #a0b0c0;
+    padding: 5px 20px;
+}

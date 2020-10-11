@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165266655-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-165266655-1');
+</script>
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<meta name="referrer" content="no-referrer">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="date=no">
+<meta name="format-detection" content="address=no">
+<meta name="format-detection" content="email=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+
+<meta name="description" content="这标题都是英文，看了一下专业词汇多还真不好写中文。本文的内容是介绍 OpenCV DNN（Deep Neural Networks）模块在 Android 上的使用，运行深度学习模型来做图像的多目标识别。移动设备上基于深度学习的图像识别技术离实际应用还有段距离，不过该技术却有着惊艳的效果。">
+<meta name="keywords" content='OpenCV'>
+<meta name="author" content="XinLake">
+
+
+<meta property="og:title" content="Android OpenCV DNN Objects Detection | XinLake" />
+
+<meta property="og:image" content="https://xinlake.life/blog/2018/03-opencv-dnn-objects-detection/cover.jpg" />
+
+<meta property="og:description" content="这标题都是英文，看了一下专业词汇多还真不好写中文。本文的内容是介绍 OpenCV DNN（Deep Neural Networks）模块在 Android 上的使用，运行深度学习模型来做图像的多目标识别。移动设备上基于深度学习的图像识别技术离实际应用还有段距离，不过该技术却有着惊艳的效果。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xinlake.life/blog/2018/03-opencv-dnn-objects-detection/" />
+<meta property="og:locale" content="zh-CN" />
+<meta name="generator" content="Hugo 0.75.1" />
+
+<title>Android OpenCV DNN Objects Detection | XinLake</title>
+<link rel="canonical" href="https://xinlake.life/blog/2018/03-opencv-dnn-objects-detection/" />
+<link rel="alternate" href="https://xinlake.life/blog/index.xml" type="application/rss+xml" title="XinLake">
+
+
+<link rel="shortcut icon" href="/images/logo-v2.1.png" type="image/x-icon" />
+<link rel="icon" href="/images/logo-v2.1.png" type="image/x-icon" />
+
+
+<link rel="stylesheet" href="/library/bootstrap-4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/library/fontawesome-free-5.15.1-web/css/all.min.css" />
+<link rel="stylesheet" href="/library/highlight-10.0.1/styles/foundation.css" />
+
+<link rel="stylesheet" href="/assets/style.css" media="screen">
+     
+</head>
+
+<body><header id="header" class="headroom">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="site-title" href="https://xinlake.life/">
+                XinLake
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navogation"
+                aria-controls="navogation" aria-expanded="false" aria-label="toggle-navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navogation">
+                <ul class="nav justify-content-end ml-auto">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/blog">Posts</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/archive">Archive</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <form action="https://xinlake.life//search">
+                    <input class="form-control search-input" type="text" placeholder="Search" id="search-query" name="s" />
+                </form>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+<div class="container flex-grow-1 mb-5" style="margin-top: 10rem;">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            
+<a href="https://xinlake.life/blog/2018/03-opencv-dnn-objects-detection/">
+    <h2 class="text-dark font-weight-bold mb-3">Android OpenCV DNN Objects Detection</h2>
+</a>
+
+
+<div class="text-secondary mb-4">
+    <ul class="list-inline text-secondary mb-0">
+        <li class="list-inline-item">
+            <i class="far fa-file-alt"></i>
+            <span>2018-03-11</span>
+        </li>
+        <li class="list-inline-item">
+            
+            <a class="text-secondary" href="/archive/"><i class="fas fa-folder"></i></a>
+            <a class="badge badge-light" href="/categories/Computer-Vision/">Computer-Vision</a>
+        </li>
+    </ul>
+</div>
+
+            <article class="content mt-2 mb-4">
+                <p>这标题都是英文，看了一下专业词汇多还真不好写中文。本文的内容是介绍 OpenCV DNN（Deep Neural Networks）模块在 Android 上的使用，运行深度学习模型来做图像的多目标识别。移动设备上基于深度学习的图像识别技术离实际应用还有段距离，不过该技术却有着惊艳的效果。</p>
+<div class="text-center pt-2 pb-3">
+    <img class="img-fluid" src='cover.jpg' title=''></img>
+    
+    <div class="text-black-50">目标检测</div>
+    
+</div>
+<p>计算机视觉开源软件库 <a href="https://opencv.org/">OpenCV</a> 刚升级到了 3.4.1，新版本除了集成了一些补丁和问题修复外，JNI 库也整理得更好了，此外还发现新增了一个使用 Android Camera2 接口的 CameraView （org.opencv.android.JavaCamera2View.java）。但是我在手机上用这个 View 发现画面的色彩不对，想尝鲜的朋友可以调试一下。启用 Camera2 接口应该可以在 Android 上更好的适配硬件加速，将视觉处理大量的浮点计算交给 GPU 去做。</p>
+<p>在 Android 手机上（Snapdragon 835 CPU）调用 OpenCV 可以看到以下 logcat 信息，接下来可以参考 OpenCV DNN Toturial 在 App 上使用 DNN。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">General configuration for OpenCV 3.4.1 =====================================
+  Version control:               3.4.1
+  Platform:
+    Timestamp:                   2018-02-23T12:15:01Z
+    Host:                        Linux 4.13.0-32-generic x86_64
+    Target:                      Linux 1 aarch64
+    CMake:                       2.8.12.2
+    CMake generator:             Ninja
+    CMake build tool:            /usr/bin/ninja
+    Configuration:               Release
+  CPU/HW features:
+    Baseline:                    NEON
+      requested:                 NEON FP16
+      required:                  NEON
+      disabled:                  VFPV3
+  C/C++:
+    ... 此处内容太多已省略
+  OpenCV modules:
+    To be built:                 calib3d core dnn features2d flann highgui imgcodecs imgproc java java_bindings_generator ml objdetect photo python_bindings_generator shape stitching superres video videoio videostab
+    Disabled:                    js world
+    Disabled by dependency:      -
+    Unavailable:                 cudaarithm cudabgsegm cudacodec cudafeatures2d cudafilters cudaimgproc cudalegacy cudaobjdetect cudaoptflow cudastereo cudawarping cudev python2 python3 ts viz
+    Applications:                android_examples
+    Documentation:               NO
+    Non-free algorithms:         NO
+  Android: 
+    Android ABI:                 arm64-v8a
+    STL type:                    gnustl_static
+    Native API level:            android-21
+    SDK target:                  android-21
+    Android NDK:                 /opt/android/android-ndk-r10e (toolchain: aarch64-linux-android-4.9)
+    android tool:                /opt/android/android-sdk-java7/tools/android (Android SDK Tools, revision 25.2.2.)
+    ... 后面已省略
+</code></pre></div><p>OpenCV DNN 模块可以读取多种深度学习框架的网络模型，生成 DNN 的网络对象（DNN 不支持模型训练）。模型文件放到 assets 打包进 APK，运行时复制（一次）到 App 目录后 DNN 就可以读取。Java API 的注释少，这里是打开 C++ API 来看看读取 Caffe 模型的说明。</p>
+<div class="text-center pt-2 pb-3">
+    <img class="img-fluid" src='read-net.png' title=''></img>
+    
+    <div class="text-black-50">读取模型</div>
+    
+</div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">/** @brief Reads a network model stored in &lt;a href=&#34;http://caffe.berkeleyvision.org&#34;&gt;Caffe&lt;/a&gt; framework&#39;s format.
+</span><span style="color:#75715e">    * @param prototxt   path to the .prototxt file with text description of the network architecture.
+</span><span style="color:#75715e">    * @param caffeModel path to the .caffemodel file with learned network.
+</span><span style="color:#75715e">    * @returns Net object.
+</span><span style="color:#75715e">    */</span>
+CV_EXPORTS_W Net <span style="color:#a6e22e">readNetFromCaffe</span>(<span style="color:#66d9ef">const</span> String <span style="color:#f92672">&amp;</span>prototxt, <span style="color:#66d9ef">const</span> String <span style="color:#f92672">&amp;</span>caffeModel <span style="color:#f92672">=</span> String());
+</code></pre></div><p>在摄像头图像帧里运行模型计算输出，标注识别结果。可以参考官方 <a href="https://docs.opencv.org/master/d0/d6c/tutorial_dnn_android.html">Toturial</a>，3.4.1 版本需要做一点小修改，代码如下。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Override</span>
+<span style="color:#66d9ef">public</span> Mat <span style="color:#a6e22e">onCameraFrame</span><span style="color:#f92672">(</span>CameraBridgeViewBase<span style="color:#f92672">.</span><span style="color:#a6e22e">CvCameraViewFrame</span> inputFrame<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">// Get a new frame
+</span><span style="color:#75715e"></span>    Mat frame <span style="color:#f92672">=</span> inputFrame<span style="color:#f92672">.</span><span style="color:#a6e22e">rgba</span><span style="color:#f92672">();</span>
+    Imgproc<span style="color:#f92672">.</span><span style="color:#a6e22e">cvtColor</span><span style="color:#f92672">(</span>frame<span style="color:#f92672">,</span> frame<span style="color:#f92672">,</span> Imgproc<span style="color:#f92672">.</span><span style="color:#a6e22e">COLOR_RGBA2RGB</span><span style="color:#f92672">);</span>
+
+    <span style="color:#75715e">// Forward image through network.
+</span><span style="color:#75715e"></span>    Mat blob <span style="color:#f92672">=</span> Dnn<span style="color:#f92672">.</span><span style="color:#a6e22e">blobFromImage</span><span style="color:#f92672">(</span>frame<span style="color:#f92672">,</span> IN_SCALE_FACTOR<span style="color:#f92672">,</span>
+            <span style="color:#66d9ef">new</span> Size<span style="color:#f92672">(</span>IN_WIDTH<span style="color:#f92672">,</span> IN_HEIGHT<span style="color:#f92672">),</span>
+            <span style="color:#66d9ef">new</span> Scalar<span style="color:#f92672">(</span>MEAN_VAL<span style="color:#f92672">,</span> MEAN_VAL<span style="color:#f92672">,</span> MEAN_VAL<span style="color:#f92672">),</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">);</span>
+    mNet<span style="color:#f92672">.</span><span style="color:#a6e22e">setInput</span><span style="color:#f92672">(</span>blob<span style="color:#f92672">);</span>
+    Mat detections <span style="color:#f92672">=</span> mNet<span style="color:#f92672">.</span><span style="color:#a6e22e">forward</span><span style="color:#f92672">();</span>
+
+    <span style="color:#f92672">...</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>下面有个演示视频，手机摄像头现实场景的图像识别，输出结果的标注代码稍微改了一下，看起来更加明显一点。MobileNetSSD 模型的物体较少大概 20 个，所以有些目标识别可能会不对，但这不是问题换个模型就可以。</p>
+<!-- mobilenet-2-800x450.mp4 -->
+<div class="pt-2 pb-3">
+    <video src='https://img.vim-cn.com/b2/c7634967d599e09651a36db5904719821e74b8.mp4' controls="controls"></video>
+    
+</div>
+<p>参考资料</p>
+<blockquote>
+<p>MobileNet <a href="https://arxiv.org/abs/1704.04861">https://arxiv.org/abs/1704.04861</a><br>
+Caffe <a href="https://caffe.berkeleyvision.org/">https://caffe.berkeleyvision.org/</a><br>
+OpenCV DNN <a href="https://github.com/opencv/opencv/tree/master/samples/dnn">https://github.com/opencv/opencv/tree/master/samples/dnn</a></p>
+</blockquote>
+            </article>
+
+            
+<ul class="list-inline text-secondary mb-1">
+    
+    <li class="list-inline-item">
+        <a class="text-secondary" href="/archive/"><i class="fas fa-tags"></i></a>
+    </li>
+    
+    <li class="list-inline-item">
+        <a class="badge badge-secondary" href="/tags/OpenCV/">OpenCV</a>
+    </li>
+    
+    
+</ul>
+
+
+<hr class="my-1" />
+
+<div class="d-flex justify-content-between mb-4">
+    
+    <div class="align-self-center text-secondary">
+        <i class="far fa-edit"></i>
+        <span>2018-03-21</span>
+    </div>
+
+    
+    <div class="dropdown">
+        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-share-alt-square fa-2x"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="share_button">
+            <div class="d-flex justify-content-around">
+                <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f03-opencv-dnn-objects-detection%2f" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook-square fa-2x px-1"></i>
+                </a>
+                <a href="https://twitter.com/intent/tweet?text=Android%20OpenCV%20DNN%20Objects%20Detection&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f03-opencv-dnn-objects-detection%2f" target="_blank" title="Twitter">
+                    <i class="fab fa-twitter fa-2x px-1"></i>
+                </a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f03-opencv-dnn-objects-detection%2f" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin fa-2x px-1"></i>
+                </a>
+            </div>
+            
+            <hr class="my-1" />
+
+            
+            <div class="text-center mb-0">
+                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f03-opencv-dnn-objects-detection%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"/>
+            </div>
+        </div>
+    </div>
+</div>
+            <div id="disqus_thread"></div>
+<script>
+    
+
+    (function () { 
+        if (window.location.hostname == "localhost")
+            return;
+
+        var d = document, s = d.createElement('script');
+        s.src = 'https://xinlake-life.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript</noscript>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        
+        <div class="col-auto mx-auto">
+            
+            <div>
+                <a href="https://xinlake.life/blog/2018/03-android-opencv-dnn-googlenet/">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Running GoogLeNet on Android device</span>
+                </a>
+            </div>
+            
+            
+            <div>
+                <a href="https://xinlake.life/blog/2018/02-a-different-spring-festival/">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>不一样的春节</span>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark pt-3 pb-2">
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            
+            <div class="d-flex align-items-center">
+                <span class="text-secondary">
+                    Copyright ©
+                    <script>var CurrentYear = new Date().getFullYear(); document.write(CurrentYear)</script>&nbsp
+                </span>
+                <a href="mailto:xinlake@outlook.com">
+                    <span class="text-secondary">XinLake</span>
+                </a>
+            </div>
+
+            
+            <div class="align-self-center">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <a href="mailto:xinlake@outlook.com">
+                            <h3 class="footer-feed px-2"><i class="fas fa-envelope"></i></h3>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://xinlake.life/blog/index.xml" title="Blog RSS">
+                            <h3 class="footer-feed px-2"><i class="fas fa-rss"></i></h3>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    var indexURL = "https:\/\/xinlake.life\/index.json"
+</script>
+
+
+<script src="/library/jquery-3.5.1.min.js"></script>
+<script src="/library/bootstrap-4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="/library/headroom-0.11.0/headroom.min.js"></script>
+<script src="/library/search/fuse.min.js"></script>
+<script src="/library/search/mark.js"></script>
+<script src="/library/search/search.js"></script>
+<script src="/library/highlight-10.0.1/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script src="/assets/script.js"></script>
+     
+</body>
+
+</html>
