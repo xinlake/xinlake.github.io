@@ -1,4 +1,12 @@
 # "allow" is not a part of standard, search engine may don't understand "allow"
-User-agent: *
 
-Sitemap: https://xinlake.life/sitemap.xml
+User-agent: SemrushBot
+Disallow: /
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: *
+Disallow: /block
+Disallow: /search
+
+Sitemap: {{ .Site.BaseURL }}sitemap.xml
