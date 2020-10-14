@@ -9,4 +9,4 @@ User-agent: *
 Disallow: /block
 Disallow: /search
 
-Sitemap: {{ .Site.BaseURL }}sitemap.xml
+Sitemap: https://xinlake.life/sitemap.xml
