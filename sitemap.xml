@@ -233,48 +233,6 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/categories/Lifestyle/</loc>
-
-        
-        <lastmod>2020-02-21T00:00:00+00:00</lastmod>
-        
-
-        
-        
-        <priority>0.5</priority>
-        
-
-        
-        
-        <changefreq>monthly</changefreq>
-        
-
-        
-        
-    </url>
-    
-    <url>
-        <loc>https://xinlake.life/blog/2020/02-where-is-your-wall/</loc>
-
-        
-        <lastmod>2020-02-21T00:00:00+00:00</lastmod>
-        
-
-        
-        
-        <priority>1.0</priority>
-        
-
-        
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        
-    </url>
-    
-    <url>
         <loc>https://xinlake.life/tags/cURL/</loc>
 
         
@@ -625,6 +583,27 @@
         
         
         <changefreq>weekly</changefreq>
+        
+
+        
+        
+    </url>
+    
+    <url>
+        <loc>https://xinlake.life/categories/Lifestyle/</loc>
+
+        
+        <lastmod>2019-09-05T18:00:00+00:00</lastmod>
+        
+
+        
+        
+        <priority>0.5</priority>
+        
+
+        
+        
+        <changefreq>monthly</changefreq>
         
 
         

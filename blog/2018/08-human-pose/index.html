@@ -17,8 +17,6 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-<meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <meta name="format-detection" content="date=no">
 <meta name="format-detection" content="address=no">
@@ -39,7 +37,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://xinlake.life/blog/2018/08-human-pose/" />
 <meta property="og:locale" content="zh-CN" />
-<meta name="generator" content="Hugo 0.75.1" />
+<meta name="generator" content="Hugo 0.76.5" />
 
 <title>人物姿态识别与画面合成 | XinLake</title>
 <link rel="canonical" href="https://xinlake.life/blog/2018/08-human-pose/" />
@@ -134,20 +132,20 @@
 <p>设想一个三维场景，将拍摄到的图像放到场景中。通过色彩过滤蓝色部分可以替换为任意图像或是场景模型，比如影片中的树林。同样的，大树的位置可以放一颗大树模型。草地添加一些修饰就差不多，如果用模型代替就比较麻烦，因为兽人跑过会带风，风会引起小草晃动还可能带起地上几片落叶，而小草、落叶的运动都得符合物理规律，这样就需要引入物理引擎来模拟模型的运动，会增加大量的制作工作。</p>
 <p>然后是那个兽人，拍摄到的图像里有演员，还有演员肢体的位置信息。同样的，穿着纯色奇怪衣服的演员可以轻松拿掉，而需要在三维场景里换上兽人角色模型。演员的体型没有兽人那么庞大，关键点通过一定的算法将演员映射为兽人，通过肢体关键点绑定可以让兽人的动作和演员的动作保持一致。真人的动作自然而且符合物理规律，不需要添加额外的物理计算，影片中你可以感受到兽人和人类很像。</p>
 <p>将所有的图像帧做类似的处理并且保存就成了一个特效视频，当然，这里说的只是一个大概原理，实际电影特效处理远比这些要复杂而且远不止这些。回到开头提到的“手机拍大片”，类似的原理，得到人物姿态数据然后合成视频。不过姿态数据不通过专业设备获取，而是通过神经网络对图像分析得出。</p>
-<!-- pose-girl-1.mp4 -->
+<!-- raw HTML omitted -->
 <div class="pt-2 pb-3">
     <video src='https://img.vim-cn.com/d8/16d8e899d713a2e225259e1293c9f509f29dd0.mp4' controls="controls"></video>
     
 </div>
 <p>上面的演示是读取视频帧（画面也可以取自摄像头），对画面做人物姿态的图像识别。左边是原始视频，右边是姿态识别并标注后的视频，为了对比我把 2 个视频合成了一个演示视频。从图像中检测关键点没法做到专业设备那么精准，也没法做到奇怪的衣服上那么丰富自由的关键点。然而图像分析可以很方便获取到姿态信息，对着摄像头自拍就行。上面的演示你会发现一些错误帧，因为画面质量比较差，人物动作稍快的地方视频图像是模糊的（比如手的挥动，不是所有帧都能看得清手），导致神经网络没法检测到所有关键点。这里用到的神经网络模型能够在一定的遮挡下估计出姿态，但是低质量图像却已经超出了他的设计范围。当然，错误帧可以去掉。</p>
 <p>得到粗糙的姿态数据后就可以做进一步的合成，可以像电影一样构造一个虚拟场景，构造一个虚拟人物模型跟着真人跳舞。下面的演示中（左边是原始视频，右边则是合成视频），简单的贴了一张巴黎的场景图片，导入姿态数据设置一个位置渲染模型（这里的模型仅仅是贴了一个头像还有简单的连线），同步合成的视频（右边）即是“模型”按照人物的动作跳舞。</p>
-<!-- pose-girl-2.mp4 -->
+<!-- raw HTML omitted -->
 <div class="pt-2 pb-3">
     <video src='https://img.vim-cn.com/dd/dee7e9d74797332840e8fa15c51f932edb0780.mp4' controls="controls"></video>
     
 </div>
 <p>稍微复杂一点，如果把模型放到另外一个视频里，看起来即就有点电影的效果。下面的演示也类似（左边是原始视频，右边则是合成视频），简单截取了一段游戏过程（Diablo 3 武僧跳舞）视频，导入做真人动作的模型，然后合成新视频。左右 2 个视频都在动，但是右边的“小女孩”做的动作和原始视频真人的动作是一致的。</p>
-<!-- pose-girl-3.mp4 -->
+<!-- raw HTML omitted -->
 <div class="pt-2 pb-3">
     <video src='https://img.vim-cn.com/6c/84bca56017d04beddd2297730744fdbd7dac4a.mp4' controls="controls"></video>
     

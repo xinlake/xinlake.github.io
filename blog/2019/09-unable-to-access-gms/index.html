@@ -17,8 +17,6 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-<meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <meta name="format-detection" content="date=no">
 <meta name="format-detection" content="address=no">
@@ -37,7 +35,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://xinlake.life/blog/2019/09-unable-to-access-gms/" />
 <meta property="og:locale" content="zh-CN" />
-<meta name="generator" content="Hugo 0.75.1" />
+<meta name="generator" content="Hugo 0.76.5" />
 
 <title>无法访问 GMS | XinLake</title>
 <link rel="canonical" href="https://xinlake.life/blog/2019/09-unable-to-access-gms/" />
@@ -124,7 +122,7 @@
 </div>
 <p>上图左边是一开源 App，它调用了 GMS 的 Vision 功能来扫描二维码（稍后会详细分析）。右边则是一个知名网站（Quora）的 Android 客户端，它在打开时即弹出这样的对话框，估计是调用了 GMS 的身份验证功能。当然，应该有更多的国际化 App 在没有 GMS 的设备上运行会弹出类似的提示，我就不去尝试了。</p>
 <p>接下来看那个开源 App（<a href="https://github.com/shadowsocks/shadowsocks-android/">shadowsocks-android</a>）是如何调用 GMS API 的，我是点击菜单的“Scan QR Code”弹出提示的，追踪代码进入<code>ScannerActivity.kt</code>，在开头处可以看到不少 GMS API 的 import，开源组件 xyz.belvi.mobilevisionbarcodescanner.BarcodeRetriever 也依赖于 GMS 功能。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin">...
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"><span style="color:#f92672">..</span>.
 <span style="color:#66d9ef">import</span> com.google.android.gms.common.GoogleApiAvailability
 <span style="color:#66d9ef">import</span> com.google.android.gms.samples.vision.barcodereader.BarcodeCapture
 <span style="color:#66d9ef">import</span> com.google.android.gms.samples.vision.barcodereader.BarcodeGraphic
@@ -141,7 +139,7 @@
     finish()
 }
 
-...
+<span style="color:#f92672">..</span>.
 
 <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">onCreate</span>(savedInstanceState: Bundle?) {
     <span style="color:#66d9ef">super</span>.onCreate(savedInstanceState)
@@ -152,7 +150,7 @@
         <span style="color:#66d9ef">val</span> availability = GoogleApiAvailability.getInstance()
         <span style="color:#66d9ef">val</span> dialog = availability.getErrorDialog(<span style="color:#66d9ef">this</span>, availability.isGooglePlayServicesAvailable(<span style="color:#66d9ef">this</span>),
                 REQUEST_GOOGLE_API)
-        <span style="color:#66d9ef">if</span> (dialog == <span style="color:#66d9ef">null</span>) {
+        <span style="color:#66d9ef">if</span> (dialog <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {
             Toast.makeText(<span style="color:#66d9ef">this</span>, R.string.common_google_play_services_notification_ticker, Toast.LENGTH_SHORT)
                     .show()
             fallback()
@@ -162,7 +160,7 @@
         }
         <span style="color:#66d9ef">return</span>
     }
-...
+<span style="color:#f92672">..</span>.
 </code></pre></div><p>逻辑很清晰，就是一 GMS 功能的使用，失败则会提示信息。国内手机很多没有 GMS，包括我手上这台手机也没有，这样就没法支持国际化的 App 正常运行。上面说的跳转到商店页面，国内手机系统都一般都要修改应用商店，不管是网页里打开 Google Play App 还是 App 内跳转都会跳到国内商店页面（系统半年没更新，不知道现在的情况），从而被完全的本土化了。</p>
 <p>对于开源软件有另外一个办法就是把依赖于 GMS 的功能替换为本地模块，就是 App 直接集成相应能力不依赖于云端服务。像这个扫码功能，一般都是 zxing 实现的，集成 zxing 模块修改相应代码即可。而对于广泛的商业流行 App 来说没有 GMS 就比较麻烦，毕竟这些已经是全球应用生态系统的一部分。</p>
 <div class="text-center pt-2 pb-3">

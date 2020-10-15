@@ -1,12 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Archive on XinLake</title>
+    <channel>
+
     <link>https://xinlake.life/archive/</link>
+    <title>Archive on XinLake</title>
     <description>Recent content in Archive on XinLake</description>
-    <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
+    <generator>Hugo 0.76.5</generator>
+
     <managingEditor>xinlake@outlook.com (XinLake)</managingEditor>
-    <webMaster>xinlake@outlook.com (XinLake)</webMaster><atom:link href="https://xinlake.life/archive/index.xml" rel="self" type="application/rss+xml" />
-  </channel>
+    <webMaster>xinlake@outlook.com (XinLake)</webMaster>
+
+    
+
+    
+
+    
+    <atom:link href="https://xinlake.life/archive/index.xml" rel="self" type="application/rss+xml" />
+    
+
+    
+    </channel>
 </rss>
