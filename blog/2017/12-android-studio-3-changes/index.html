@@ -117,7 +117,8 @@
             <article class="content mt-2 mb-4">
                 <p>Android Studio 3 发布有段时间了，之前看到的是测试版就一直用着 2.2.3 没更新。前段时间项目模块升级，Android Studio 的更新提示已经是 3.0.1 正式版了，于是就对开发环境也做了一次升级。本文说几点 Android Studio 3.0.1 的几点变化，不是全面介绍 Android Studio 3 的新特性，而是一些项目迁移过程中感受到的 Android Studio 3.0.1 相对于 Android Studio 2.2.3 的几点变化。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='about.png' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='about.png' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">Android Studio 3.0.1</div>
     
@@ -125,14 +126,16 @@
 <h2 id="自带-openjdk">自带 OpenJDK</h2>
 <p>Android Studio 3.0.1 已经自带了 JDK，不需要安装 JDK 即可以正常运行。adb 程序也可以独立运行（不需要打开 Android Studio，不需要安装 JDK）。安装 Android Studio 后只需要下载必要的 sdk 即可。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='jdk.jpg' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='jdk.jpg' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">Android Studio 3.0.1 自带 JDK</div>
     
 </div>
 <p>打开 &ldquo;Project Structure&rdquo; 选项可以看到 JDK 相关的设置，这里可以看到 &ldquo;Use embedded JDK(recommended)&rdquo; 即“使用内置的 JDK（推荐）”默认处于勾选状态，并且下方有 jre 的路径（Android Studio 位于 D:\AndroiDev\android-studio）。再到 D:\AndroiDev\android-studio\jre 下查看 java 版本，显示 OpenJDK</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='jdk-location.jpg' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='jdk-location.jpg' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">JDK 默认设置</div>
     
@@ -140,7 +143,8 @@
 <h2 id="快速文档">快速文档</h2>
 <p>按 Ctrl+Q 即会弹出鼠标所选内容的技术文档，该功能在 Android Studio 2.2.3 时加载文档很慢，看一个 Method 的文档等上几十秒都有可能。StackOverFlow 上有人找到了原因并给出了解决方法（快速文档功能首先会尝试打开在线内容，没有在线内容再使用本地，有些区域无法连接在线文档，即导致文档加载慢的问题，修改 jdk.table.xml 指向本地文档可解决）。这一问题在 Android Studio 3.0.1 里已经不存在了，SDK 里安装 &ldquo;Documentation for Android SDK&rdquo; 看文档 Ctrl+Q 秒开。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='document.png' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='document.png' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">离线文档</div>
     
@@ -215,7 +219,7 @@
             
             <div class="text-center mb-0">
                 <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2017%2f12-android-studio-3-changes%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"
-                    alt="It's may about the network" />
+                    alt="It&#39;s may about the network" />
             </div>
         </div>
     </div>

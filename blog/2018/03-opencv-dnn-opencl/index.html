@@ -117,7 +117,8 @@
             <article class="content mt-2 mb-4">
                 <p>跑分第一的手机未必能跑得动神经网络，因为 CPU 的浮点计算能力很有限，在执行图像处理、机器视觉等一些计算密集型任务时，效率会非常低。处理那样的任务是 GPU 的专长，图形硬件不仅能 3D 绘图渲染，还能通过 OpenCL 等接口使用它的计算能力。这里将展示 PC 平台上图形硬件对神经网络的计算加速，在 OpenCV DNN 图像检测程序中对比 CPU 和 GPU 计算的效能差别。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='cover.jpg' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='cover.jpg' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">cpu computing</div>
     
@@ -125,7 +126,8 @@
 <p>在 Windows 10 上创建 VC++ 应用程序，程序打开摄像头运行 OpenCV DNN 对摄像头画面做图像检测。使用的是 Darknet 预训练的 YOLO 模型，模型约 194M 支持 80 种物体的识别，上图即是图像检测的截图，用的是 CPU 计算。</p>
 <p>下图是使用 CPU 计算时的情况，帧率大约 0.2-0.5 之间，CPU 占用 50%-80% 之间，没有占用 GPU，Memory 约占 850M。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='cpu.jpg' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='cpu.jpg' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">CPU 计算，资源占用</div>
     
@@ -148,14 +150,16 @@
 CV_WRAP <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setPreferableTarget</span>(<span style="color:#66d9ef">int</span> targetId);
 </code></pre></div><p>下图是使用 GPU 计算时的情况，帧率大约 1.6-2.5 之间，CPU 占用一般少于 5%，GPU 占用 70%-95%，Memory 约占 1438M。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='gpu.jpg' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='gpu.jpg' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">GPU 计算，资源占用</div>
     
 </div>
 <p>图形硬件是 i7-4600U（笔记本低电压版）自带的 HD Graphics 4400，驱动支持 OpenCL 1.2。系统是 Windows 10 x64，开发环境是 Visual Studio 2015 Community，VC++ Application 和 OpenCV Library 都是 x64。下面还有个简单的效能对比列表，作者的图形驱动没有更新，程序处理也有可优化之处。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='hardware.jpg' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='hardware.jpg' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">硬件信息</div>
     
@@ -246,7 +250,7 @@ OpenCL <a href="https://www.khronos.org/opencl/">https://www.khronos.org/opencl/
             
             <div class="text-center mb-0">
                 <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f03-opencv-dnn-opencl%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"
-                    alt="It's may about the network" />
+                    alt="It&#39;s may about the network" />
             </div>
         </div>
     </div>

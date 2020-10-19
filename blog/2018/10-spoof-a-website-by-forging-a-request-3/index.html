@@ -116,14 +116,16 @@
                 <p>网站的有些功能需要登录才能使用（比如发表评论），Web 系统一般用 Cookie 来标识用户（客户端）身份，存储登录状态。当你登录网站后，客户端和服务器传输的数据里就会包含 Cookie 信息，服务器根据 Cookie 来判断你的登录状态。如果这个 Cookie 信息泄露了，那得到 Cookie 信息的人就可以使用你的身份和网站交互（比如发表评论），而且不需要登录，当然也不需要密码。</p>
 <p>前面两篇博文介绍并实际演示了通过程序伪造数据包实现的“机器点赞”，下面也是个实际演示，盗用身份发表评论。欺骗对象还是新浪，不过其他网站也大同小异。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='comment-user.png' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='comment-user.png' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">发评论</div>
     
 </div>
 <p>User-6773006030 登录了网站，并在<a href="https://tech.sina.com.cn/d/s/2018-10-17/doc-ihmhafis1257290.shtml">一篇新闻文章</a>发了评论“很神秘”（上图）。通过网络监听抓到了发这条评论的 HTTP Post 数据包（下图），红框是数据包的 Cookie 信息。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='comment-submit-r.png' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='comment-submit-r.png' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">“发评论”请求</div>
     
@@ -131,7 +133,8 @@
 <p>和“点赞”差不多，地址比较通用，发送的数据包含各种信息，篮筐是评论内容。下图是“发评论” Post 的服务器回应，回应的数据会包含“发评论”的状态 
 <code>&lt;script&gt; ... &quot;language&quot;: &quot;ch&quot;, &quot;encoding&quot;: &quot;utf-8&quot;, ... &quot;User-6773006030&quot; ... &quot;time&quot;: &quot;2018-10-17 12:35:48&quot;, &quot;filter_code&quot;: &quot;4000&quot;, ... &lt;/script&gt; </code>（内容较长省略一部分）。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='comment-submit-a.png' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='comment-submit-a.png' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">“发评论”回应</div>
     
@@ -172,7 +175,8 @@ $process.BeginOutputReadLine()
 $comment_bytes = <span style="color:#66d9ef">[System.Text.Encoding]</span>::UTF8.GetBytes($comment_line)
 $comment_data = <span style="color:#66d9ef">[BitConverter]</span>::ToString($comment_bytes).Replace(<span style="color:#e6db74">&#34;-&#34;</span>,<span style="color:#e6db74">&#34;%&#34;</span>)
 </code></pre></div><div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='comment-forging.png' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='comment-forging.png' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">机器以 User-6773006030 的身份发评论</div>
     
@@ -242,7 +246,7 @@ $comment_data = <span style="color:#66d9ef">[BitConverter]</span>::ToString($com
             
             <div class="text-center mb-0">
                 <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request-3%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"
-                    alt="It's may about the network" />
+                    alt="It&#39;s may about the network" />
             </div>
         </div>
     </div>

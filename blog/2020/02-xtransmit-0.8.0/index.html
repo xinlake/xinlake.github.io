@@ -117,7 +117,8 @@
             <article class="content mt-2 mb-4">
                 <p>这次更新做的是减法，<a href="https://github.com/xinlake/xtransmit-windows/releases">XTransmit 0.8.0</a> 移除了自定义数据传输模块，移到另外一个工程去了。那个模块通常用于绕过前端页面直接向目标站点发送特定功能的数据包（如评论、点赞、阅读数等等），和主要功能交集不多，移除之后程序会变小。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='cover.png' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='cover.png' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">XTransmit 0.8.0</div>
     
@@ -136,14 +137,16 @@
 </code></pre></div><p>每次请求都会回应最新的数据，最后获得的 <code>servers</code> 即是本地代理接口，数组每项都是一条国际线路（有单独的 IP）。一般情况下只会返回一个接口，不过当“服务池”开启时会返回很多（上图即是开启时的数据），可以任意使用，XTransmit 会维护这些线路。</p>
 <p>远端服务器连接性检测改进了测试方法，现在输出的响应时间是具有参考意义的。点击当前使用的服务器（如下图红框所示）即可对线路做连接性检测，程序会以本地设备发起请求为起点开始计时，到请求的内容传输到本地设备后停止计时，得出总的时间在界面底部显示。这和 ping 不一样，ping 的结果可以说明设备到远端服务器的网路是否畅通，但是远端服务器是否提供服务、负载情况、服务器之后的网络状况则不得而知。连接性检测类似于从在浏览器输入网址到看到页面的时间，包括网络状况、远端服务器、目标站点等都会对响应时间有影响。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='response.png' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='response.png' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">连接性测试（毫秒），我这的网络差时间较长</div>
     
 </div>
 <p>因为连接性检测的时间较长，当列表里有 10+ 个服务器时检测可能要几分钟，所以批量连接性检测操作就取消了。不过批量获取服务器信息、ping 没有取消而且还添加了多选支持，鼠标滑动选择多个服务器或是按住 Ctrl 点选多个服务器，然后在右键菜单里就可以操作。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='selection.png' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='selection.png' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">多选</div>
     
@@ -210,7 +213,7 @@
             
             <div class="text-center mb-0">
                 <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2020%2f02-xtransmit-0.8.0%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"
-                    alt="It's may about the network" />
+                    alt="It&#39;s may about the network" />
             </div>
         </div>
     </div>

@@ -117,7 +117,8 @@
             <article class="content mt-2 mb-4">
                 <p>祝大家新春愉快，合家欢乐，事事顺心！<a href="https://github.com/xinlake/xtransmit-windows/releases">XTransmit 0.5.5</a> 做了一些改进，我觉得开始像个软件了。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='cover.png' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='cover.png' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">XTransmit 0.5.5</div>
     
@@ -125,21 +126,24 @@
 <p>设置里添加了服务端口信息（下图），信息显示于设置界面右侧，显示的是软件本地代理服务的 HTTP、SOCKS5 端口。端口是自动设定的不用手动指定，如果端口被占用了 XTransmit 会自动查找可用端口，不会和其他软件、系统服务发生冲突。</p>
 <p>此外设置里还添加及一个“替换旧服务器”的选项，位于设置界面左下方，这个选项会在添加服务器时起作用。当启用该选项时，尝试添加的服务器已经存在的话（IP、Port 均一致）则会被替换，禁用时则会保留原有的服务器取消添加。不论是扫码、导入、还是手动添加都会根据这个选项来判断，XTransmit 的服务器列表没有重复项，这个选项可以很好的应对公共服务器密码等参数变动的情况。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='setting.png' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='setting.png' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">设置（是的，设置界面不太好看，不过这是暂时的)</div>
     
 </div>
 <p>后台任务新增了单独的进度指示及控制（上次更新提到过），执行获取服务器信息、Ping 服务器等任务时右上角会有个转动的圆形进度条，这个进度条的值（蓝色部分）会根据任务数量发生正比变化，即任务多时蓝色部分会变多，任务少的时候会变少。现在鼠标移到这个进度条上方时可以看到有多少个后台任务正在运行，点击进度条则可以看到每个任务的具体进度并且可以点击右侧的“停止”按钮来停止任务的执行，此外，鼠标移到具体任务的进度条上方时你还可以看到该任务的描述。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='task.png' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='task.png' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">后台任务</div>
     
 </div>
 <p>IP 数据库（用于 X-CURL 模块）的 Ping 检测添加了停止操作，以前是关闭窗口时停止检测任务，现在点击右上方的圆形进度条就可以。当然了，网络操作很多都不可以中断，点击后需要完成当前检测才会停止，停止时间取决于网络状况、远端服务器、本地超时设置。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='ip.png' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='ip.png' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">IP 数据库</div>
     
@@ -147,7 +151,8 @@
 <p>XTransmit 会保存一些 UI 状态以便于下次以同样的状态打开界面，现在主界面的显示状态也已经加入其中。如果退出程序时主界面是关闭的（关闭主界面，点击系统栏图标退出），则下次启动时也是关闭的（仅有系统栏图标），反之亦然。</p>
 <p>这次更新还包含了一些小的变化：系统栏菜添加了几个菜单项；系统栏图标会根据服务状态来初始化图标；当列表锁定时添加服务器会给出提示；调整了少量的 UI 文字。如果你发现了问题（包括 UI 语言表述）或是有任何想法都欢迎反馈，通过 <a href="https://github.com/xinlake/xtransmit-windows/issues">GitHub Issues</a> 或是本文下面的评论都可以。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='notify-icon.png' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='notify-icon.png' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">系统栏图标</div>
     
@@ -212,7 +217,7 @@
             
             <div class="text-center mb-0">
                 <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2020%2f01-xtransmit-0.5.5%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"
-                    alt="It's may about the network" />
+                    alt="It&#39;s may about the network" />
             </div>
         </div>
     </div>

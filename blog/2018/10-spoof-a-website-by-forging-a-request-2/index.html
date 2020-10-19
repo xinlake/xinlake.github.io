@@ -116,13 +116,15 @@
                 <p><a href="/2018/10-spoof-a-website-by-forging-a-request/index.html">上一篇博文</a>实际演示了通过程序伪造请求实现的“机器点赞”，这片博文是另外一个演示，把欺骗对象换成了新浪新闻，伪造的请求也是一条新闻评论的点赞。相对来说，新浪新闻的系统就比较有意思一点。</p>
 <p>先分析一下“点赞”的逻辑，新浪新闻评论点赞只有一次 HTTP Post，没发现 Token 的逻辑。下面两张图是<a href="https://tech.sina.com.cn/i/2018-10-14/doc-ihmhafir4650580.shtml">一条新闻</a>评论真人点赞的数据包，第一张图是请求，蓝框内标明了发送的数据，第二张图是服务器回应。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='upvote-r.png' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='upvote-r.png' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">“点赞”请求</div>
     
 </div>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='upvote-a.png' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='upvote-a.png' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">“点赞”回应</div>
     
@@ -206,19 +208,22 @@ requestVote
 </code></pre></div><p>上面的代码是调用 cURL 发送 HTTP Post，收到服务器回应后等 1 秒钟再发送下一次。这样就实现了循环“点赞”，当“点赞”次数超过设定次数时则停止。<code>$header_agent</code> 相关代码仅仅是为了制造一个假象，没有别的作用。</p>
 <p>除了逻辑简单之外，新浪新闻点赞的反作弊策略也比较简单。服务器会判断 HTTP 头的 Referer 信息，数据包需要加入该信息（<code>$header_refer = '&quot;Referer: http://....news.sina.com.cn/comment/skin/default.html?channel=kj&amp;newsid=...&quot;'</code>），否则“点赞”失败，除此外没碰到别的错误。之前提到网易新闻要 60 秒才能点一次，而新浪新闻 1 秒点一次也可以，均为一个 IP。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='forging.png' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='forging.png' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">机器“点赞”中</div>
     
 </div>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='comment-vote-1.png' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='comment-vote-1.png' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">点赞前</div>
     
 </div>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='comment-vote-2.png' title='' alt="It's may about the network"></img>
+    <img class="img-fluid" src='comment-vote-2.png' title=''
+        alt="It&#39;s may about the network"></img>
     
     <div class="text-black-50">点赞后</div>
     
@@ -283,7 +288,7 @@ requestVote
             
             <div class="text-center mb-0">
                 <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request-2%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"
-                    alt="It's may about the network" />
+                    alt="It&#39;s may about the network" />
             </div>
         </div>
     </div>
