@@ -116,7 +116,7 @@
                 <p>Shadowsocks（简称为 SS）作为连接国际网络的方式之一，被技术人士使用得比较多。和 VPN 类似，SS 也是基于“中转站”的模式，并且支持非全程加密。相对于 VPN 来说 SS 有较强的技术性，一般使用 VPN 的人可能并未听说过 SS 或者不清楚 SS 是什么，这里我就从偏技术的角度来说一说 Shadowsocks。</p>
 <p>Shadowsocks 是一种 SOCKS5 代理，设备的网络数据是通过代理服务器再到达 Web 站点。和前面讲的 VPN 原理一样，如果远端 SS 服务器不受干预设备就能畅通无阻的访问国际网络。加密方式也和 VPN 差不多，Shadowsocks 是非全程加密，从设备到 SS 服务器这一段是加密的，从 SS 服务器到 Web 站点这一段则不处理。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='overview.png' title=''></img>
+    <img class="img-fluid" src='overview.png' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">Shadowsocks Overview，摘自 Shadowsocks wihte paper</div>
     
@@ -135,7 +135,7 @@
 <p>操作系统代理、Web Proxy、SS-Local 都有流量过滤的功能，所以在一些客户端能看到几层过滤设置。最先过滤是操作系统的代理，这里可以设置绕过不需要走代理的流量，这里的过滤也是最高效的因为不需要将数据转到下一级。然后是 Web Proxy 的过滤，有的 Web Proxy 的过滤设计得非常完善和灵活甚至可以支持表达式，在客户端集成了这样的 Web Proxy 后所展示的强大过滤设置即可体现。最后是 SS-Local 的过滤，SS-Local 支持一个过滤列表，太依赖于这一级的过滤往往是低效的因为增加了不必要的本地数据传输。</p>
 <p>客户端 App 的实现在 Android 移动设备上有所不同，在 Android 可以注册一个 VPN 服务来接管网络通讯，可以不用设置系统代理。这会让 SS 客户端 App 看起来很像 VPN，不过这只是使用了 Android 的 VPN 服务接管网络数据，App 实际连接的是 SS 服务器。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='vpn-ss.jpg' title=''></img>
+    <img class="img-fluid" src='vpn-ss.jpg' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">这个图标未必都是 VPN 服务</div>
     
@@ -183,7 +183,8 @@ SOCKS Protocol Version 5 <a href="https://tools.ietf.org/pdf/rfc1928.pdf">https:
 
     
     <div class="dropdown">
-        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-share-alt-square fa-2x"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="share_button">
@@ -191,19 +192,22 @@ SOCKS Protocol Version 5 <a href="https://tools.ietf.org/pdf/rfc1928.pdf">https:
                 <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f08-talk-about-shadowsocks%2f" target="_blank" title="Facebook">
                     <i class="fab fa-facebook-square fa-2x px-1"></i>
                 </a>
-                <a href="https://twitter.com/intent/tweet?text=%e8%b0%88%e8%b0%88%20Shadowsocks&url=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f08-talk-about-shadowsocks%2f" target="_blank" title="Twitter">
+                <a href="https://twitter.com/intent/tweet?text=%e8%b0%88%e8%b0%88%20Shadowsocks&url=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f08-talk-about-shadowsocks%2f" target="_blank"
+                    title="Twitter">
                     <i class="fab fa-twitter fa-2x px-1"></i>
                 </a>
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f08-talk-about-shadowsocks%2f" target="_blank" title="LinkedIn">
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f08-talk-about-shadowsocks%2f" target="_blank"
+                    title="LinkedIn">
                     <i class="fab fa-linkedin fa-2x px-1"></i>
                 </a>
             </div>
-            
+
             <hr class="my-1" />
 
             
             <div class="text-center mb-0">
-                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f08-talk-about-shadowsocks%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"/>
+                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f08-talk-about-shadowsocks%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"
+                    alt="It's may about the network" />
             </div>
         </div>
     </div>

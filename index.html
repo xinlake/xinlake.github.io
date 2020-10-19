@@ -24,14 +24,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
 
-<meta name="description" content="XinLake，实现您的构想。">
-<meta name="keywords" content='Android Application, 安卓应用'>
+<meta name="description" content="Android 应用架构、开发，创新分享。">
+<meta name="keywords" content='XinLake, Android Application, 安卓应用'>
 <meta name="author" content="XinLake">
 
 
 <meta property="og:title" content="XinLake" />
 
-<meta property="og:description" content="XinLake，实现您的构想。" />
+<meta property="og:description" content="Android 应用架构、开发，创新分享。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://xinlake.life/" />
 <meta property="og:locale" content="zh-CN" />
@@ -94,9 +94,9 @@
 <div class="container-fluid home">
     <div class="container-fluid background" style="background-image: url('https://xinlake.life/images/banner-home.png');">
     </div>
-    <div class="hero">
-        <div class="d-flex justify-content-center">
-            <h1 class="lead title">我能实现您的构想</h1>
+    <div class="hero d-flex flex-column justify-content-between">
+        <div class="text-center">
+            <h1 class="lead hero-title">我能实现您的构想</h1>
         </div>
 
         <div class="text-center">
@@ -139,7 +139,8 @@
 
             
             <div class="col-lg-4 text-light text-center">
-                <img class="img-fluid" src="https://xinlake.life/images/about-blog.jpg" />
+                <img class="img-fluid" src="https://xinlake.life/images/about-blog.jpg"
+                    alt="It's may about the network" />
             </div>
         </div>
     </div>
@@ -156,7 +157,7 @@
                 
                 <div class="row d-flex justify-content-center pb-5">
   <div class="col-lg-5 text-center">
-    <img class="img-fluid" src="/images/projects/privch-android.jpg" class="mr-3">
+    <img class="img-fluid mr-3" src="/images/projects/privch-android.jpg" alt="It's may about the network">
   </div>
   <div class="col-lg-5">
     
@@ -171,11 +172,13 @@
                 
                 <div class="row d-flex justify-content-center pb-5">
   <div class="col-lg-5 text-center">
-    <img class="img-fluid" src="/images/projects/privch-windows.png" class="mr-3">
+    <img class="img-fluid mr-3" src="/images/projects/privch-windows.png" alt="It's may about the network">
   </div>
   <div class="col-lg-5">
     
-    <a href="https://github.com/privch/privch-windows/" target="/"><h4 class="py-3">加密连接工具 Windows 端</h4></a>
+    <a href="https://github.com/privch/privch-windows/" target="/">
+      <h4 class="py-3">加密连接工具 Windows 端</h4>
+    </a>
     
 
     <p>Windows 加密代理工具 App，是 Windows .NET WPF 桌面应用程序。软件自动查找可用端口并提供系统流量代理服务，也支持通过 HTTP API 访问代理服务。App 没有使用数据库，而是用了 XML 序列化、反序列化的方式来存取数据。</p>

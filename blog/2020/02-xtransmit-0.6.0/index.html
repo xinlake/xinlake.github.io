@@ -117,7 +117,7 @@
             <article class="content mt-2 mb-4">
                 <p>从 <a href="https://github.com/xinlake/xtransmit-windows/releases">XTransmit 0.6.0</a> 开始不需要安装运行时库了，我也是偶然在一台新电脑上运行 XTransmit 才发现这个情况，开发用的电脑自带了运行时库，一切都很正常，而普通电脑系统则有可能弹出缺少运行时库的信息。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='cover.gif' title=''></img>
+    <img class="img-fluid" src='cover.gif' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">XTransmit 0.6.0</div>
     
@@ -126,28 +126,28 @@
 <p>新版本添加了自动启动功能，你可以在设置里打开或者关闭它。启用该功能时软件会在用户的启动目录（Windows 10 默认路径是 <code>C:\Users\[USER-NAME]\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup</code>）创建一个快捷方式，当用户登录时操作系统就会运行软件，而关闭该功能时这个快捷方式则会被删除。</p>
 <p>添加了明亮界面主题，你可以在设置里进行主题切换。切换主题会作用到软件的全部界面，而且会即时发生变化，当然也会保存你的设置，软件下次会按照设置的主题启动。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='theme.gif' title=''></img>
+    <img class="img-fluid" src='theme.gif' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">Theme</div>
     
 </div>
 <p>服务器列表添加了活动服务器指示、检测响应时间功能。现在列表会以活动色（紫色，活动色后续可能会跟随主题发生变化）标记正在使用的服务器，如下图所示。位于工具条右侧的“Check response time”可以测试服务器的响应时间，连同“获取服务器信息”和“检测 ping 延时”工具条上的按钮都是批量执行的，会对列表中的所有服务器进行检测（可以通过右上角的圆形进度条来停止后台检测任务），服务器的右键菜单则可以对选中的单个服务器执行检测。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='checks.png' title=''></img>
+    <img class="img-fluid" src='checks.png' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">服务器列表</div>
     
 </div>
 <p>此外，服务器配置编辑中也加入这些检测按钮，位于编辑界面底部。这里会使用设置的数值（如 IP）进行检测，当进行某项检测时按钮会被锁定，同时按钮右边有个圆形进度条。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='config.png' title=''></img>
+    <img class="img-fluid" src='config.png' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">服务器设置</div>
     
 </div>
 <p>添加了关闭 XCURL 窗口时的任务提示，以避免未存储的模板数据丢失。XCURL 的执行窗口也会在系统任务栏显示进度（下图底部），当关闭 XCRUL 时如果有未完成的任务就会给出提示，确认的话才会停止所有任务并丢弃所有的模板改变。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='xcurl.png' title=''></img>
+    <img class="img-fluid" src='xcurl.png' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">XCURL 工具</div>
     
@@ -189,7 +189,8 @@
 
     
     <div class="dropdown">
-        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-share-alt-square fa-2x"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="share_button">
@@ -197,19 +198,22 @@
                 <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.life%2fblog%2f2020%2f02-xtransmit-0.6.0%2f" target="_blank" title="Facebook">
                     <i class="fab fa-facebook-square fa-2x px-1"></i>
                 </a>
-                <a href="https://twitter.com/intent/tweet?text=XTransmit%200.6.0&url=https%3a%2f%2fxinlake.life%2fblog%2f2020%2f02-xtransmit-0.6.0%2f" target="_blank" title="Twitter">
+                <a href="https://twitter.com/intent/tweet?text=XTransmit%200.6.0&url=https%3a%2f%2fxinlake.life%2fblog%2f2020%2f02-xtransmit-0.6.0%2f" target="_blank"
+                    title="Twitter">
                     <i class="fab fa-twitter fa-2x px-1"></i>
                 </a>
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2020%2f02-xtransmit-0.6.0%2f" target="_blank" title="LinkedIn">
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2020%2f02-xtransmit-0.6.0%2f" target="_blank"
+                    title="LinkedIn">
                     <i class="fab fa-linkedin fa-2x px-1"></i>
                 </a>
             </div>
-            
+
             <hr class="my-1" />
 
             
             <div class="text-center mb-0">
-                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2020%2f02-xtransmit-0.6.0%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"/>
+                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2020%2f02-xtransmit-0.6.0%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"
+                    alt="It's may about the network" />
             </div>
         </div>
     </div>

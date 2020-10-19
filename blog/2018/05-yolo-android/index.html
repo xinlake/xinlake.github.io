@@ -116,7 +116,7 @@
                 <p>目标检测（Object Detection，检测识别图像中的物体，下称图像识别）神经网络之一 <a href="https://pjreddie.com/darknet/yolo/">YOLO</a> 已经发布了第三版（YOLOv3），他名称挺有意思：You Only Look Once，你只看一次。他的作者也挺有意思，Darknet 项目的 <a href="https://github.com/pjreddie/darknet/blob/master/LICENSE.fuck">LICENSE.fuck</a> 看上去有着一种随意、不讲究的个性。随着神经网络技术的兴起，机器视觉软件库之一 OpenCV 在其 3.3 版本中正式添加了 DNN 模块，以支持神经网络算法应用。他能够支持多种机器学习（包括深度学习）框架的预训练神经网络模型，对图像、视频应用神经网络算法。</p>
 <p>在 Android 运行图像识别的方案之一是使用 OpenCV 导入 YOLO 预训练模型，对图像执行目标检测。相比与机器学习框架而言，OpenCV 对视觉、图像处理提供更加广泛的支持，DNN 模块能够支持多种机器学习框架的神经网络模型，此外也支持移动设备。使用机器学习框架设计、训练、优化神经网络，使用机器视觉软件库来应用神经网络算法，也是不错的方案。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='yolo-demo.jpg' title=''></img>
+    <img class="img-fluid" src='yolo-demo.jpg' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">YOLO 自带 Demo，图片来自 YOLO 官网</div>
     
@@ -124,15 +124,15 @@
 <p>你可能见过上面的图片，这是在 PC 上运行 Darknet 框架加载 YOLO 预训练模型对一张图片进行检测的结果。YOLO 作者提供了 COCO 数据集和 VOC 数据集的预训练模型下载，还有一个支持 9000 种物体检测的模型不过有段时间没有维护。使用 COCO 数据集预训练模型能识别（COCO 数据集范围内的）80 种物体，而使用 VOC 数据集预训练模型能识别（VOC 数据集范围内的）20 种物体。</p>
 <p>YOLOv3 的改进提升了速度和精度，输出数据也有点变化，已发布的 OpenCV 3.4.1 已不能兼容 YOLOv3，不过最新的代码已经修复兼容性问题。如果要使用 OpenCV 运行 YOLOv3 神经网络模型的话，需要下载最新的 OpenCV 代码并编译库文件，新的版本号已经是 4.0 开头。此外，如果想让 OpenCV 支持 Nvidia 图形硬件 CUDA 计算加速的话，需要安装 <a href="https://developer.nvidia.com/cuda-toolkit">CUDA Toolkit</a>，编译时间会长很多。</p>
 <p><div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='yolo-1.jpg' title=''></img>
+    <img class="img-fluid" src='yolo-1.jpg' title='' alt="It's may about the network"></img>
     
 </div>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='yolo-2.jpg' title=''></img>
+    <img class="img-fluid" src='yolo-2.jpg' title='' alt="It's may about the network"></img>
     
 </div>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='yolo-3.jpg' title=''></img>
+    <img class="img-fluid" src='yolo-3.jpg' title='' alt="It's may about the network"></img>
     
 </div></p>
 <p>上面的几张图你应该没见过，这是在 Android 手机上运行 YOLO 的效果，使用 OpenCV 导入 YOLO 对摄像头画面做图像识别。在都没有 OpenCL 计算加速的情况下，Android（835 CPU）手机的速度比 Windows 10 笔记本（i7 低电压版）快些。最后的视频不是 YOLO 而是 MobileNet 的效果，MobileNet 数量少速度快拿来演示流畅些，效果都差不多，当然也可以做更深入的应用。</p>
@@ -176,7 +176,8 @@ OpenCV <a href="https://github.com/opencv/opencv">https://github.com/opencv/open
 
     
     <div class="dropdown">
-        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-share-alt-square fa-2x"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="share_button">
@@ -184,19 +185,22 @@ OpenCV <a href="https://github.com/opencv/opencv">https://github.com/opencv/open
                 <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f05-yolo-android%2f" target="_blank" title="Facebook">
                     <i class="fab fa-facebook-square fa-2x px-1"></i>
                 </a>
-                <a href="https://twitter.com/intent/tweet?text=%e5%9c%a8%20Android%20%e4%b8%8a%e8%bf%90%e8%a1%8c%e5%9b%be%e5%83%8f%e8%af%86%e5%88%ab&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f05-yolo-android%2f" target="_blank" title="Twitter">
+                <a href="https://twitter.com/intent/tweet?text=%e5%9c%a8%20Android%20%e4%b8%8a%e8%bf%90%e8%a1%8c%e5%9b%be%e5%83%8f%e8%af%86%e5%88%ab&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f05-yolo-android%2f" target="_blank"
+                    title="Twitter">
                     <i class="fab fa-twitter fa-2x px-1"></i>
                 </a>
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f05-yolo-android%2f" target="_blank" title="LinkedIn">
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f05-yolo-android%2f" target="_blank"
+                    title="LinkedIn">
                     <i class="fab fa-linkedin fa-2x px-1"></i>
                 </a>
             </div>
-            
+
             <hr class="my-1" />
 
             
             <div class="text-center mb-0">
-                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f05-yolo-android%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"/>
+                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f05-yolo-android%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"
+                    alt="It's may about the network" />
             </div>
         </div>
     </div>

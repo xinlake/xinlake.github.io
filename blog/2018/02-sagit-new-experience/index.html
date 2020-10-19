@@ -118,7 +118,7 @@
 <p>小米手机 6 使用已有段时间，对于这款手机我印象最深刻的是：<strong>大部分 App 无法卸载</strong>。所以对手机系统做了一次手术，解决 App 卸载问题。解锁 BootLoader 及备份数据后，下载软件就可以对手机进行刷机手术了。这里，Recovery 用的是开源程序 <a href="https://twrp.me">TWRP</a>，<a href="https://www.xda-developers.com/">XDA</a> 上可以下载到开源的 ROM。</p>
 <p>手机 USB 连上 PC，打开调试模式，<code>adb reboot bootloader</code> 重启手机。待手机进入 FastBoot 后，<code>fastboot flash recovery twrp-3.2.1-0-sagit.img</code> 刷入 Recovery（twrp-3.2.1-0-sagit.img）程序。完成后 <code>fastboot reboot</code> 重启手机同时按住：<strong>音量加、电源</strong>，进入 Recovery 模式。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='recovery.jpg' title=''></img>
+    <img class="img-fluid" src='recovery.jpg' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">刷 Recovery</div>
     
@@ -126,7 +126,7 @@
 <p>进入 Recovery 模式后，使用 TWRP 刷入新的 ROM 并且擦除数据，完成后正常重启即进入新系统。这里我图省事刷入了官方开发版 ROM（因为该版本可以打开 root 功能，有 root 自然就可以把内置 App 卸载掉），没有多尝试第三方 ROM，<strong>相信有一些优秀的第三方开放 ROM。</strong></p>
 <p>刷入开发版 ROM 后打开 root 功能，就可以开始以 root 身份卸载 App 了。例如“天气” App，在 Settings 里查看其包名为 <code>com.miui.weather2</code>，执行 <code>pm uninstall --user 0 com.miui.weather2</code> 即可卸载。下图左是卸载前，右是卸载后。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='app.png' title=''></img>
+    <img class="img-fluid" src='app.png' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">卸载 App</div>
     
@@ -181,7 +181,7 @@ adb shell pm uninstall --user 0 com.android.providers.downloads.ui
 pause
 </code></pre><p>最后附几张卸载了大部分内置 App 后的效果图（用的是 Microsoft Launcher，可以使用 Bing 每日壁纸），第一张桌面，后面两张是所有 App（在“抽屉”里）。终于拒绝了小米的全家桶。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='new-experience.jpg' title=''></img>
+    <img class="img-fluid" src='new-experience.jpg' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">拒绝全家桶</div>
     
@@ -214,7 +214,8 @@ pause
 
     
     <div class="dropdown">
-        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-share-alt-square fa-2x"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="share_button">
@@ -222,19 +223,22 @@ pause
                 <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f02-sagit-new-experience%2f" target="_blank" title="Facebook">
                     <i class="fab fa-facebook-square fa-2x px-1"></i>
                 </a>
-                <a href="https://twitter.com/intent/tweet?text=%e5%b0%8f%e7%b1%b3%206%20%e5%88%b7%e6%9c%ba%ef%bc%8c%e5%8d%b8%e8%bd%bd%e5%85%a8%e5%ae%b6%e6%a1%b6&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f02-sagit-new-experience%2f" target="_blank" title="Twitter">
+                <a href="https://twitter.com/intent/tweet?text=%e5%b0%8f%e7%b1%b3%206%20%e5%88%b7%e6%9c%ba%ef%bc%8c%e5%8d%b8%e8%bd%bd%e5%85%a8%e5%ae%b6%e6%a1%b6&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f02-sagit-new-experience%2f" target="_blank"
+                    title="Twitter">
                     <i class="fab fa-twitter fa-2x px-1"></i>
                 </a>
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f02-sagit-new-experience%2f" target="_blank" title="LinkedIn">
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f02-sagit-new-experience%2f" target="_blank"
+                    title="LinkedIn">
                     <i class="fab fa-linkedin fa-2x px-1"></i>
                 </a>
             </div>
-            
+
             <hr class="my-1" />
 
             
             <div class="text-center mb-0">
-                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f02-sagit-new-experience%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"/>
+                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f02-sagit-new-experience%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"
+                    alt="It's may about the network" />
             </div>
         </div>
     </div>

@@ -131,7 +131,7 @@
 <h3 id="12-关于安全性与路由器的-upnp-功能">1.2 关于安全性与路由器的 UPnP 功能</h3>
 <p>广泛使用的路由器 UPnP 端口映射功能用的是 <code>Internet Gateway Device</code>（简称 IGD），是 UPnP 定义的设备之一，提供端口映射功能（NAT 穿越），让本地网络的设备端口映射到外网。这样软件就能使用 IGD 绕过 NAT 进行数据传输，映射之后外部网络就能很轻松的直接访问内网设备，他安全性取决于使用者对软件的信任。下图是路由器开启 UPnP IGD 功能后被其他设备发现，软件能够直接使用它的（端口映射）功能，不需要用户配置。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='igd.png' title=''></img>
+    <img class="img-fluid" src='igd.png' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">路由器 IGD 设备</div>
     
@@ -140,7 +140,7 @@
 <h2 id="2-媒体分享与无线显示的区别">2. 媒体分享与无线显示的区别</h2>
 <p>UPnP 本身包含了一组网络协议如 TCP、UDP、HTTP、XML，而 DLNA（Digital Living Network Alliance）则是包含了更多协议的标准，下图 DLNA 的技术架构里面列出了对 UPnP 的使用（资料 <a href="https://spirespark.com/dlna/guidelines/">DLNA Guidelines</a>）。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='dlna.png' title=''></img>
+    <img class="img-fluid" src='dlna.png' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">DLNA 技术架构</div>
     
@@ -213,7 +213,7 @@ org.slf4j-slf4j-api-1.6.6.jar，org.slf4j-slf4j-jdk14-1.6.6.jar
 <p>如果应用需要能够分享本地媒体，让 UPnP 网络上的其他设备能浏览，或是能够主动推送本地媒体到一个远程 DMR 播放。那么这个应用需要实现 HTTP/RTP 媒体流传输功能，还要创建 DMS 设备。媒体流服务一般用 HTTP，因为 HTTP 媒体流传输是 DLNA 规范要求支持，而其他方式媒体流传输是 Optional。</p>
 <p>下图左边是 Android 推送一个本地视频到 Windows 10 Media Player，播放显示的媒体信息来源来自于 <code>192.168.1.101:9000</code> 即 Android 提供的流媒体服务（URL 地址资源路径经过编码）。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='push.jpg' title=''></img>
+    <img class="img-fluid" src='push.jpg' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">媒体推送</div>
     
@@ -283,7 +283,8 @@ VLC <a href="https://www.videolan.org/">https://www.videolan.org/</a></p>
 
     
     <div class="dropdown">
-        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-share-alt-square fa-2x"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="share_button">
@@ -291,19 +292,22 @@ VLC <a href="https://www.videolan.org/">https://www.videolan.org/</a></p>
                 <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.life%2fblog%2f2017%2f07-mouter%2f" target="_blank" title="Facebook">
                     <i class="fab fa-facebook-square fa-2x px-1"></i>
                 </a>
-                <a href="https://twitter.com/intent/tweet?text=UPnP%20%e5%aa%92%e4%bd%93%e4%ba%92%e8%81%94%ef%bc%8c%e4%b8%ba%e6%92%ad%e6%94%be%e5%99%a8%e6%b7%bb%e5%8a%a0%20DLNA%2fUPnP%20%e5%8a%9f%e8%83%bd&url=https%3a%2f%2fxinlake.life%2fblog%2f2017%2f07-mouter%2f" target="_blank" title="Twitter">
+                <a href="https://twitter.com/intent/tweet?text=UPnP%20%e5%aa%92%e4%bd%93%e4%ba%92%e8%81%94%ef%bc%8c%e4%b8%ba%e6%92%ad%e6%94%be%e5%99%a8%e6%b7%bb%e5%8a%a0%20DLNA%2fUPnP%20%e5%8a%9f%e8%83%bd&url=https%3a%2f%2fxinlake.life%2fblog%2f2017%2f07-mouter%2f" target="_blank"
+                    title="Twitter">
                     <i class="fab fa-twitter fa-2x px-1"></i>
                 </a>
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2017%2f07-mouter%2f" target="_blank" title="LinkedIn">
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2017%2f07-mouter%2f" target="_blank"
+                    title="LinkedIn">
                     <i class="fab fa-linkedin fa-2x px-1"></i>
                 </a>
             </div>
-            
+
             <hr class="my-1" />
 
             
             <div class="text-center mb-0">
-                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2017%2f07-mouter%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"/>
+                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2017%2f07-mouter%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"
+                    alt="It's may about the network" />
             </div>
         </div>
     </div>

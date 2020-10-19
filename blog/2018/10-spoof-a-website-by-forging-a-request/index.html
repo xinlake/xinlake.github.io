@@ -116,27 +116,27 @@
                 <p>这是个实际演示，通过发送伪造的 HTTP Post 请求来欺骗网站服务器，达到人为的数据异常效果。这里欺骗的对象是一个新闻门户网站，伪造的请求是一条新闻评论的点赞。简单说就是一种机器“点赞”的效果。</p>
 <p>浏览新闻偶然看到了下图的一则评论“八方点赞哪里去了”（第一条评论），既然这位网友需要“赞”，我就分析一下看能不能给他“赞”。在机器点赞之前，新闻的前三条评论点赞数分别为：442，241，183。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='comment-page.png' title=''></img>
+    <img class="img-fluid" src='comment-page.png' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">网易新闻评论</div>
     
 </div>
 <p>页面上的点赞功能一般都要和服务器发生数据交互，首先监听网络通讯数据包，分析其数据交互逻辑。下图抓到的是真人点第一条评论“顶”的数据包，我过滤了无关的内容。按一下“顶”会有连续 2 次 HTTP Post 请求，以下简称为 POST-1 和 POST-2。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='upvote-1r.png' title=''></img>
+    <img class="img-fluid" src='upvote-1r.png' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">POST-1 请求</div>
     
 </div>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='upvote-1a.png' title=''></img>
+    <img class="img-fluid" src='upvote-1a.png' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">POST-1 服务器回应</div>
     
 </div>
 <p>上面两张图是 POST-1 的数据包发送及服务器回应。POST-1 向一个地址 <code>http://comment.api.163.com/api/.../DTR1ENL900097U7R/comments/gentoken...</code>（<code>DTR1ENL900097U7R</code> 与新闻的 URI 有关）发送一个 HTTP Post 请求，数据长度为 0。而服务器会回应 <code>{&quot;gentoken&quot;:&quot;6b620b1a-d532-462b-95c2-f2a0be39d0ff&quot;}</code>（蓝框），数据长度是 51 bytes。这个信息在 POST-2 会用到，此外还需要注意一下 Cookie（红色框内），因为两次不一样。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='upvote-2r.png' title=''></img>
+    <img class="img-fluid" src='upvote-2r.png' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">POST-2 请求</div>
     
@@ -164,7 +164,7 @@ ntoken=cc5ab02c-06da-469b-84ab-90c91ea5d9be
 {&quot;code&quot;:&quot;42900&quot;,&quot;message&quot;:&quot;频率超出限制&quot;}
 </code></pre><p>第一次返回信息表明请求成功，而后面的都是“频率超出限制”。服务器会判断过于频繁的“点赞”，当间隔调整到 60 秒一次时均成功，即限制（一个 IP）一分钟最多“顶”一次。经过一番机器“点赞”之后，数据已经变成了这样：1568，275，204</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='comment-page-2.png' title=''></img>
+    <img class="img-fluid" src='comment-page-2.png' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">网易新闻评论</div>
     
@@ -213,7 +213,8 @@ ntoken=cc5ab02c-06da-469b-84ab-90c91ea5d9be
 
     
     <div class="dropdown">
-        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-share-alt-square fa-2x"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="share_button">
@@ -221,19 +222,22 @@ ntoken=cc5ab02c-06da-469b-84ab-90c91ea5d9be
                 <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request%2f" target="_blank" title="Facebook">
                     <i class="fab fa-facebook-square fa-2x px-1"></i>
                 </a>
-                <a href="https://twitter.com/intent/tweet?text=%e9%80%9a%e8%bf%87%e4%bc%aa%e9%80%a0%e8%af%b7%e6%b1%82%e6%9d%a5%e6%ac%ba%e9%aa%97%e7%bd%91%e7%ab%99%ef%bc%88%e4%b8%80%ef%bc%89&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request%2f" target="_blank" title="Twitter">
+                <a href="https://twitter.com/intent/tweet?text=%e9%80%9a%e8%bf%87%e4%bc%aa%e9%80%a0%e8%af%b7%e6%b1%82%e6%9d%a5%e6%ac%ba%e9%aa%97%e7%bd%91%e7%ab%99%ef%bc%88%e4%b8%80%ef%bc%89&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request%2f" target="_blank"
+                    title="Twitter">
                     <i class="fab fa-twitter fa-2x px-1"></i>
                 </a>
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request%2f" target="_blank" title="LinkedIn">
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request%2f" target="_blank"
+                    title="LinkedIn">
                     <i class="fab fa-linkedin fa-2x px-1"></i>
                 </a>
             </div>
-            
+
             <hr class="my-1" />
 
             
             <div class="text-center mb-0">
-                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"/>
+                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"
+                    alt="It's may about the network" />
             </div>
         </div>
     </div>

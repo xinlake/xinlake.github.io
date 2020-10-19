@@ -23,7 +23,7 @@
   height: 50%;
 }
 
-.title {
+.hero-title {
   font-size: 2.2rem;
   color: #4B0082;
 }
@@ -51,11 +51,8 @@
 }
 
 .arrow {
-  position: absolute;
   color: darkblue;
   font-size: 2.4rem;
-  margin-left: -.6rem;
-  bottom: 0;
 }
 
 .bounce {

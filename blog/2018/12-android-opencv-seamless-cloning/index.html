@@ -117,7 +117,7 @@
             <article class="content mt-2 mb-4">
                 <p>在 Android 手机上合成图片也不麻烦，使用 OpenCV 图像无缝融合功能，通过少量的操作就可以将两副图像无缝的融合到一起，在要求不是很精确的场合，有着可以接受的合成效果。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='cover.jpg' title=''></img>
+    <img class="img-fluid" src='cover.jpg' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">合成图片</div>
     
@@ -133,13 +133,13 @@
 </span></code></pre></div><p>其中，参与合成的两幅图为 <code>src</code> 和 <code>dst</code>，<code>src</code> 一般比较小它将融合进 <code>dst</code> 成为其一部分。<code>mask</code> 可以用来选取 <code>src</code> 进行融合的区域，可以是 <code>src</code> 的一部分也可以是全部。<code>point</code> 控制 <code>src</code> 的中心点位于 <code>dst</code> 中的位置，即在 <code>dst</code> 哪个位置进行融合。<code>blend</code> 是运算后的输出，它需要和 <code>dst</code> 一样大。<code>flags</code> 告诉 OpenCV 如何融合图像，目前 Android OpenCV 支持两种融合方式 <code>Photo.NORMAL_CLONE</code> 和 <code>Photo.MIXED_CLONE</code>。</p>
 <p>合成封面图的原始图片在下方，分别为 <code>src</code>（普通图片）和 <code>dst</code>（影片《飞鹰艾迪》截图）。创建一个 <code>mask</code> 选择 <code>src</code> 中人物区域融合进 <code>dst</code>，设置 <code>point</code>摆放到右侧的位置即是封面图的效果。封面的融合方式 <code>flag</code> 为 <code>Photo.NORMAL_CLONE</code>，另外一种是 <code>Photo.MIXED_CLONE</code> 稍后将做演示。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='src.jpg' title=''></img>
+    <img class="img-fluid" src='src.jpg' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">图 src，普通图片</div>
     
 </div>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='dst.jpg' title=''></img>
+    <img class="img-fluid" src='dst.jpg' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">图 dst，取自影片：Eddie the Eagle / 飞鹰艾迪，左侧是狼叔</div>
     
@@ -234,20 +234,20 @@ Mat matBlend <span style="color:#f92672">=</span> Mat<span style="color:#f92672"
 Photo<span style="color:#f92672">.</span><span style="color:#a6e22e">seamlessClone</span><span style="color:#f92672">(</span>matSrc<span style="color:#f92672">,</span> matDst<span style="color:#f92672">,</span> matMask<span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Point<span style="color:#f92672">(</span>950<span style="color:#f92672">,</span> 267<span style="color:#f92672">)),</span> matBlend<span style="color:#f92672">,</span> Photo<span style="color:#f92672">.</span><span style="color:#a6e22e">NORMAL_CLONE</span><span style="color:#f92672">);</span>
 displayMat<span style="color:#f92672">(</span>matBlend<span style="color:#f92672">,</span> vImageBlend<span style="color:#f92672">);</span>
 </code></pre></div><div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='activity-1-normal.jpg' title=''></img>
+    <img class="img-fluid" src='activity-1-normal.jpg' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">Android Activity</div>
     
 </div>
 <p><a href="https://docs.opencv.org/4.0.1/df/da0/group__photo__clone.html">OpenCV Seamless Clone</a> 可以找到融合方式的说明，下面另外一个融合样例中分别用了两种不同的融合方式。OpenCV seamlessClone 合成会自动处理颜色，使其看上去无缝过渡。可以看出融合后色彩不是很协调，不过可以调整区域颜色来达到更好的效果。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='activity-2-normal.jpg' title=''></img>
+    <img class="img-fluid" src='activity-2-normal.jpg' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">flag: Photo.NORMAL_CLONE</div>
     
 </div>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='activity-2-mixed.jpg' title=''></img>
+    <img class="img-fluid" src='activity-2-mixed.jpg' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">flag: Photo.MIXED_CLONE</div>
     
@@ -284,7 +284,8 @@ displayMat<span style="color:#f92672">(</span>matBlend<span style="color:#f92672
 
     
     <div class="dropdown">
-        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-share-alt-square fa-2x"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="share_button">
@@ -292,19 +293,22 @@ displayMat<span style="color:#f92672">(</span>matBlend<span style="color:#f92672
                 <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f12-android-opencv-seamless-cloning%2f" target="_blank" title="Facebook">
                     <i class="fab fa-facebook-square fa-2x px-1"></i>
                 </a>
-                <a href="https://twitter.com/intent/tweet?text=Android%20OpenCV%20%e5%9b%be%e5%83%8f%e8%9e%8d%e5%90%88&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f12-android-opencv-seamless-cloning%2f" target="_blank" title="Twitter">
+                <a href="https://twitter.com/intent/tweet?text=Android%20OpenCV%20%e5%9b%be%e5%83%8f%e8%9e%8d%e5%90%88&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f12-android-opencv-seamless-cloning%2f" target="_blank"
+                    title="Twitter">
                     <i class="fab fa-twitter fa-2x px-1"></i>
                 </a>
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f12-android-opencv-seamless-cloning%2f" target="_blank" title="LinkedIn">
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f12-android-opencv-seamless-cloning%2f" target="_blank"
+                    title="LinkedIn">
                     <i class="fab fa-linkedin fa-2x px-1"></i>
                 </a>
             </div>
-            
+
             <hr class="my-1" />
 
             
             <div class="text-center mb-0">
-                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f12-android-opencv-seamless-cloning%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"/>
+                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f12-android-opencv-seamless-cloning%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"
+                    alt="It's may about the network" />
             </div>
         </div>
     </div>

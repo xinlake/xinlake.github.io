@@ -117,7 +117,7 @@
             <article class="content mt-2 mb-4">
                 <p>账号登录只是 Cookie 的用途之一，事实上这种将匿名访问转为“实名”访问的技术无处不在。当你浏览网页时，服务器可以分配各种账号无关的 Cookie 来收集及追踪网页浏览。不过这个“实名”是客户端，就是说服务器可以知道是什么客户端浏览了什么内容。是机器层面的，不是人的身份。当有多个账号登录网站时，服务器就会分配多个 Cookie，如果这些 Cookie 信息均泄露，那么获得者就可以同时冒用多个账号的身份和网站交互，制造一些有趣的事情。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='cover.jpg' title=''></img>
+    <img class="img-fluid" src='cover.jpg' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">机器多账号评论</div>
     
@@ -171,7 +171,7 @@ Write-Host (<span style="color:#e6db74">&#34;Completed. &#34;</span> + (Get-Date
 </code></pre></div><p><code>foreach</code> 循环每次读取一行评论文本，转换为可发送数据，随机选择一个账号（见临时附加的中文注释）发送评论。从而达到一种“多人接力讲话”的效果。当然，评论的内容、时间等参数也可以有更多的想象。</p>
 <p>这段脚本功能稳定，也可以持续运行很久，但是专业的开发者一眼就能发现问题。那就是频繁的进程创建和销毁（<code>cmd /c</code>），可能会增加内存碎片，导致系统的运行效率下降。</p>
 <div class="text-center pt-2 pb-3">
-    <img class="img-fluid" src='comments.jpg' title=''></img>
+    <img class="img-fluid" src='comments.jpg' title='' alt="It's may about the network"></img>
     
     <div class="text-black-50">机器多账号评论</div>
     
@@ -219,7 +219,8 @@ Write-Host (<span style="color:#e6db74">&#34;Completed. &#34;</span> + (Get-Date
 
     
     <div class="dropdown">
-        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-share-alt-square fa-2x"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="share_button">
@@ -227,19 +228,22 @@ Write-Host (<span style="color:#e6db74">&#34;Completed. &#34;</span> + (Get-Date
                 <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request-4%2f" target="_blank" title="Facebook">
                     <i class="fab fa-facebook-square fa-2x px-1"></i>
                 </a>
-                <a href="https://twitter.com/intent/tweet?text=%e9%80%9a%e8%bf%87%e4%bc%aa%e9%80%a0%e8%af%b7%e6%b1%82%e6%9d%a5%e6%ac%ba%e9%aa%97%e7%bd%91%e7%ab%99%ef%bc%88%e5%9b%9b%ef%bc%89&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request-4%2f" target="_blank" title="Twitter">
+                <a href="https://twitter.com/intent/tweet?text=%e9%80%9a%e8%bf%87%e4%bc%aa%e9%80%a0%e8%af%b7%e6%b1%82%e6%9d%a5%e6%ac%ba%e9%aa%97%e7%bd%91%e7%ab%99%ef%bc%88%e5%9b%9b%ef%bc%89&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request-4%2f" target="_blank"
+                    title="Twitter">
                     <i class="fab fa-twitter fa-2x px-1"></i>
                 </a>
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request-4%2f" target="_blank" title="LinkedIn">
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request-4%2f" target="_blank"
+                    title="LinkedIn">
                     <i class="fab fa-linkedin fa-2x px-1"></i>
                 </a>
             </div>
-            
+
             <hr class="my-1" />
 
             
             <div class="text-center mb-0">
-                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request-4%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"/>
+                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request-4%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"
+                    alt="It's may about the network" />
             </div>
         </div>
     </div>
