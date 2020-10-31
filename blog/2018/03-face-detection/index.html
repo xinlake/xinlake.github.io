@@ -37,7 +37,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://xinlake.life/blog/2018/03-face-detection/" />
 <meta property="og:locale" content="zh-CN" />
-<meta name="generator" content="Hugo 0.76.5" />
+<meta name="generator" content="Hugo 0.77.0" />
 
 <title>人脸检测与面部识别 | XinLake</title>
 <link rel="canonical" href="https://xinlake.life/blog/2018/03-face-detection/" />
@@ -48,9 +48,9 @@
 <link rel="icon" href="/images/logo-v2.1.png" type="image/x-icon" />
 
 
-<link rel="stylesheet" href="/library/bootstrap-4.5.2/css/bootstrap.min.css" />
-<link rel="stylesheet" href="/library/fontawesome-free-5.15.1-web/css/all.min.css" />
-<link rel="stylesheet" href="/library/highlight-10.0.1/styles/foundation.css" />
+<link rel="stylesheet" href="/library/bootstrap-4.5.3/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/library/fontawesome-5.15.1/css/all.min.css" />
+<link rel="stylesheet" href="/library/highlight-10.3.2/styles/foundation.css" />
 
 <link rel="stylesheet" href="/assets/style.css" media="screen">
      
@@ -118,7 +118,7 @@
                 <p>人脸检测很早就有了，以前的数码相机拍照的时候就能实时检测出人脸、笑脸。不过那时的检测会有一些要求，脸要摆正，最好不能带帽子，笑要露出牙齿会更容易检测到。现在随着深度学习技术的发展，人脸检测技术也有了巨大的变化。</p>
 <div class="text-center pt-2 pb-3">
     <img class="img-fluid" src='cover.jpg' title=''
-        alt="It&#39;s may about the network"></img>
+        alt="It&#39;s about the network"></img>
     
     <div class="text-black-50">Hi, I am Iron Man</div>
     
@@ -133,7 +133,7 @@
 <p>接着上面挡住部分脸时的检测，下图是 OpenCV 使用 OpenPose 神经网络模型面部关键点检测的结果。每个点都有意义（<a href="https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/output.md#face-output-format">官方文档</a>），最多 70 个点连接起来就是一张特定的脸，图中这几个点是遮挡后检测出的一部分关键点。</p>
 <div class="text-center pt-2 pb-3">
     <img class="img-fluid" src='openpose-1.jpg' title=''
-        alt="It&#39;s may about the network"></img>
+        alt="It&#39;s about the network"></img>
     
     <div class="text-black-50">图片，面部检测</div>
     
@@ -141,14 +141,14 @@
 <p>也有用手遮挡和带眼镜的，如下 2 张都是视频截图（电脑硬件一般跑神经网络计算帧率低，用视频演示时间较长就截图了）。基于神经网络的人脸识别比起图像目标检测要智能很多，即便遮挡一部分也能检测出人脸。这些图中你会发现关键点输出结果有明星偏差，笔记本摄像头画质很差，而且检测时我对图像做了较大的缩放（硬件计算能力有限），检测结果自然达不到画面本身的精度。</p>
 <div class="text-center pt-2 pb-3">
     <img class="img-fluid" src='openpose-2.jpg' title=''
-        alt="It&#39;s may about the network"></img>
+        alt="It&#39;s about the network"></img>
     
     <div class="text-black-50">视频，面部检测</div>
     
 </div>
 <div class="text-center pt-2 pb-3">
     <img class="img-fluid" src='openpose-3.jpg' title=''
-        alt="It&#39;s may about the network"></img>
+        alt="It&#39;s about the network"></img>
     
     <div class="text-black-50">视频，面部检测</div>
     
@@ -157,7 +157,7 @@
 <p>然而从千万人脸图像中准确辨认出任意一个人的身份，调取他的身份信息，就不是那么容易。神经网络的人脸检测为面部识别提供了方案，可以将面部图像作为数据集来训练网络模型，做进一步的面部识别身份验证；或许也可以使用特征点设计算法描述每张人脸独一无二的特性，来搭建通用的面部身份信息数据库，或是在已有的身份数据库中添加高效的面部特征检索支持。</p>
 <div class="text-center pt-2 pb-3">
     <img class="img-fluid" src='face-datebase.jpg' title=''
-        alt="It&#39;s may about the network"></img>
+        alt="It&#39;s about the network"></img>
     
     <div class="text-black-50">RoboCop（机械警察）2014，面部身份数据库</div>
     
@@ -221,7 +221,7 @@ Dlib <a href="http://dlib.net/">http://dlib.net/</a></p>
             
             <div class="text-center mb-0">
                 <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f03-face-detection%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"
-                    alt="It&#39;s may about the network" />
+                    alt="It&#39;s about the network" />
             </div>
         </div>
     </div>
@@ -266,7 +266,7 @@ Dlib <a href="http://dlib.net/">http://dlib.net/</a></p>
     </div>
 </div>
 
-<footer class="bg-dark pt-3 pb-2">
+<footer class="footer-bg pt-3 pb-2">
     <div class="container">
         <div class="d-flex justify-content-between">
             
@@ -307,12 +307,12 @@ Dlib <a href="http://dlib.net/">http://dlib.net/</a></p>
 
 
 <script src="/library/jquery-3.5.1.min.js"></script>
-<script src="/library/bootstrap-4.5.2/js/bootstrap.bundle.min.js"></script>
-<script src="/library/headroom-0.11.0/headroom.min.js"></script>
+<script src="/library/bootstrap-4.5.3/js/bootstrap.bundle.min.js"></script>
+<script src="/library/headroom-0.12.0/headroom.min.js"></script>
 <script src="/library/search/fuse.min.js"></script>
 <script src="/library/search/mark.js"></script>
 <script src="/library/search/search.js"></script>
-<script src="/library/highlight-10.0.1/highlight.pack.js"></script>
+<script src="/library/highlight-10.3.2/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 

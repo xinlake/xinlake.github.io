@@ -92,6 +92,9 @@ a:hover {
 }
 
 /* footer ------------------------------*/
+.footer-bg {
+    background-color: rgb(20, 27, 27)
+}
 .footer-feed {
     color: rgb(126, 126, 126);
     text-shadow: 0px 0px 3px #101018;
