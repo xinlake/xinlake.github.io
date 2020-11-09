@@ -1,5 +1,5 @@
 .home {
-  height: 100vh;
+  height: 66vh;
   padding: 0;
   margin: 0;
   color: #f9fafc;
@@ -12,8 +12,8 @@
   padding: 0;
   margin: 0;
 
-  background-attachment: fixed;
-  background-position: center center;
+  background-attachment: scroll;
+  background-position: center;
   background-size: cover;
 }
 
