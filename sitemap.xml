@@ -2,10 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     
     <url>
-        <loc>https://xinlake.life/categories/</loc>
+        <loc>https://xinlake.life/tags/Blog/</loc>
 
         
-        <lastmod>2020-04-06T00:00:00+00:00</lastmod>
+        <lastmod>2020-11-10T00:00:00+00:00</lastmod>
         
 
         
@@ -16,6 +16,132 @@
         
         
         <changefreq>monthly</changefreq>
+        
+
+        
+        
+    </url>
+    
+    <url>
+        <loc>https://xinlake.life/blog/2020/11-blog-v2.1/</loc>
+
+        
+        <lastmod>2020-11-10T00:00:00+00:00</lastmod>
+        
+
+        
+        
+        <priority>1.0</priority>
+        
+
+        
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        
+    </url>
+    
+    <url>
+        <loc>https://xinlake.life/categories/</loc>
+
+        
+        <lastmod>2020-11-10T00:00:00+00:00</lastmod>
+        
+
+        
+        
+        <priority>0.5</priority>
+        
+
+        
+        
+        <changefreq>monthly</changefreq>
+        
+
+        
+        
+    </url>
+    
+    <url>
+        <loc>https://xinlake.life/categories/Lifestyle/</loc>
+
+        
+        <lastmod>2020-11-10T00:00:00+00:00</lastmod>
+        
+
+        
+        
+        <priority>0.5</priority>
+        
+
+        
+        
+        <changefreq>monthly</changefreq>
+        
+
+        
+        
+    </url>
+    
+    <url>
+        <loc>https://xinlake.life/tags/</loc>
+
+        
+        <lastmod>2020-11-10T00:00:00+00:00</lastmod>
+        
+
+        
+        
+        <priority>0.5</priority>
+        
+
+        
+        
+        <changefreq>monthly</changefreq>
+        
+
+        
+        
+    </url>
+    
+    <url>
+        <loc>https://xinlake.life/</loc>
+
+        
+        <lastmod>2020-11-10T00:00:00+00:00</lastmod>
+        
+
+        
+        
+        <priority>1.0</priority>
+        
+
+        
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        
+    </url>
+    
+    <url>
+        <loc>https://xinlake.life/blog/</loc>
+
+        
+        <lastmod>2020-11-10T00:00:00+00:00</lastmod>
+        
+
+        
+        
+        <priority>1.0</priority>
+        
+
+        
+        
+        <changefreq>weekly</changefreq>
         
 
         
@@ -107,27 +233,6 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/tags/</loc>
-
-        
-        <lastmod>2020-04-06T00:00:00+00:00</lastmod>
-        
-
-        
-        
-        <priority>0.5</priority>
-        
-
-        
-        
-        <changefreq>monthly</changefreq>
-        
-
-        
-        
-    </url>
-    
-    <url>
         <loc>https://xinlake.life/tags/V2Ray/</loc>
 
         
@@ -149,27 +254,6 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/</loc>
-
-        
-        <lastmod>2020-04-06T00:00:00+00:00</lastmod>
-        
-
-        
-        
-        <priority>1.0</priority>
-        
-
-        
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        
-    </url>
-    
-    <url>
         <loc>https://xinlake.life/tags/XTransmit/</loc>
 
         
@@ -184,27 +268,6 @@
         
         
         <changefreq>monthly</changefreq>
-        
-
-        
-        
-    </url>
-    
-    <url>
-        <loc>https://xinlake.life/blog/</loc>
-
-        
-        <lastmod>2020-04-06T00:00:00+00:00</lastmod>
-        
-
-        
-        
-        <priority>1.0</priority>
-        
-
-        
-        
-        <changefreq>weekly</changefreq>
         
 
         
@@ -548,27 +611,6 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/tags/Blog/</loc>
-
-        
-        <lastmod>2019-09-18T00:00:00+00:00</lastmod>
-        
-
-        
-        
-        <priority>0.5</priority>
-        
-
-        
-        
-        <changefreq>monthly</changefreq>
-        
-
-        
-        
-    </url>
-    
-    <url>
         <loc>https://xinlake.life/blog/2019/09-blog-v2/</loc>
 
         
@@ -583,27 +625,6 @@
         
         
         <changefreq>weekly</changefreq>
-        
-
-        
-        
-    </url>
-    
-    <url>
-        <loc>https://xinlake.life/categories/Lifestyle/</loc>
-
-        
-        <lastmod>2019-09-05T18:00:00+00:00</lastmod>
-        
-
-        
-        
-        <priority>0.5</priority>
-        
-
-        
-        
-        <changefreq>monthly</changefreq>
         
 
         

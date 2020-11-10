@@ -1,7 +1,6 @@
-# "allow" is not a part of standard, search engine may don't understand "allow"
-
 User-agent: SemrushBot
 Disallow: /
+
 User-agent: AhrefsBot
 Disallow: /
 

@@ -206,8 +206,8 @@ ImageView imageView <span style="color:#f92672">=</span> <span style="color:#f92
 <span style="color:#75715e">// time 的值为： 27055，30365，36562，33750，45902... 约为 20-50 微秒之间
 </span></code></pre></div><h2 id="在-android-80api-26-中的变化">在 Android 8.0（API 26） 中的变化</h2>
 <p>如果使用 Android 8.0 SDK 编译旧程序你可能会发现一条类似的提示：<strong>Casting &lsquo;findViewById(R.id.main_imageview)&rsquo; to &lsquo;ImageView&rsquo; is redundant</strong> 说类型转换是多余的，因为 API 26 已经将 findViewById 改成了这样</p>
-<p><code>public &lt;T extends View&gt; T findViewById(int id)</code></p>
-<p>所以编译的 SDK 版本更新到 26 后，即 <code>compileSdkVersion 26</code>，完全可以吧 findViewById 前面的类型转换去除掉。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#f92672">&lt;</span>T <span style="color:#66d9ef">extends</span> View<span style="color:#f92672">&gt;</span> T <span style="color:#a6e22e">findViewById</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> id<span style="color:#f92672">)</span>
+</code></pre></div><p>所以编译的 SDK 版本更新到 26 后，即 <code>compileSdkVersion 26</code>，完全可以吧 findViewById 前面的类型转换去除掉。</p>
             </article>
 
             

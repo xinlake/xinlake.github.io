@@ -14,13 +14,22 @@
     
 
     
-    <lastBuildDate>2020-04-06, Mon</lastBuildDate>
+    <lastBuildDate>2020-11-10, Tue</lastBuildDate>
     
 
     
     <atom:link href="https://xinlake.life/blog/index.xml" rel="self" type="application/rss+xml" />
     
 
+    
+    <item>
+        <title>Blog v2.1</title>
+        <link>https://xinlake.life/blog/2020/11-blog-v2.1/</link>
+        <pubDate>2020-11-10, Tue</pubDate>
+        <author>xinlake@outlook.com (XinLake)</author>
+        <guid>https://xinlake.life/blog/2020/11-blog-v2.1/</guid>
+        <description>&lt;p&gt;这是第三次站点更新，刚开始是 Hexo 和默认模板定制，然后切换到了 Hugo 并用 Bootstrap 开发模板 &lt;a href=&#34;https://xinlake.life/blog/2019/09-blog-v2/&#34;&gt;Blog v2&lt;/a&gt;，这一次是在 v2 的基础上做改进。Web 页面模板的更新不像软件那样有着明确的版本号和意义，页面模板的变动很多是展现形式上变动，我觉得用 v2.1 这种宽泛的版本或代号可以形容改动量。当然了，最大的变化就是启用了新的域名。&lt;/p&gt;</description>
+    </item>
     
     <item>
         <title>Privch 0.9.0</title>
@@ -101,15 +110,6 @@
         <author>xinlake@outlook.com (XinLake)</author>
         <guid>https://xinlake.life/blog/2019/10-shadowsocks-android-modified/</guid>
         <description>&lt;p&gt;这是一个 Shadowsocks Android 的修改版，移除了广告，去掉了对 Google 服务的依赖并使用本地模块来支持必要的功能，去掉了 TV 模块、插件功能，简化了代理模式和相关的设置及数据。这个版本适用于经常连接公共服务器的情况，可以很好的在国内运行，源码在这里 &lt;a href=&#34;https://github.com/xinlake/shadowsocks-android-modified&#34;&gt;shadowsocks-android-modified&lt;/a&gt;。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-        <title>Privoxy Windows</title>
-        <link>https://xinlake.life/blog/2019/10-privoxy-windows/</link>
-        <pubDate>2019-10-19, Sat</pubDate>
-        <author>xinlake@outlook.com (XinLake)</author>
-        <guid>https://xinlake.life/blog/2019/10-privoxy-windows/</guid>
-        <description>&lt;p&gt;&lt;a href=&#34;https://www.privoxy.org/&#34;&gt;Privoxy&lt;/a&gt; 是具有高级过滤功能的非缓存 Web 代理（同类软件里分缓存和非缓存两种），可增强隐私性。Privoxy 常常作为一个辅助的流量转发模块，工作于操作系统代理接口和 SOCKS5 代理服务接口之间，将本地 HTTP 流量转发到本地或远端 SOCKS5 服务器，从而让 Web 应用可以直接使用 SOCKS5 代理且不需要任何设置，被广泛应用在各种连接国际网络的工具里。&lt;/p&gt;</description>
     </item>
     
     </channel>
