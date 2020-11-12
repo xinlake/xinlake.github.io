@@ -23,6 +23,13 @@ blockquote {
     color: #9090a0;
 }
 
+img {
+    color: #879630;
+    font-size: 20px;
+    font-style: italic;
+    text-align: center;
+}
+
 video {
     display: block;
     width: auto;
