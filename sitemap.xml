@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     
     <url>
-        <loc>https://xinlake.life/tags/Blog/</loc>
+        <loc>https://xinlake.dev/tags/Blog/</loc>
 
         
         <lastmod>2020-11-10T00:00:00+00:00</lastmod>
@@ -23,91 +23,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2020/11-blog-v2.1/</loc>
-
-        
-        <lastmod>2020-11-10T00:00:00+00:00</lastmod>
-        
-
-        
-        
-        <priority>1.0</priority>
-        
-
-        
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        
-    </url>
-    
-    <url>
-        <loc>https://xinlake.life/categories/</loc>
-
-        
-        <lastmod>2020-11-10T00:00:00+00:00</lastmod>
-        
-
-        
-        
-        <priority>0.5</priority>
-        
-
-        
-        
-        <changefreq>monthly</changefreq>
-        
-
-        
-        
-    </url>
-    
-    <url>
-        <loc>https://xinlake.life/categories/Lifestyle/</loc>
-
-        
-        <lastmod>2020-11-10T00:00:00+00:00</lastmod>
-        
-
-        
-        
-        <priority>0.5</priority>
-        
-
-        
-        
-        <changefreq>monthly</changefreq>
-        
-
-        
-        
-    </url>
-    
-    <url>
-        <loc>https://xinlake.life/tags/</loc>
-
-        
-        <lastmod>2020-11-10T00:00:00+00:00</lastmod>
-        
-
-        
-        
-        <priority>0.5</priority>
-        
-
-        
-        
-        <changefreq>monthly</changefreq>
-        
-
-        
-        
-    </url>
-    
-    <url>
-        <loc>https://xinlake.life/</loc>
+        <loc>https://xinlake.dev/blog/2020/11-blog-v2.1/</loc>
 
         
         <lastmod>2020-11-10T00:00:00+00:00</lastmod>
@@ -128,7 +44,70 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/</loc>
+        <loc>https://xinlake.dev/categories/</loc>
+
+        
+        <lastmod>2020-11-10T00:00:00+00:00</lastmod>
+        
+
+        
+        
+        <priority>0.5</priority>
+        
+
+        
+        
+        <changefreq>monthly</changefreq>
+        
+
+        
+        
+    </url>
+    
+    <url>
+        <loc>https://xinlake.dev/categories/Lifestyle/</loc>
+
+        
+        <lastmod>2020-11-10T00:00:00+00:00</lastmod>
+        
+
+        
+        
+        <priority>0.5</priority>
+        
+
+        
+        
+        <changefreq>monthly</changefreq>
+        
+
+        
+        
+    </url>
+    
+    <url>
+        <loc>https://xinlake.dev/tags/</loc>
+
+        
+        <lastmod>2020-11-10T00:00:00+00:00</lastmod>
+        
+
+        
+        
+        <priority>0.5</priority>
+        
+
+        
+        
+        <changefreq>monthly</changefreq>
+        
+
+        
+        
+    </url>
+    
+    <url>
+        <loc>https://xinlake.dev/</loc>
 
         
         <lastmod>2020-11-10T00:00:00+00:00</lastmod>
@@ -149,7 +128,28 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/categories/Network/</loc>
+        <loc>https://xinlake.dev/blog/</loc>
+
+        
+        <lastmod>2020-11-10T00:00:00+00:00</lastmod>
+        
+
+        
+        
+        <priority>1.0</priority>
+        
+
+        
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        
+    </url>
+    
+    <url>
+        <loc>https://xinlake.dev/categories/Network/</loc>
 
         
         <lastmod>2020-04-06T00:00:00+00:00</lastmod>
@@ -170,7 +170,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/tags/Privch/</loc>
+        <loc>https://xinlake.dev/tags/Privch/</loc>
 
         
         <lastmod>2020-04-06T00:00:00+00:00</lastmod>
@@ -191,7 +191,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2020/04-privch-0.9.0/</loc>
+        <loc>https://xinlake.dev/blog/2020/04-privch-0.9.0/</loc>
 
         
         <lastmod>2020-04-06T00:00:00+00:00</lastmod>
@@ -212,7 +212,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/tags/Shadowsocks/</loc>
+        <loc>https://xinlake.dev/tags/Shadowsocks/</loc>
 
         
         <lastmod>2020-04-06T00:00:00+00:00</lastmod>
@@ -233,7 +233,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/tags/V2Ray/</loc>
+        <loc>https://xinlake.dev/tags/V2Ray/</loc>
 
         
         <lastmod>2020-04-06T00:00:00+00:00</lastmod>
@@ -254,7 +254,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/tags/XTransmit/</loc>
+        <loc>https://xinlake.dev/tags/XTransmit/</loc>
 
         
         <lastmod>2020-04-06T00:00:00+00:00</lastmod>
@@ -275,7 +275,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2020/02-xtransmit-0.8.0/</loc>
+        <loc>https://xinlake.dev/blog/2020/02-xtransmit-0.8.0/</loc>
 
         
         <lastmod>2020-02-23T00:00:00+00:00</lastmod>
@@ -296,7 +296,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/tags/cURL/</loc>
+        <loc>https://xinlake.dev/tags/cURL/</loc>
 
         
         <lastmod>2020-02-12T00:00:00+00:00</lastmod>
@@ -317,7 +317,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2020/02-xtransmit-0.7.0/</loc>
+        <loc>https://xinlake.dev/blog/2020/02-xtransmit-0.7.0/</loc>
 
         
         <lastmod>2020-02-12T00:00:00+00:00</lastmod>
@@ -338,7 +338,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2020/02-xtransmit-0.6.0/</loc>
+        <loc>https://xinlake.dev/blog/2020/02-xtransmit-0.6.0/</loc>
 
         
         <lastmod>2020-02-04T00:00:00+00:00</lastmod>
@@ -359,7 +359,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2020/01-xtransmit-0.5.5/</loc>
+        <loc>https://xinlake.dev/blog/2020/01-xtransmit-0.5.5/</loc>
 
         
         <lastmod>2020-01-26T00:00:00+00:00</lastmod>
@@ -380,7 +380,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2019/12-xtransmit-0.5.4-cn/</loc>
+        <loc>https://xinlake.dev/blog/2019/12-xtransmit-0.5.4-cn/</loc>
 
         
         <lastmod>2019-12-31T00:00:00+00:00</lastmod>
@@ -401,7 +401,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2019/12-xtransmit-0.5.4-en/</loc>
+        <loc>https://xinlake.dev/blog/2019/12-xtransmit-0.5.4-en/</loc>
 
         
         <lastmod>2019-12-31T00:00:00+00:00</lastmod>
@@ -422,7 +422,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2019/12-shadowsocks-android-modified/</loc>
+        <loc>https://xinlake.dev/blog/2019/12-shadowsocks-android-modified/</loc>
 
         
         <lastmod>2019-12-18T00:00:00+00:00</lastmod>
@@ -443,7 +443,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2019/10-shadowsocks-android-modified/</loc>
+        <loc>https://xinlake.dev/blog/2019/10-shadowsocks-android-modified/</loc>
 
         
         <lastmod>2019-10-31T00:00:00+00:00</lastmod>
@@ -464,7 +464,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2019/10-privoxy-windows/</loc>
+        <loc>https://xinlake.dev/blog/2019/10-privoxy-windows/</loc>
 
         
         <lastmod>2019-10-19T00:00:00+00:00</lastmod>
@@ -485,7 +485,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/tags/Proxy/</loc>
+        <loc>https://xinlake.dev/tags/Proxy/</loc>
 
         
         <lastmod>2019-10-19T00:00:00+00:00</lastmod>
@@ -506,7 +506,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/tags/SOCKS5/</loc>
+        <loc>https://xinlake.dev/tags/SOCKS5/</loc>
 
         
         <lastmod>2019-10-19T00:00:00+00:00</lastmod>
@@ -527,7 +527,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2019/10-xtransmit-0.5.3-en/</loc>
+        <loc>https://xinlake.dev/blog/2019/10-xtransmit-0.5.3-en/</loc>
 
         
         <lastmod>2019-10-11T00:00:00+00:00</lastmod>
@@ -548,7 +548,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2019/10-xtransmit-0.5.3/</loc>
+        <loc>https://xinlake.dev/blog/2019/10-xtransmit-0.5.3/</loc>
 
         
         <lastmod>2019-10-11T00:00:00+00:00</lastmod>
@@ -569,7 +569,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/tags/Hugo/</loc>
+        <loc>https://xinlake.dev/tags/Hugo/</loc>
 
         
         <lastmod>2019-09-21T00:00:00+00:00</lastmod>
@@ -590,7 +590,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2019/09-hugo-powershell-deploy-script/</loc>
+        <loc>https://xinlake.dev/blog/2019/09-hugo-powershell-deploy-script/</loc>
 
         
         <lastmod>2019-09-21T00:00:00+00:00</lastmod>
@@ -611,7 +611,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2019/09-blog-v2/</loc>
+        <loc>https://xinlake.dev/blog/2019/09-blog-v2/</loc>
 
         
         <lastmod>2019-09-18T00:00:00+00:00</lastmod>
@@ -632,7 +632,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2019/09-west-lake-impression/</loc>
+        <loc>https://xinlake.dev/blog/2019/09-west-lake-impression/</loc>
 
         
         <lastmod>2019-09-05T18:00:00+00:00</lastmod>
@@ -653,7 +653,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/categories/Android/</loc>
+        <loc>https://xinlake.dev/categories/Android/</loc>
 
         
         <lastmod>2019-09-02T18:00:00+00:00</lastmod>
@@ -674,7 +674,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/tags/GMS/</loc>
+        <loc>https://xinlake.dev/tags/GMS/</loc>
 
         
         <lastmod>2019-09-02T18:00:00+00:00</lastmod>
@@ -695,7 +695,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2019/09-unable-to-access-gms/</loc>
+        <loc>https://xinlake.dev/blog/2019/09-unable-to-access-gms/</loc>
 
         
         <lastmod>2019-09-02T18:00:00+00:00</lastmod>
@@ -716,7 +716,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2019/08-created-a-small-program-en/</loc>
+        <loc>https://xinlake.dev/blog/2019/08-created-a-small-program-en/</loc>
 
         
         <lastmod>2019-08-31T22:02:00+00:00</lastmod>
@@ -737,7 +737,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2019/08-created-a-small-program/</loc>
+        <loc>https://xinlake.dev/blog/2019/08-created-a-small-program/</loc>
 
         
         <lastmod>2019-08-31T22:00:00+00:00</lastmod>
@@ -758,7 +758,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/tags/Android-Studio/</loc>
+        <loc>https://xinlake.dev/tags/Android-Studio/</loc>
 
         
         <lastmod>2019-08-24T12:00:00+00:00</lastmod>
@@ -779,7 +779,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2019/08-add-build-infos-for-version/</loc>
+        <loc>https://xinlake.dev/blog/2019/08-add-build-infos-for-version/</loc>
 
         
         <lastmod>2019-08-24T12:00:00+00:00</lastmod>
@@ -800,7 +800,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/tags/VPN/</loc>
+        <loc>https://xinlake.dev/tags/VPN/</loc>
 
         
         <lastmod>2019-08-18T08:00:00+00:00</lastmod>
@@ -821,7 +821,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2019/08-talk-about-shadowsocks/</loc>
+        <loc>https://xinlake.dev/blog/2019/08-talk-about-shadowsocks/</loc>
 
         
         <lastmod>2019-08-18T08:00:00+00:00</lastmod>
@@ -842,7 +842,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2019/07-talk-about-vpn/</loc>
+        <loc>https://xinlake.dev/blog/2019/07-talk-about-vpn/</loc>
 
         
         <lastmod>2019-07-15T00:00:05+00:00</lastmod>
@@ -863,7 +863,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2019/02-film-impressions/</loc>
+        <loc>https://xinlake.dev/blog/2019/02-film-impressions/</loc>
 
         
         <lastmod>2019-02-24T10:00:00+00:00</lastmod>
@@ -884,7 +884,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2019/01-the-story-in-2018/</loc>
+        <loc>https://xinlake.dev/blog/2019/01-the-story-in-2018/</loc>
 
         
         <lastmod>2019-01-28T21:00:00+00:00</lastmod>
@@ -905,7 +905,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2018/12-android-opencv-seamless-cloning/</loc>
+        <loc>https://xinlake.dev/blog/2018/12-android-opencv-seamless-cloning/</loc>
 
         
         <lastmod>2018-12-26T18:00:00+00:00</lastmod>
@@ -926,7 +926,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/categories/Computer-Vision/</loc>
+        <loc>https://xinlake.dev/categories/Computer-Vision/</loc>
 
         
         <lastmod>2018-12-26T18:00:00+00:00</lastmod>
@@ -947,7 +947,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/tags/OpenCV/</loc>
+        <loc>https://xinlake.dev/tags/OpenCV/</loc>
 
         
         <lastmod>2018-12-26T18:00:00+00:00</lastmod>
@@ -968,7 +968,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/tags/Cookie/</loc>
+        <loc>https://xinlake.dev/tags/Cookie/</loc>
 
         
         <lastmod>2018-10-27T12:30:00+00:00</lastmod>
@@ -989,7 +989,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/tags/HTTP/</loc>
+        <loc>https://xinlake.dev/tags/HTTP/</loc>
 
         
         <lastmod>2018-10-27T12:30:00+00:00</lastmod>
@@ -1010,7 +1010,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2018/10-spoof-a-website-by-forging-a-request-4/</loc>
+        <loc>https://xinlake.dev/blog/2018/10-spoof-a-website-by-forging-a-request-4/</loc>
 
         
         <lastmod>2018-10-23T16:00:00+00:00</lastmod>
@@ -1031,7 +1031,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2018/10-spoof-a-website-by-forging-a-request-3/</loc>
+        <loc>https://xinlake.dev/blog/2018/10-spoof-a-website-by-forging-a-request-3/</loc>
 
         
         <lastmod>2018-10-17T20:00:00+00:00</lastmod>
@@ -1052,7 +1052,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2018/10-spoof-a-website-by-forging-a-request-2/</loc>
+        <loc>https://xinlake.dev/blog/2018/10-spoof-a-website-by-forging-a-request-2/</loc>
 
         
         <lastmod>2018-10-14T16:00:00+00:00</lastmod>
@@ -1073,7 +1073,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2018/10-spoof-a-website-by-forging-a-request/</loc>
+        <loc>https://xinlake.dev/blog/2018/10-spoof-a-website-by-forging-a-request/</loc>
 
         
         <lastmod>2018-10-27T12:30:00+00:00</lastmod>
@@ -1094,7 +1094,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/categories/Multimedia/</loc>
+        <loc>https://xinlake.dev/categories/Multimedia/</loc>
 
         
         <lastmod>2018-10-07T19:00:00+00:00</lastmod>
@@ -1115,7 +1115,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/tags/VLC/</loc>
+        <loc>https://xinlake.dev/tags/VLC/</loc>
 
         
         <lastmod>2018-10-07T19:00:00+00:00</lastmod>
@@ -1136,7 +1136,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2018/10-vlc-fine-seek/</loc>
+        <loc>https://xinlake.dev/blog/2018/10-vlc-fine-seek/</loc>
 
         
         <lastmod>2018-10-07T19:00:00+00:00</lastmod>
@@ -1157,7 +1157,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2018/09-film-impressions/</loc>
+        <loc>https://xinlake.dev/blog/2018/09-film-impressions/</loc>
 
         
         <lastmod>2018-09-23T10:00:00+00:00</lastmod>
@@ -1178,7 +1178,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2018/08-human-pose/</loc>
+        <loc>https://xinlake.dev/blog/2018/08-human-pose/</loc>
 
         
         <lastmod>2018-08-19T10:00:00+00:00</lastmod>
@@ -1199,7 +1199,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2018/05-yolo-android/</loc>
+        <loc>https://xinlake.dev/blog/2018/05-yolo-android/</loc>
 
         
         <lastmod>2018-05-13T18:00:00+00:00</lastmod>
@@ -1220,7 +1220,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2018/05-ai-in-movies-and-in-life/</loc>
+        <loc>https://xinlake.dev/blog/2018/05-ai-in-movies-and-in-life/</loc>
 
         
         <lastmod>2018-05-08T12:00:00+00:00</lastmod>
@@ -1241,7 +1241,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2018/03-face-detection/</loc>
+        <loc>https://xinlake.dev/blog/2018/03-face-detection/</loc>
 
         
         <lastmod>2018-05-06T10:00:00+00:00</lastmod>
@@ -1262,7 +1262,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2018/03-opencv-dnn-opencl/</loc>
+        <loc>https://xinlake.dev/blog/2018/03-opencv-dnn-opencl/</loc>
 
         
         <lastmod>2018-03-20T12:00:00+00:00</lastmod>
@@ -1283,7 +1283,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2018/03-android-opencv-dnn-googlenet/</loc>
+        <loc>https://xinlake.dev/blog/2018/03-android-opencv-dnn-googlenet/</loc>
 
         
         <lastmod>2018-03-16T20:00:00+00:00</lastmod>
@@ -1304,7 +1304,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2018/03-opencv-dnn-objects-detection/</loc>
+        <loc>https://xinlake.dev/blog/2018/03-opencv-dnn-objects-detection/</loc>
 
         
         <lastmod>2018-03-21T18:00:00+00:00</lastmod>
@@ -1325,7 +1325,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2018/02-a-different-spring-festival/</loc>
+        <loc>https://xinlake.dev/blog/2018/02-a-different-spring-festival/</loc>
 
         
         <lastmod>2018-02-19T20:00:00+00:00</lastmod>
@@ -1346,7 +1346,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/tags/TWRP/</loc>
+        <loc>https://xinlake.dev/tags/TWRP/</loc>
 
         
         <lastmod>2018-02-02T20:00:00+00:00</lastmod>
@@ -1367,7 +1367,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2018/02-sagit-new-experience/</loc>
+        <loc>https://xinlake.dev/blog/2018/02-sagit-new-experience/</loc>
 
         
         <lastmod>2018-02-02T20:00:00+00:00</lastmod>
@@ -1388,7 +1388,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2017/12-android-studio-3-changes/</loc>
+        <loc>https://xinlake.dev/blog/2017/12-android-studio-3-changes/</loc>
 
         
         <lastmod>2017-12-26T20:00:00+00:00</lastmod>
@@ -1409,7 +1409,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2017/09-film-impressions/</loc>
+        <loc>https://xinlake.dev/blog/2017/09-film-impressions/</loc>
 
         
         <lastmod>2017-09-28T20:00:00+00:00</lastmod>
@@ -1430,7 +1430,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2017/08-findviewbyid/</loc>
+        <loc>https://xinlake.dev/blog/2017/08-findviewbyid/</loc>
 
         
         <lastmod>2017-08-09T20:00:00+00:00</lastmod>
@@ -1451,7 +1451,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/tags/ViewGroup/</loc>
+        <loc>https://xinlake.dev/tags/ViewGroup/</loc>
 
         
         <lastmod>2017-08-09T20:00:00+00:00</lastmod>
@@ -1472,7 +1472,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/tags/Cling/</loc>
+        <loc>https://xinlake.dev/tags/Cling/</loc>
 
         
         <lastmod>2018-04-10T20:00:00+00:00</lastmod>
@@ -1493,7 +1493,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/tags/UPnP/</loc>
+        <loc>https://xinlake.dev/tags/UPnP/</loc>
 
         
         <lastmod>2018-04-10T20:00:00+00:00</lastmod>
@@ -1514,7 +1514,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2017/07-mouter/</loc>
+        <loc>https://xinlake.dev/blog/2017/07-mouter/</loc>
 
         
         <lastmod>2018-04-10T20:00:00+00:00</lastmod>
@@ -1535,7 +1535,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/blog/2017/07-hello-world/</loc>
+        <loc>https://xinlake.dev/blog/2017/07-hello-world/</loc>
 
         
         <lastmod>2017-07-20T12:00:00+00:00</lastmod>
@@ -1556,7 +1556,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/archive/</loc>
+        <loc>https://xinlake.dev/archive/</loc>
 
         
 
@@ -1575,7 +1575,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/block/</loc>
+        <loc>https://xinlake.dev/block/</loc>
 
         
 
@@ -1594,7 +1594,7 @@
     </url>
     
     <url>
-        <loc>https://xinlake.life/search/</loc>
+        <loc>https://xinlake.dev/search/</loc>
 
         
 

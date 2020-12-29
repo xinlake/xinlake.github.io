@@ -3,14 +3,6 @@
 
 <head>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165266655-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-165266655-1');
-</script>
-
 
 
 
@@ -33,13 +25,13 @@
 
 <meta property="og:description" content="很多软件的版本号里都有 Build 次数、时间、主机这样的构建信息，这里我介绍一种 Android Studio 里通过 Gradle 脚本自动创建以及更新构建信息的方法，每次构建的时候自动更新版本的 Build 次数、时间、主机等信息，不需要手动设置。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://xinlake.life/blog/2019/08-add-build-infos-for-version/" />
+<meta property="og:url" content="https://xinlake.dev/blog/2019/08-add-build-infos-for-version/" />
 <meta property="og:locale" content="zh-CN" />
-<meta name="generator" content="Hugo 0.77.0" />
+<meta name="generator" content="Hugo 0.79.1" />
 
 <title>给版本添加构建信息 | XinLake</title>
-<link rel="canonical" href="https://xinlake.life/blog/2019/08-add-build-infos-for-version/" />
-<link rel="alternate" href="https://xinlake.life/blog/index.xml" type="application/rss+xml" title="XinLake">
+<link rel="canonical" href="https://xinlake.dev/blog/2019/08-add-build-infos-for-version/" />
+<link rel="alternate" href="https://xinlake.dev/blog/index.xml" type="application/rss+xml" title="XinLake">
 
 
 <link rel="shortcut icon" href="/images/logo-v2.1.png" type="image/x-icon" />
@@ -57,7 +49,7 @@
 <body><header id="header" class="headroom">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-dark">
-            <a class="site-title" href="https://xinlake.life/">
+            <a class="site-title" href="https://xinlake.dev/">
                 XinLake
             </a>
 
@@ -80,7 +72,7 @@
                 </ul>
 
                 
-                <form action="https://xinlake.life//search">
+                <form action="https://xinlake.dev//search">
                     <input class="form-control search-input" type="text" placeholder="Search" id="search-query" name="s" />
                 </form>
             </div>
@@ -93,7 +85,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-9">
             
-<a href="https://xinlake.life/blog/2019/08-add-build-infos-for-version/">
+<a href="https://xinlake.dev/blog/2019/08-add-build-infos-for-version/">
     <h2 class="text-dark font-weight-bold mb-3">给版本添加构建信息</h2>
 </a>
 
@@ -223,14 +215,14 @@ BuildInfo <span style="color:#a6e22e">updateBuildInfo</span><span style="color:#
         </button>
         <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="share_button">
             <div class="d-flex justify-content-around">
-                <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f08-add-build-infos-for-version%2f" target="_blank" title="Facebook">
+                <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.dev%2fblog%2f2019%2f08-add-build-infos-for-version%2f" target="_blank" title="Facebook">
                     <i class="fab fa-facebook-square fa-2x px-1"></i>
                 </a>
-                <a href="https://twitter.com/intent/tweet?text=%e7%bb%99%e7%89%88%e6%9c%ac%e6%b7%bb%e5%8a%a0%e6%9e%84%e5%bb%ba%e4%bf%a1%e6%81%af&url=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f08-add-build-infos-for-version%2f" target="_blank"
+                <a href="https://twitter.com/intent/tweet?text=%e7%bb%99%e7%89%88%e6%9c%ac%e6%b7%bb%e5%8a%a0%e6%9e%84%e5%bb%ba%e4%bf%a1%e6%81%af&url=https%3a%2f%2fxinlake.dev%2fblog%2f2019%2f08-add-build-infos-for-version%2f" target="_blank"
                     title="Twitter">
                     <i class="fab fa-twitter fa-2x px-1"></i>
                 </a>
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f08-add-build-infos-for-version%2f" target="_blank"
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.dev%2fblog%2f2019%2f08-add-build-infos-for-version%2f" target="_blank"
                     title="LinkedIn">
                     <i class="fab fa-linkedin fa-2x px-1"></i>
                 </a>
@@ -240,7 +232,7 @@ BuildInfo <span style="color:#a6e22e">updateBuildInfo</span><span style="color:#
 
             
             <div class="text-center mb-0">
-                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2019%2f08-add-build-infos-for-version%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"
+                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.dev%2fblog%2f2019%2f08-add-build-infos-for-version%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"
                     alt="It&#39;s about the network" />
             </div>
         </div>
@@ -255,7 +247,7 @@ BuildInfo <span style="color:#a6e22e">updateBuildInfo</span><span style="color:#
             return;
 
         var d = document, s = d.createElement('script');
-        s.src = 'https://xinlake-life.disqus.com/embed.js';
+        s.src = 'https://xinlake-dev.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
@@ -268,7 +260,7 @@ BuildInfo <span style="color:#a6e22e">updateBuildInfo</span><span style="color:#
         <div class="col-auto mx-auto">
             
             <div>
-                <a href="https://xinlake.life/blog/2019/08-created-a-small-program/">
+                <a href="https://xinlake.dev/blog/2019/08-created-a-small-program/">
                     <i class="fas fa-arrow-left"></i>
                     <span>造了一个小程序</span>
                 </a>
@@ -276,7 +268,7 @@ BuildInfo <span style="color:#a6e22e">updateBuildInfo</span><span style="color:#
             
             
             <div>
-                <a href="https://xinlake.life/blog/2019/08-talk-about-shadowsocks/">
+                <a href="https://xinlake.dev/blog/2019/08-talk-about-shadowsocks/">
                     <i class="fas fa-arrow-right"></i>
                     <span>谈谈 Shadowsocks</span>
                 </a>
@@ -311,7 +303,7 @@ BuildInfo <span style="color:#a6e22e">updateBuildInfo</span><span style="color:#
                     
                     
                     <li class="list-inline-item">
-                        <a href="https://xinlake.life/blog/index.xml" title="Blog RSS">
+                        <a href="https://xinlake.dev/blog/index.xml" title="Blog RSS">
                             <h3 class="footer-feed px-2"><i class="fas fa-rss"></i></h3>
                         </a>
                     </li>
@@ -322,7 +314,7 @@ BuildInfo <span style="color:#a6e22e">updateBuildInfo</span><span style="color:#
 </footer>
 
 <script>
-    var indexURL = "https:\/\/xinlake.life\/index.json"
+    var indexURL = "https:\/\/xinlake.dev\/index.json"
 </script>
 
 

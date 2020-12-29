@@ -3,14 +3,6 @@
 
 <head>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165266655-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-165266655-1');
-</script>
-
 
 
 
@@ -31,17 +23,17 @@
 
 <meta property="og:title" content="Running GoogLeNet on Android device | XinLake" />
 
-<meta property="og:image" content="https://xinlake.life/blog/2018/03-android-opencv-dnn-googlenet/cover.jpg" />
+<meta property="og:image" content="https://xinlake.dev/blog/2018/03-android-opencv-dnn-googlenet/cover.jpg" />
 
 <meta property="og:description" content="这篇博文也是介绍 OpenCV DNN 模块在 Android 上的应用，运行 GoogLeNet 模型对摄像头画面做图像分类。相关的博文点击文章左下方的 OpenCV 标签可以看到。下图底部有一行字 coffee mug（咖啡杯），这是对画面中的这杯咖啡准确识别分类的结果。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://xinlake.life/blog/2018/03-android-opencv-dnn-googlenet/" />
+<meta property="og:url" content="https://xinlake.dev/blog/2018/03-android-opencv-dnn-googlenet/" />
 <meta property="og:locale" content="zh-CN" />
-<meta name="generator" content="Hugo 0.77.0" />
+<meta name="generator" content="Hugo 0.79.1" />
 
 <title>Running GoogLeNet on Android device | XinLake</title>
-<link rel="canonical" href="https://xinlake.life/blog/2018/03-android-opencv-dnn-googlenet/" />
-<link rel="alternate" href="https://xinlake.life/blog/index.xml" type="application/rss+xml" title="XinLake">
+<link rel="canonical" href="https://xinlake.dev/blog/2018/03-android-opencv-dnn-googlenet/" />
+<link rel="alternate" href="https://xinlake.dev/blog/index.xml" type="application/rss+xml" title="XinLake">
 
 
 <link rel="shortcut icon" href="/images/logo-v2.1.png" type="image/x-icon" />
@@ -59,7 +51,7 @@
 <body><header id="header" class="headroom">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-dark">
-            <a class="site-title" href="https://xinlake.life/">
+            <a class="site-title" href="https://xinlake.dev/">
                 XinLake
             </a>
 
@@ -82,7 +74,7 @@
                 </ul>
 
                 
-                <form action="https://xinlake.life//search">
+                <form action="https://xinlake.dev//search">
                     <input class="form-control search-input" type="text" placeholder="Search" id="search-query" name="s" />
                 </form>
             </div>
@@ -95,7 +87,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-9">
             
-<a href="https://xinlake.life/blog/2018/03-android-opencv-dnn-googlenet/">
+<a href="https://xinlake.dev/blog/2018/03-android-opencv-dnn-googlenet/">
     <h2 class="text-dark font-weight-bold mb-3">Running GoogLeNet on Android device</h2>
 </a>
 
@@ -223,14 +215,14 @@ OpenCV DNN <a href="https://github.com/opencv/opencv/tree/master/samples/dnn">ht
         </button>
         <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="share_button">
             <div class="d-flex justify-content-around">
-                <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f03-android-opencv-dnn-googlenet%2f" target="_blank" title="Facebook">
+                <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.dev%2fblog%2f2018%2f03-android-opencv-dnn-googlenet%2f" target="_blank" title="Facebook">
                     <i class="fab fa-facebook-square fa-2x px-1"></i>
                 </a>
-                <a href="https://twitter.com/intent/tweet?text=Running%20GoogLeNet%20on%20Android%20device&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f03-android-opencv-dnn-googlenet%2f" target="_blank"
+                <a href="https://twitter.com/intent/tweet?text=Running%20GoogLeNet%20on%20Android%20device&url=https%3a%2f%2fxinlake.dev%2fblog%2f2018%2f03-android-opencv-dnn-googlenet%2f" target="_blank"
                     title="Twitter">
                     <i class="fab fa-twitter fa-2x px-1"></i>
                 </a>
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f03-android-opencv-dnn-googlenet%2f" target="_blank"
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.dev%2fblog%2f2018%2f03-android-opencv-dnn-googlenet%2f" target="_blank"
                     title="LinkedIn">
                     <i class="fab fa-linkedin fa-2x px-1"></i>
                 </a>
@@ -240,7 +232,7 @@ OpenCV DNN <a href="https://github.com/opencv/opencv/tree/master/samples/dnn">ht
 
             
             <div class="text-center mb-0">
-                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f03-android-opencv-dnn-googlenet%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"
+                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.dev%2fblog%2f2018%2f03-android-opencv-dnn-googlenet%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"
                     alt="It&#39;s about the network" />
             </div>
         </div>
@@ -255,7 +247,7 @@ OpenCV DNN <a href="https://github.com/opencv/opencv/tree/master/samples/dnn">ht
             return;
 
         var d = document, s = d.createElement('script');
-        s.src = 'https://xinlake-life.disqus.com/embed.js';
+        s.src = 'https://xinlake-dev.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
@@ -268,7 +260,7 @@ OpenCV DNN <a href="https://github.com/opencv/opencv/tree/master/samples/dnn">ht
         <div class="col-auto mx-auto">
             
             <div>
-                <a href="https://xinlake.life/blog/2018/03-opencv-dnn-opencl/">
+                <a href="https://xinlake.dev/blog/2018/03-opencv-dnn-opencl/">
                     <i class="fas fa-arrow-left"></i>
                     <span>OpenCV DNN with GPU Computing</span>
                 </a>
@@ -276,7 +268,7 @@ OpenCV DNN <a href="https://github.com/opencv/opencv/tree/master/samples/dnn">ht
             
             
             <div>
-                <a href="https://xinlake.life/blog/2018/03-opencv-dnn-objects-detection/">
+                <a href="https://xinlake.dev/blog/2018/03-opencv-dnn-objects-detection/">
                     <i class="fas fa-arrow-right"></i>
                     <span>Android OpenCV DNN Objects Detection</span>
                 </a>
@@ -311,7 +303,7 @@ OpenCV DNN <a href="https://github.com/opencv/opencv/tree/master/samples/dnn">ht
                     
                     
                     <li class="list-inline-item">
-                        <a href="https://xinlake.life/blog/index.xml" title="Blog RSS">
+                        <a href="https://xinlake.dev/blog/index.xml" title="Blog RSS">
                             <h3 class="footer-feed px-2"><i class="fas fa-rss"></i></h3>
                         </a>
                     </li>
@@ -322,7 +314,7 @@ OpenCV DNN <a href="https://github.com/opencv/opencv/tree/master/samples/dnn">ht
 </footer>
 
 <script>
-    var indexURL = "https:\/\/xinlake.life\/index.json"
+    var indexURL = "https:\/\/xinlake.dev\/index.json"
 </script>
 
 

@@ -8,4 +8,4 @@ User-agent: *
 Disallow: /block
 Disallow: /search
 
-Sitemap: https://xinlake.life/sitemap.xml
+Sitemap: https://xinlake.dev/sitemap.xml

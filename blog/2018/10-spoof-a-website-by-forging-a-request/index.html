@@ -3,14 +3,6 @@
 
 <head>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165266655-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-165266655-1');
-</script>
-
 
 
 
@@ -33,13 +25,13 @@
 
 <meta property="og:description" content="这是个实际演示，通过发送伪造的 HTTP Post 请求来欺骗网站服务器，达到人为的数据异常效果。这里欺骗的对象是一个新闻门户网站，伪造的请求是一条新闻评论的点赞。简单说就是一种机器“点赞”的效果。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://xinlake.life/blog/2018/10-spoof-a-website-by-forging-a-request/" />
+<meta property="og:url" content="https://xinlake.dev/blog/2018/10-spoof-a-website-by-forging-a-request/" />
 <meta property="og:locale" content="zh-CN" />
-<meta name="generator" content="Hugo 0.77.0" />
+<meta name="generator" content="Hugo 0.79.1" />
 
 <title>通过伪造请求来欺骗网站（一） | XinLake</title>
-<link rel="canonical" href="https://xinlake.life/blog/2018/10-spoof-a-website-by-forging-a-request/" />
-<link rel="alternate" href="https://xinlake.life/blog/index.xml" type="application/rss+xml" title="XinLake">
+<link rel="canonical" href="https://xinlake.dev/blog/2018/10-spoof-a-website-by-forging-a-request/" />
+<link rel="alternate" href="https://xinlake.dev/blog/index.xml" type="application/rss+xml" title="XinLake">
 
 
 <link rel="shortcut icon" href="/images/logo-v2.1.png" type="image/x-icon" />
@@ -57,7 +49,7 @@
 <body><header id="header" class="headroom">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-dark">
-            <a class="site-title" href="https://xinlake.life/">
+            <a class="site-title" href="https://xinlake.dev/">
                 XinLake
             </a>
 
@@ -80,7 +72,7 @@
                 </ul>
 
                 
-                <form action="https://xinlake.life//search">
+                <form action="https://xinlake.dev//search">
                     <input class="form-control search-input" type="text" placeholder="Search" id="search-query" name="s" />
                 </form>
             </div>
@@ -93,7 +85,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-9">
             
-<a href="https://xinlake.life/blog/2018/10-spoof-a-website-by-forging-a-request/">
+<a href="https://xinlake.dev/blog/2018/10-spoof-a-website-by-forging-a-request/">
     <h2 class="text-dark font-weight-bold mb-3">通过伪造请求来欺骗网站（一）</h2>
 </a>
 
@@ -224,14 +216,14 @@ ntoken=cc5ab02c-06da-469b-84ab-90c91ea5d9be
         </button>
         <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="share_button">
             <div class="d-flex justify-content-around">
-                <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request%2f" target="_blank" title="Facebook">
+                <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.dev%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request%2f" target="_blank" title="Facebook">
                     <i class="fab fa-facebook-square fa-2x px-1"></i>
                 </a>
-                <a href="https://twitter.com/intent/tweet?text=%e9%80%9a%e8%bf%87%e4%bc%aa%e9%80%a0%e8%af%b7%e6%b1%82%e6%9d%a5%e6%ac%ba%e9%aa%97%e7%bd%91%e7%ab%99%ef%bc%88%e4%b8%80%ef%bc%89&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request%2f" target="_blank"
+                <a href="https://twitter.com/intent/tweet?text=%e9%80%9a%e8%bf%87%e4%bc%aa%e9%80%a0%e8%af%b7%e6%b1%82%e6%9d%a5%e6%ac%ba%e9%aa%97%e7%bd%91%e7%ab%99%ef%bc%88%e4%b8%80%ef%bc%89&url=https%3a%2f%2fxinlake.dev%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request%2f" target="_blank"
                     title="Twitter">
                     <i class="fab fa-twitter fa-2x px-1"></i>
                 </a>
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request%2f" target="_blank"
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.dev%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request%2f" target="_blank"
                     title="LinkedIn">
                     <i class="fab fa-linkedin fa-2x px-1"></i>
                 </a>
@@ -241,7 +233,7 @@ ntoken=cc5ab02c-06da-469b-84ab-90c91ea5d9be
 
             
             <div class="text-center mb-0">
-                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.life%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"
+                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.dev%2fblog%2f2018%2f10-spoof-a-website-by-forging-a-request%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"
                     alt="It&#39;s about the network" />
             </div>
         </div>
@@ -256,7 +248,7 @@ ntoken=cc5ab02c-06da-469b-84ab-90c91ea5d9be
             return;
 
         var d = document, s = d.createElement('script');
-        s.src = 'https://xinlake-life.disqus.com/embed.js';
+        s.src = 'https://xinlake-dev.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
@@ -269,7 +261,7 @@ ntoken=cc5ab02c-06da-469b-84ab-90c91ea5d9be
         <div class="col-auto mx-auto">
             
             <div>
-                <a href="https://xinlake.life/blog/2018/10-spoof-a-website-by-forging-a-request-2/">
+                <a href="https://xinlake.dev/blog/2018/10-spoof-a-website-by-forging-a-request-2/">
                     <i class="fas fa-arrow-left"></i>
                     <span>通过伪造请求来欺骗网站（二）</span>
                 </a>
@@ -277,7 +269,7 @@ ntoken=cc5ab02c-06da-469b-84ab-90c91ea5d9be
             
             
             <div>
-                <a href="https://xinlake.life/blog/2018/10-vlc-fine-seek/">
+                <a href="https://xinlake.dev/blog/2018/10-vlc-fine-seek/">
                     <i class="fas fa-arrow-right"></i>
                     <span>VLC 精细 Seek</span>
                 </a>
@@ -312,7 +304,7 @@ ntoken=cc5ab02c-06da-469b-84ab-90c91ea5d9be
                     
                     
                     <li class="list-inline-item">
-                        <a href="https://xinlake.life/blog/index.xml" title="Blog RSS">
+                        <a href="https://xinlake.dev/blog/index.xml" title="Blog RSS">
                             <h3 class="footer-feed px-2"><i class="fas fa-rss"></i></h3>
                         </a>
                     </li>
@@ -323,7 +315,7 @@ ntoken=cc5ab02c-06da-469b-84ab-90c91ea5d9be
 </footer>
 
 <script>
-    var indexURL = "https:\/\/xinlake.life\/index.json"
+    var indexURL = "https:\/\/xinlake.dev\/index.json"
 </script>
 
 
