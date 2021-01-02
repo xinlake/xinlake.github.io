@@ -4,8 +4,8 @@ Disallow: /
 User-agent: AhrefsBot
 Disallow: /
 
-User-agent: *
-Disallow: /block
-Disallow: /search
+# User-agent: *
+# Disallow: /block
+# Disallow: /search
 
 Sitemap: https://xinlake.dev/sitemap.xml
