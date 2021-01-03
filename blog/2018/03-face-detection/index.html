@@ -121,6 +121,7 @@
     <video src='https://img.vim-cn.com/9c/c355f17fc651065663f6a0c5a66584edc6b6f9.mp4' controls="controls"></video>
     
 </div>
+
 <p>机器视觉软件库完善支持深度神经网络后（DNN），人脸检测几乎突破了检测，计算量大但是效果也不一般。OpenPose（Real-time multi-person keypoint detection library）是使用深度学习技术做图像检测的开源项目之一，支持身体姿势、面部、手势的关键点检测识别，也有 Caffe 实现的神经网络模型。OpenCV DNN 模块可以使用 OpenPose 的模型做识别，<a href="https://github.com/opencv/opencv/blob/master/samples/dnn/openpose.cpp">官方的例子</a>比较新（大概创建于 10 天前）目前没有面部关键点检测部分，可以参考<a href="https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/output.md"> OpenPose 文档</a>编写相关代码来使用这个功能。</p>
 <p>接着上面挡住部分脸时的检测，下图是 OpenCV 使用 OpenPose 神经网络模型面部关键点检测的结果。每个点都有意义（<a href="https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/output.md#face-output-format">官方文档</a>），最多 70 个点连接起来就是一张特定的脸，图中这几个点是遮挡后检测出的一部分关键点。</p>
 <div class="text-center pt-2 pb-3">
