@@ -1,5 +1,5 @@
 // untrusted browser list, add ua in lowercase
-let untrusted = ["qq", "qzone"];
+let untrusted = ["ua-1", "ua-2", "ua-3"];
 let ua = navigator.userAgent.toLowerCase();
 
 untrusted.forEach(function (item) {
