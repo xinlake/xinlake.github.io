@@ -41,7 +41,7 @@
 
 
 <link rel="stylesheet" href="/library/bootstrap-4.5.3/css/bootstrap.min.css" />
-<link rel="stylesheet" href="/library/fontawesome-5.15.1/css/all.min.css" />
+<link rel="stylesheet" href="/library/fontawesome-5.15.2/css/all.min.css" />
 <link rel="stylesheet" href="/library/highlight-10.5.0/styles/foundation.css" />
 
 <link rel="stylesheet" href="/assets/style.css" media="screen">
@@ -188,10 +188,20 @@
             <hr class="my-1" />
 
             
-            <div class="text-center mb-0">
-                <img src="https://api.imjad.cn/qrcode?text=https%3a%2f%2fxinlake.dev%2fblog%2f2020%2f04-privch-0.9.0%2f&logo=&size=200&level=M&bgcolor=%23ffffff&fgcolor=%23000000"
-                    alt="It&#39;s about the network" />
+            <div class="d-flex justify-content-center p-2">
+                <div id="qrcode"></div>
             </div>
+            <script src="/library/qrcode.min.js"></script>
+            <script type="text/javascript">
+                var qrcode = new QRCode(document.getElementById("qrcode"), {
+                    width: 160,
+                    height: 160,
+                    colorDark: "#000000",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                qrcode.makeCode("https:\/\/xinlake.dev\/blog\/2020\/04-privch-0.9.0\/")
+            </script>
         </div>
     </div>
 </div>
