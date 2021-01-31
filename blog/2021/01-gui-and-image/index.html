@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HE5ZX92JNP"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-HE5ZX92JNP');
+</script>
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="date=no">
+<meta name="format-detection" content="address=no">
+<meta name="format-detection" content="email=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+
+<meta name="description" content="做应用多少会接触到 GUI、图像相关的内容，这些领域都蕴含了深厚的内容，本文就从应用软件开发者的角度谈谈图形界面和图像。">
+<meta name="keywords" content='XinLake, Android Application, 安卓应用'>
+<meta name="author" content="XinLake">
+
+
+<meta property="og:title" content="图形界面图像与多媒体 | XinLake" />
+
+<meta property="og:image" content="https://xinlake.dev/blog/2021/01-gui-and-image/cairo-on-wince.png" />
+
+<meta property="og:description" content="做应用多少会接触到 GUI、图像相关的内容，这些领域都蕴含了深厚的内容，本文就从应用软件开发者的角度谈谈图形界面和图像。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xinlake.dev/blog/2021/01-gui-and-image/" />
+<meta property="og:locale" content="zh-CN" />
+<meta name="generator" content="Hugo 0.80.0" />
+
+<title>图形界面图像与多媒体 | XinLake</title>
+<link rel="canonical" href="https://xinlake.dev/blog/2021/01-gui-and-image/" />
+<link rel="alternate" href="/blog/index.xml" type="application/rss+xml" title="XinLake">
+
+
+<link rel="shortcut icon" href="/images/logo-v2.1.png" type="image/x-icon" />
+<link rel="icon" href="/images/logo-v2.1.png" type="image/x-icon" />
+
+
+<link rel="stylesheet" href="/library/bootstrap-4.5.3/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/library/fontawesome-5.15.2/css/all.min.css" />
+<link rel="stylesheet" href="/library/highlight-10.5.0/styles/foundation.css" />
+
+<link rel="stylesheet" href="/assets/style.css" media="screen">
+     
+</head>
+
+<body><header id="header" class="headroom">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="site-title" href="https://xinlake.dev/">
+                XinLake
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navogation"
+                aria-controls="navogation" aria-expanded="false" aria-label="toggle-navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navogation">
+                <ul class="nav justify-content-end ml-auto">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/blog">Posts</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/archive">Archive</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <form action="https://xinlake.dev//search">
+                    <input class="form-control search-input" type="text" placeholder="Search" id="search-query" name="s" />
+                </form>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+<div class="container flex-grow-1 mb-5" style="margin-top: 8rem;">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            
+<a href="https://xinlake.dev/blog/2021/01-gui-and-image/">
+    <h2 class="text-dark font-weight-bold mb-3">图形界面图像与多媒体</h2>
+</a>
+
+
+<div class="text-secondary mb-4">
+    <ul class="list-inline text-secondary mb-0">
+        <li class="list-inline-item">
+            <i class="far fa-file-alt"></i>
+            <span>2021-01-31</span>
+        </li>
+        <li class="list-inline-item">
+            
+            <a class="text-secondary" href="/archive/"><i class="fas fa-folder"></i></a>
+            <a class="badge badge-light" href="/categories/Lifestyle/">Lifestyle</a>
+        </li>
+    </ul>
+</div>
+
+            <article class="content mt-2 mb-4">
+                <p>做应用多少会接触到 GUI、图像相关的内容，这些领域都蕴含了深厚的内容，本文就从应用软件开发者的角度谈谈图形界面和图像。</p>
+<div class="text-center pt-2 pb-3">
+    <img class="img-fluid" src='cairo-on-wince.png' title='Cairo on WinCE'
+        alt="It&#39;s about the network"></img>
+    
+    <div class="text-black-50">Cairo on WinCE</div>
+    
+</div>
+<h3 id="gui">GUI</h3>
+<p>图形用户界面，大部分应用程序的界面都是由操作系统的 GUI 创建的，也有一些是自己生成的，后者一般自带了界面图形引擎，其绘图能力及界面描述部分都不依赖操作系统，在各种平台都有一致的表现（前面提到的 Flutter 就属于这一类），不过人机交互的信息输入及展示内容的承载还得依赖操作系统，也就是说它依赖鼠标、键盘、触屏、语音等输入设备和事件管理，在展示方面 App 也需要一个承载其内容的 Window 或是 Activity 才能将界面图形引擎创建的图像显示出来，音频信息输出内容也得依赖系统的声音设备。</p>
+<p>在早期 Windows CE/Mobile 的时代，系统 GUI 的图形能力相对单纯，绘制线条、填充平面、解码及渲染图片、解析及渲染字体（显示文本）这些能力就能创建基础的图形界面，很多的早期的图形界面都分解为这些基础的图形元素构成。而一些比较深度的能力像曲线、绘图抗锯齿、复杂梯度填充、图像透明（Alpha）通道、字体的 Style 等等，GUI 要么不关注要么 API 零散难用，对界面质量有要求的 App 则要自己实现。</p>
+<p>在我的印象里，那个时期 Microsoft 对于界面的图像质量似乎不太关心。灰色的界面、凸起的按钮、死板的列表。。。似乎应用程序的界面都是这样，只能这样。一些追求变化和体验的 App 直接从 Win32 SDK 出发，自己处理背景，自己绘制控件，自己去实现交互动画，孜孜不倦的打造精致的应用程序。那时有让开发者津津乐道的 GDI 双缓冲还有 DDraw 界面动画，甚至有开发者试图设计基于 XML 描述的图形界面自动生成系统，而这一切 Microsoft 似乎无动于衷，或许他是投入 .NET，在酝酿一次更彻底的变革吧。</p>
+<p>在那样的背景下公共的图形界面库显得格外引人注目，有流行的 QT 也有很少被提到的 GTK，使用这些库不需要依赖操作系统的 GUI 就可以创造漂亮的图形界面，这些库还可以通过源代码移植的方式来实现跨平台，而且有的开源库官方就提供了不同系统平台的版本，对于 App 开发者来说那是一次迁移永久收益。我也曾将 GTK 的图形核心 Cairo 移植到 Windows CE 上，封面图片是一个绘图演示，理论上可以拓展为一套独立可控的界面图形系统，不过我觉得图形系统不是一个人一个团队或是一个小公司能够玩得起来的。另外一方面，引入 Web 技术的 Hybrid 跨平台应用程序框架也初具雏形。</p>
+<p>Android 的出现打破了这一局面，Skia 图形引擎在直接将高质量的图形界面带到了人们的面前，除了丰富的绘图能力外还支持模糊、阴影等界面图像处理，对图像资源的支持也非常友好，能自动适应设备屏幕做插值（缩放）处理，而且还内置了基于 XML 的界面描述，不需要软件参与绘图，编写 XML 就能创建高质量的图形交互界面，更让人兴奋的是界面交互也非常流畅。</p>
+<p>移动端操作系统平台迅速从 Windows 时代跨越到了 Android 和 iOS 的时代，接下来，开发者已经不需要思考如何去加入一些绘图能力来提升界面交互的体验，也不需要思考如何设计一套界面描述机制将软件逻辑和界面绘图分离，App 只需要把注意力放在本身的创造上即可，其他事情交给操作系统。而 QT 一类的原生图形界面库却坚持了下来，延续至今作为各种平台可选的界面组件。</p>
+<p>过去的十年，平台应用程序的图形界面从操作系统 GUI 到公共界面组件再到混合模式，经历了几代的跨越。而引入 Web 技术，更关注跨平台和可描述性的 Hybrid 框架在近些年取得了快速发展，从早期的基于浏览器的雏形到现代复杂的原生“容器”设计，甚至对接图形加速接口，框架越来越高效，架构越来越先进，该模式越来越显现出未来主角的特质。</p>
+<h3 id="图像">图像</h3>
+<p>GUI 的目标是在屏幕上生成一副图像，向人类展示一些信息，根据交互来更新那幅图像。要说图形是描述，告知机器如何产生图，那么图像则是呈现，直观的可见的图。如果你是一名专业开发者，我不建议你将图形和图像混为一谈，因为“图形”和“图像”是不同的概念，技术上两者的交集也不广泛。</p>
+<p>很多时候，图像技术是用来存储和分享影像信息，摄像头采集下图像后将其压缩存储为 JPEG 图片文件，将文件传输到另外一个设备，它上面的照片程序开打图片解码显示图片，完成一个影像信息存储和分享的过程。图像压缩在图像的存储和传输中起着重要作用，图像信息数据量很大，压缩能有效减少存储消耗并提高信息传输效率。</p>
+<p>JPEG 格式对色彩丰富而且离散的图（如自然风景照片）有着很好的压缩效果，即便是图像信息损失的情况下也能保持很好的视觉感知。而色彩不多且变化又不频繁的图（如界面屏幕截图）则更适合用 PNG 格式压缩，这种场景下它能用较低的存储空间存储所有的图像信息。GIF 格式很老了，放到现代来说它能够高效编码的影像范围已经比较狭窄，不过它支持多帧并且受到浏览器等应用的广泛支持所以仍然用在动图场合。TIFF 则对图像信息准确性敏感，一般用在无损图像的场景里。当然了，还有不少图像格式用在比较专业的场合。</p>
+<p>图像编解码格式都有对应的 Codec，如 libjpeg、libpng、libtiff 等等，操作系统会集成一些常用的 codec 并提供 API 以支持一些图像相关的应用。专业的图像处理应用则会自带很多的 Codec，以广泛的支持各种图片格式。除了专注于图像编解码算法外 Codec 还关注编解码运算的硬件加速，因为图像的编解码也是运算量不小的任务。</p>
+<p>近些年图像技术已经不仅仅用来存储和分享影像信息，以前图是给人看的，现在人类也试着让机器看图。最常见的就是二维码扫描，A 设备通过二维码算法将文本信息编码为二维码图像并显示，然后 B 设备通过摄像头采集并分析图像得到文本信息，完成机器“看图”的过程，即通过图像生成和图像分析技术实现了文本信息从 A 设备传递到了 B 设备。</p>
+<p>类似的技术也有图像文本识别和基于 AI 的图像分析，从人机交互的维度看这是一项质的飞跃。以前，人类需要看 A 设备上的文本然后输入到 B 设备，需要记忆文本然后小心翼翼的输入文本，事实上信息是从 A 传递到了人脑再从人脑传递到 B。而现在，人类只需要将 B 的摄像头对着图像即可，其他的事情交给机器去完成。</p>
+<p>当代，基于 AI 的图像技术应用有着革新人机交互的趋势。我觉得 Google 眼镜是个有些超前时代产品，结合图像、AI、大数据和智能化的人机交互的应用未来还会出现。《钢铁侠》大胆的想象了人类和机器的交互方式，跳出屏幕和 Touch 的束缚，跳出距离的限制，语音、机器视觉、机器智能、大数据或许可以成为新一代智能设备 GUI 想象的起点。</p>
+            </article>
+
+            
+<ul class="list-inline text-secondary mb-1">
+    
+</ul>
+
+
+<hr class="my-1" />
+
+<div class="d-flex justify-content-between mb-4">
+    
+    <div class="align-self-center text-secondary">
+        <i class="far fa-edit"></i>
+        <span>2021-01-31</span>
+    </div>
+
+    
+    <div class="dropdown">
+        <button class="btn btn-transparent p-0" type="button" id="share_button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-share-alt-square fa-2x"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="share_button">
+            <div class="d-flex justify-content-around">
+                <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.dev%2fblog%2f2021%2f01-gui-and-image%2f" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook-square fa-2x px-1"></i>
+                </a>
+                <a href="https://twitter.com/intent/tweet?text=%e5%9b%be%e5%bd%a2%e7%95%8c%e9%9d%a2%e5%9b%be%e5%83%8f%e4%b8%8e%e5%a4%9a%e5%aa%92%e4%bd%93&url=https%3a%2f%2fxinlake.dev%2fblog%2f2021%2f01-gui-and-image%2f" target="_blank"
+                    title="Twitter">
+                    <i class="fab fa-twitter fa-2x px-1"></i>
+                </a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fxinlake.dev%2fblog%2f2021%2f01-gui-and-image%2f" target="_blank"
+                    title="LinkedIn">
+                    <i class="fab fa-linkedin fa-2x px-1"></i>
+                </a>
+            </div>
+
+            <hr class="my-1" />
+
+            
+            <div class="d-flex justify-content-center p-2">
+                <div id="qrcode"></div>
+            </div>
+            <script src="/library/qrcode.min.js"></script>
+            <script type="text/javascript">
+                var qrcode = new QRCode(document.getElementById("qrcode"), {
+                    width: 160,
+                    height: 160,
+                    colorDark: "#000000",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                qrcode.makeCode("https:\/\/xinlake.dev\/blog\/2021\/01-gui-and-image\/")
+            </script>
+        </div>
+    </div>
+</div>
+            <div id="disqus_thread"></div>
+<script>
+    
+
+    (function () { 
+        if (window.location.hostname == "localhost")
+            return;
+
+        var d = document, s = d.createElement('script');
+        s.src = 'https://xinlake-dev.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript</noscript>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        
+        <div class="col-auto mx-auto">
+            
+            
+            <div>
+                <a href="https://xinlake.dev/blog/2021/01-the-story-in-2020/">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>2020 故事，学习 Flutter</span>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<footer class="footer-bg pt-3 pb-2">
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            
+            <div class="d-flex align-items-center">
+                <span class="text-secondary">
+                    Copyright ©
+                    <script>var CurrentYear = new Date().getFullYear(); document.write(CurrentYear)</script>&nbsp
+                </span>
+                <a href="mailto:xinlake@outlook.com">
+                    <span class="text-secondary">XinLake</span>
+                </a>
+            </div>
+
+            
+            <div class="align-self-center">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <a href="mailto:xinlake@outlook.com">
+                            <h3 class="footer-feed px-2"><i class="fas fa-envelope"></i></h3>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="/blog/index.xml" title="Blog RSS">
+                            <h3 class="footer-feed px-2"><i class="fas fa-rss"></i></h3>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    var indexURL = "https:\/\/xinlake.dev\/index.json"
+</script>
+
+
+<script src="/library/jquery-3.5.1.min.js"></script>
+<script src="/library/bootstrap-4.5.3/js/bootstrap.bundle.min.js"></script>
+<script src="/library/headroom-0.12.0/headroom.min.js"></script>
+<script src="/library/search/fuse.min.js"></script>
+<script src="/library/search/mark.js"></script>
+<script src="/library/search/search.js"></script>
+<script src="/library/highlight-10.5.0/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script src="/assets/script.js"></script>
+     
+</body>
+
+</html>

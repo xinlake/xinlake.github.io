@@ -14,13 +14,22 @@
     
 
     
-    <lastBuildDate>2021-01-10, Sun</lastBuildDate>
+    <lastBuildDate>2021-01-31, Sun</lastBuildDate>
     
 
     
     <atom:link href="https://xinlake.dev/blog/index.xml" rel="self" type="application/rss+xml" />
     
 
+    
+    <item>
+        <title>图形界面图像与多媒体</title>
+        <link>https://xinlake.dev/blog/2021/01-gui-and-image/</link>
+        <pubDate>2021-01-31, Sun</pubDate>
+        <author>xinlake@outlook.com (XinLake)</author>
+        <guid>https://xinlake.dev/blog/2021/01-gui-and-image/</guid>
+        <description>&lt;p&gt;做应用多少会接触到 GUI、图像相关的内容，这些领域都蕴含了深厚的内容，本文就从应用软件开发者的角度谈谈图形界面和图像。&lt;/p&gt;</description>
+    </item>
     
     <item>
         <title>2020 故事，学习 Flutter</title>
@@ -101,15 +110,6 @@
         <author>xinlake@outlook.com (XinLake)</author>
         <guid>https://xinlake.dev/blog/2019/12-xtransmit-0.5.4-en/</guid>
         <description>&lt;p&gt;&lt;a href=&#34;https://github.com/xinlake/xtransmit-windows/releases&#34;&gt;XTransmit 0.5.4&lt;/a&gt;, It is a maintenance release, upgraded dependencies, fixed known issues, and have made some improvements.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-        <title>Shadowsocks Android Modified v4.8.7</title>
-        <link>https://xinlake.dev/blog/2019/12-shadowsocks-android-modified/</link>
-        <pubDate>2019-12-18, Wed</pubDate>
-        <author>xinlake@outlook.com (XinLake)</author>
-        <guid>https://xinlake.dev/blog/2019/12-shadowsocks-android-modified/</guid>
-        <description>&lt;p&gt;Shadowsocks Android 修改版跟进到了 4.8.7，除了更新了依赖库版本和 TCP Fast Open（简称 TFO）选项的默认值之外没有其他变化。源码在这里 &lt;a href=&#34;https://github.com/xinlake/shadowsocks-android-modified&#34;&gt;shadowsocks-android-modified&lt;/a&gt;，APK 可以在 &lt;a href=&#34;https://github.com/xinlake/shadowsocks-android-modified/releases&#34;&gt;GitHub Releases&lt;/a&gt; 里下载。&lt;/p&gt;</description>
     </item>
     
     </channel>
