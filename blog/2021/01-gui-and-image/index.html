@@ -24,22 +24,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
 
-<meta name="description" content="做应用多少会接触到 GUI、图像相关的内容，这些领域都蕴含了深厚的内容，本文就从应用软件开发者的角度谈谈图形界面和图像。">
+<meta name="description" content="做应用多少会接触到 GUI、图像相关的内容，这些领域都蕴含了深厚的内容，本文就从应用软件开发者的角度浅谈一下图形界面和图像。">
 <meta name="keywords" content='XinLake, Android Application, 安卓应用'>
 <meta name="author" content="XinLake">
 
 
-<meta property="og:title" content="GUI 和图像 | XinLake" />
+<meta property="og:title" content="浅谈 GUI 和图像 | XinLake" />
 
 <meta property="og:image" content="https://xinlake.dev/blog/2021/01-gui-and-image/cairo-on-wince.png" />
 
-<meta property="og:description" content="做应用多少会接触到 GUI、图像相关的内容，这些领域都蕴含了深厚的内容，本文就从应用软件开发者的角度谈谈图形界面和图像。" />
+<meta property="og:description" content="做应用多少会接触到 GUI、图像相关的内容，这些领域都蕴含了深厚的内容，本文就从应用软件开发者的角度浅谈一下图形界面和图像。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://xinlake.dev/blog/2021/01-gui-and-image/" />
 <meta property="og:locale" content="zh-CN" />
 <meta name="generator" content="Hugo 0.80.0" />
 
-<title>GUI 和图像 | XinLake</title>
+<title>浅谈 GUI 和图像 | XinLake</title>
 <link rel="canonical" href="https://xinlake.dev/blog/2021/01-gui-and-image/" />
 <link rel="alternate" href="/blog/index.xml" type="application/rss+xml" title="XinLake">
 
@@ -96,7 +96,7 @@
         <div class="col-lg-9">
             
 <a href="https://xinlake.dev/blog/2021/01-gui-and-image/">
-    <h2 class="text-dark font-weight-bold mb-3">GUI 和图像</h2>
+    <h2 class="text-dark font-weight-bold mb-3">浅谈 GUI 和图像</h2>
 </a>
 
 
@@ -115,7 +115,7 @@
 </div>
 
             <article class="content mt-2 mb-4">
-                <p>做应用多少会接触到 GUI、图像相关的内容，这些领域都蕴含了深厚的内容，本文就从应用软件开发者的角度谈谈图形界面和图像。</p>
+                <p>做应用多少会接触到 GUI、图像相关的内容，这些领域都蕴含了深厚的内容，本文就从应用软件开发者的角度浅谈一下图形界面和图像。</p>
 <div class="text-center pt-2 pb-3">
     <img class="img-fluid" src='cairo-on-wince.png' title='Cairo on WinCE'
         alt="It&#39;s about the network"></img>
@@ -135,7 +135,7 @@
 <p>GUI 的目标是在屏幕上生成一副图像，向人类展示一些信息，根据交互来更新那幅图像。要说图形是描述，告知机器如何产生图，那么图像则是呈现，直观的可见的图。如果你是一名专业开发者，我不建议你将图形和图像混为一谈，因为“图形”和“图像”是不同的概念，技术上两者的交集也不广泛。</p>
 <p>很多时候，图像技术是用来存储和分享影像信息，摄像头采集下图像后将其压缩存储为 JPEG 图片文件，将文件传输到另外一个设备，它上面的照片程序开打图片解码显示图片，完成一个影像信息存储和分享的过程。图像压缩在图像的存储和传输中起着重要作用，图像信息数据量很大，压缩能有效减少存储消耗并提高信息传输效率。</p>
 <p>JPEG 格式对色彩丰富而且离散的图（如自然风景照片）有着很好的压缩效果，即便是图像信息损失的情况下也能保持很好的视觉感知。而色彩不多且变化又不频繁的图（如界面屏幕截图）则更适合用 PNG 格式压缩，这种场景下它能用较低的存储空间存储所有的图像信息。GIF 格式很老了，放到现代来说它能够高效编码的影像范围已经比较狭窄，不过它支持多帧并且受到浏览器等应用的广泛支持所以仍然用在动图场合。TIFF 则对图像信息准确性敏感，一般用在无损图像的场景里。当然了，还有不少图像格式用在比较专业的场合。</p>
-<p>图像编解码格式都有对应的 Codec，如 libjpeg、libpng、libtiff 等等，操作系统会集成一些常用的 codec 并提供 API 以支持一些图像相关的应用。专业的图像处理应用则会自带很多的 Codec，以广泛的支持各种图片格式。除了专注于图像编解码算法外 Codec 还关注编解码运算的硬件加速，因为图像的编解码也是运算量不小的任务。</p>
+<p>图像编解码格式都有对应的 Codec，如 libjpeg、libpng、libtiff 等等，操作系统会集成一些常用的 Codec 并提供 API 以支持一些图像相关的应用。专业的图像处理应用则会自带很多的 Codec，以广泛的支持各种图片格式。除了专注于图像编解码算法外 Codec 还关注编解码运算的硬件加速，因为图像的编解码也是运算量不小的任务。</p>
 <p>近些年图像技术已经不仅仅用来存储和分享影像信息，以前图是给人看的，现在人类也试着让机器看图。最常见的就是二维码扫描，A 设备通过二维码算法将文本信息编码为二维码图像并显示，然后 B 设备通过摄像头采集并分析图像得到文本信息，完成机器“看图”的过程，即通过图像生成和图像分析技术实现了文本信息从 A 设备传递到了 B 设备。</p>
 <p>类似的技术也有图像文本识别和基于 AI 的图像分析，从人机交互的维度看这是一项质的飞跃。以前，人类需要看 A 设备上的文本然后输入到 B 设备，需要记忆文本然后小心翼翼的输入文本，事实上信息是从 A 传递到了人脑再从人脑传递到 B。而现在，人类只需要将 B 的摄像头对着图像即可，其他的事情交给机器去完成。</p>
 <p>当代，基于 AI 的图像技术应用有着革新人机交互的趋势。我觉得 Google 眼镜是个有些超前时代产品，结合图像、AI、大数据和智能化的人机交互的应用未来还会出现。《钢铁侠》大胆的想象了人类和机器的交互方式，不需要按钮，不需要列表，所有的影像信息都是根据人机交互动态生成，和机器交互就像和人说话一样。</p>
@@ -168,7 +168,7 @@
                 <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fxinlake.dev%2fblog%2f2021%2f01-gui-and-image%2f" target="_blank" title="Facebook">
                     <i class="fab fa-facebook-square fa-2x px-1"></i>
                 </a>
-                <a href="https://twitter.com/intent/tweet?text=GUI%20%e5%92%8c%e5%9b%be%e5%83%8f&url=https%3a%2f%2fxinlake.dev%2fblog%2f2021%2f01-gui-and-image%2f" target="_blank"
+                <a href="https://twitter.com/intent/tweet?text=%e6%b5%85%e8%b0%88%20GUI%20%e5%92%8c%e5%9b%be%e5%83%8f&url=https%3a%2f%2fxinlake.dev%2fblog%2f2021%2f01-gui-and-image%2f" target="_blank"
                     title="Twitter">
                     <i class="fab fa-twitter fa-2x px-1"></i>
                 </a>

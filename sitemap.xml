@@ -23,27 +23,6 @@
     </url>
     
     <url>
-        <loc>https://xinlake.dev/blog/2021/01-gui-and-image/</loc>
-
-        
-        <lastmod>2021-01-31T00:00:00+00:00</lastmod>
-        
-
-        
-        
-        <priority>1.0</priority>
-        
-
-        
-        
-        <changefreq>weekly</changefreq>
-        
-
-        
-        
-    </url>
-    
-    <url>
         <loc>https://xinlake.dev/categories/Lifestyle/</loc>
 
         
@@ -87,6 +66,27 @@
     
     <url>
         <loc>https://xinlake.dev/blog/</loc>
+
+        
+        <lastmod>2021-01-31T00:00:00+00:00</lastmod>
+        
+
+        
+        
+        <priority>1.0</priority>
+        
+
+        
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        
+    </url>
+    
+    <url>
+        <loc>https://xinlake.dev/blog/2021/01-gui-and-image/</loc>
 
         
         <lastmod>2021-01-31T00:00:00+00:00</lastmod>
